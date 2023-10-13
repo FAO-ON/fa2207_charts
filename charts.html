@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="qs.css">
+  <link rel="stylesheet" href="map.css">
+  <style>
+    body{
+      max-width: 1170px;
+      margin-inline: auto;
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  
+<style>
+
+  .custom-tt{
+    display:block; 
+    background: rgba(255,255,255,.96);
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px -4px #999;
+    font-size: 12px;
+    pointer-events: none;
+  }
+
+  .custom-tt-title{
+    background: #eceff1;
+    border-bottom: 1px solid #ddd;
+    padding: 6px;
+  }
+
+  .custom-tt-series{
+    padding: 6px;
+  }
+</style>
+
+
+
+<!-- include apexcharts JS -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+  const fao_blue = '#0f60d5';
+  const fao_white = '#ffffff';
+  const fao_dark_blue = '#1a2b4a';
+  const fao_light_blue_1 = '#9ec2f5';
+  const fao_light_blue_2 = '#bad1f6';
+  const fao_light_blue_3 = '#d7e4fa';
+  const fao_light_blue_4 = '#f1f6fd';
+  const fao_green = '#b2d235';
+  const fao_pink = '#e23e94';
+
+
+  //set default chart options
+  Apex.title = {
+    text: '',
+    align: 'left',
+    margin: 10,
+    style: {
+      fontSize:  '18px',
+      fontWeight:  'bold',
+      color:  fao_dark_blue
+    },
+  };
+  Apex.colors = [
+    fao_light_blue_1,
+    fao_blue,
+    fao_pink
+  ];
+  Apex.xaxis = {
+    labels: {show: false},
+    tooltip: {enabled:false},
+    axisTicks: {show:false},
+    crosshairs: {show:false},
+  };
+  Apex.yaxis = {
+    crosshairs: {show:false},
+    tooltip: {enabled:false}
+  }
+  Apex.dataLabels = {enabled: false};
+  Apex.chart = {
+    height: 350,
+    type: "bar",
+    stacked:true,
+    toolbar: {show: false},
+  };
+  Apex.stroke = {
+    width: 0
+  }
+  Apex.grid = {show:false};
+  Apex.tooltip = { 
+    enabled: false,
+  };
+
+
+  // replace static graph image with apexcharts graph
+  function renderBarChart(figId = '', options = {}){
+    //create new barchart div
+    const fig_barchart = document.createElement('div');
+    fig_barchart.classList.add('barchart');
+    //place barchart div after img
+    const fig_img = document.querySelector('#'+figId+'-image img');
+    fig_img.after(fig_barchart);
+    //hide img
+    fig_img.style.display = 'none';
+    //construct chart and render
+    const fig = new ApexCharts(fig_barchart, options);
+    fig.render();
+  }
+</script>
+
+
+
+
+
+
+
+<h3>Remoteness and Urban Factor</h3> 
+
+<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea ipsum, fugit magni cupiditate nihil similique fuga iste quisquam quaerat, voluptatibus quibusdam, eligendi perspiciatis. Animi dolorem nesciunt nisi a eligendi, nemo tempore, officia ratione ducimus molestias minima tempora commodi sapiente voluptatum nihil similique? Eaque, error aliquam vitae dignissimos rem mollitia hic sit voluptatibus veniam esse, magnam, a rerum animi quaerat nobis minima enim obcaecati. Totam est atque hic culpa a vitae libero doloremque asperiores animi illo praesentium, sequi explicabo consequatur qui magnam amet, nobis officia sed deserunt quisquam tenetur neque, possimus enim! Culpa, ratione repudiandae reiciendis illo suscipit aliquam esse?</p>
+
+
+
+<div class="report-chart" id="fig15-image">
+  <p class="title"><span>Figure 15</span> District School board remoteness and per student funding, 2021-22 school year</p>
+  <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig15.png" style="width: 100%; max-width: 100%;" />
+  <p class="source">Source: Public Accounts of Ontario, 2023 Ontario Budget, and FAO analysis of information provided by the Province</p>
+  <p class="alt-text-link"><a href="#fig15">Accessible version</a></p>
+</div>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum amet exercitationem alias quis sunt quae iure aspernatur in. Modi, necessitatibus deleniti perspiciatis voluptatum voluptas pariatur earum cum cumque hic enim dolorum fugit dolore aperiam. Ab mollitia cupiditate tempore repellendus perferendis vero ex dicta iste. Fuga exercitationem quod iste blanditiis ratione! Architecto, fugit, odio accusantium illo eligendi ipsum nihil deleniti sapiente fuga voluptatum, ducimus quidem enim minima?</p>
+
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, molestiae saepe, voluptate culpa non sit odio ducimus fugit corporis consequatur, harum unde perferendis. Odit ipsa et modi. Saepe quibusdam voluptate id eveniet accusamus quos enim delectus eius, officiis totam modi placeat corporis possimus odio!</p>
+
+
+
+
+
+
+
+
+
+
+<!-- additional apexcharts code -->
+<script>
+  //create chart options
+  let fig15_options = {
+    // title: {text: 'Figure 15: District School board remoteness and per student funding, 2021-22 school year '},
+    series: [
+      //multiple stacked series must have same X values
+      {
+        name: "Least Remote",
+        data:[
+          {x:"Halton Catholic DSB",y:11637},
+          {x:"Halton DSB",y:11796},
+          {x:"Durham DSB",y:11850},
+          {x:"Waterloo Region DSB",y:11945},
+          {x:"Simcoe County DSB",y:12139},
+          {x:"York Region DSB",y:12223},
+          {x:"Peel DSB",y:12285},
+          {x:"Durham Catholic DSB",y:12312},
+          {x:"Upper Grand DSB",y:12402},
+          {x:"Waterloo Catholic DSB",y:12422},
+          {x:"York Catholic DSB",y:12476},
+          {x:"Thames Valley DSB",y:12480},
+          {x:"Simcoe Muskoka Catholic DSB",y:12517},
+          {x:"Dufferin-Peel Catholic DSB",y:12562},
+          {x:"Hamilton-Wentworth Cath DSB",y:12574},
+          {x:"DSB of Niagara",y:12639},
+          {x:"Greater Essex County DSB",y:12648},
+          {x:"Kawartha Pine Ridge DSB",y:12668},
+          {x:"Brant Haldimand Norfolk CDSB",y:12733},
+          {x:"Grand Erie DSB",y:12759},
+          {x:"Ottawa Catholic DSB",y:12836},
+          {x:"Niagara Catholic DSB",y:12876},
+          {x:"London Dist. Catholic School",y:12913},
+          {x:"Hamilton-Wentworth DSB",y:12971},
+          {x:"PVNC Catholic DSB",y:13030},
+          {x:"Ottawa-Carleton DSB",y:13097},
+          {x:"Windsor-Essex Catholic DSB",y:13128},
+          {x:"Bluewater DSB",y:13216},
+          {x:"Wellington Catholic DSB",y:13259},
+          {x:"Lambton Kent DSB",y:13319},
+          {x:"Trillium Lakelands DSB",y:13421},
+          {x:"Toronto Catholic DSB",y:13442},
+          {x:"Toronto DSB",y:13596},
+          {x:"Avon Maitland DSB",y:13739},
+          {x:"Limestone DSB",y:0},
+          {x:"St. Clair Catholic DSB",y:13929},
+          {x:"Upper Canada DSB",y:13994},
+          {x:"Hastings & Prince Edward DSB",y:0},
+          {x:"Algonquin & Lakeshore Cath DSB",y:0},
+          {x:"Bruce-Grey Catholic DSB",y:14311},
+          {x:"Cath DSB of Eastern Ontario",y:14732},
+          {x:"Huron-Perth Catholic DSB",y:14811},
+          {x:"Renfrew County DSB",y:15123},
+          {x:"Lakehead DSB",y:0},
+          {x:"Sudbury Catholic DSB",y:0},
+          {x:"Thunder Bay Catholic DSB",y:0},
+          {x:"CSD cath. Centre-Est de l'Ont.",y:15750},
+          {x:"Rainbow DSB",y:0},
+          {x:"Renfrew County Catholic DSB",y:15967},
+          {x:"CEP de l'Est de l'Ontario",y:16233},
+          {x:"Near North DSB",y:0},
+          {x:"CSC Providence",y:16609},
+          {x:"CSD cath. de l'Est ontarien",y:16761},
+          {x:"Algoma DSB",y:0},
+          {x:"Conseil scolaire Viamonde",y:17927},
+          {x:"Nipissing-Parry Sound Cath DSB",y:0},
+          {x:"Huron-Superior Catholic DSB",y:0},
+          {x:"CSC MonAvenir",y:18470},
+          {x:"Northeastern Catholic DSB",y:0},
+          {x:"DSB Ontario North East",y:0},
+          {x:"CSD cath. du Nouvel-Ontario",y:0},
+          {x:"CSD cath. des Grandes Rivières",y:0},
+          {x:"Keewatin-Patricia DSB",y:0},
+          {x:"Northwest Catholic DSB",y:0},
+          {x:"Kenora Catholic DSB",y:0},
+          {x:"Rainy River DSB",y:0},
+          {x:"CSD catholique Franco-Nord",y:0},
+          {x:"CSP du Nord-Est de l'Ontario",y:0},
+          {x:"CSP du Grand Nord de l'Ontario",y:0},
+          {x:"CSD cath. des Aurores boréales",y:0},
+          {x:"Superior North Catholic DSB",y:0},
+          {x:"Superior-Greenstone DSB",y:0},
+        ]
+      },
+      {
+        name: "Medium Remote",
+        data: [
+          {x:"Halton Catholic DSB",y:0},
+          {x:"Halton DSB",y:0},
+          {x:"Durham DSB",y:0},
+          {x:"Waterloo Region DSB",y:0},
+          {x:"Simcoe County DSB",y:0},
+          {x:"York Region DSB",y:0},
+          {x:"Peel DSB",y:0},
+          {x:"Durham Catholic DSB",y:0},
+          {x:"Upper Grand DSB",y:0},
+          {x:"Waterloo Catholic DSB",y:0},
+          {x:"York Catholic DSB",y:0},
+          {x:"Thames Valley DSB",y:0},
+          {x:"Simcoe Muskoka Catholic DSB",y:0},
+          {x:"Dufferin-Peel Catholic DSB",y:0},
+          {x:"Hamilton-Wentworth Cath DSB",y:0},
+          {x:"DSB of Niagara",y:0},
+          {x:"Greater Essex County DSB",y:0},
+          {x:"Kawartha Pine Ridge DSB",y:0},
+          {x:"Brant Haldimand Norfolk CDSB",y:0},
+          {x:"Grand Erie DSB",y:0},
+          {x:"Ottawa Catholic DSB",y:0},
+          {x:"Niagara Catholic DSB",y:0},
+          {x:"London Dist. Catholic School",y:0},
+          {x:"Hamilton-Wentworth DSB",y:0},
+          {x:"PVNC Catholic DSB",y:0},
+          {x:"Ottawa-Carleton DSB",y:0},
+          {x:"Windsor-Essex Catholic DSB",y:0},
+          {x:"Bluewater DSB",y:0},
+          {x:"Wellington Catholic DSB",y:0},
+          {x:"Lambton Kent DSB",y:0},
+          {x:"Trillium Lakelands DSB",y:0},
+          {x:"Toronto Catholic DSB",y:0},
+          {x:"Toronto DSB",y:0},
+          {x:"Avon Maitland DSB",y:0},
+          {x:"Limestone DSB",y:13842},
+          {x:"St. Clair Catholic DSB",y:0},
+          {x:"Upper Canada DSB",y:0},
+          {x:"Hastings & Prince Edward DSB",y:14028},
+          {x:"Algonquin & Lakeshore Cath DSB",y:14110},
+          {x:"Bruce-Grey Catholic DSB",y:0},
+          {x:"Cath DSB of Eastern Ontario",y:0},
+          {x:"Huron-Perth Catholic DSB",y:0},
+          {x:"Renfrew County DSB",y:0},
+          {x:"Lakehead DSB",y:0},
+          {x:"Sudbury Catholic DSB",y:15423},
+          {x:"Thunder Bay Catholic DSB",y:0},
+          {x:"CSD cath. Centre-Est de l'Ont.",y:0},
+          {x:"Rainbow DSB",y:15935},
+          {x:"Renfrew County Catholic DSB",y:0},
+          {x:"CEP de l'Est de l'Ontario",y:0},
+          {x:"Near North DSB",y:16591},
+          {x:"CSC Providence",y:0},
+          {x:"CSD cath. de l'Est ontarien",y:0},
+          {x:"Algoma DSB",y:16951},
+          {x:"Conseil scolaire Viamonde",y:0},
+          {x:"Nipissing-Parry Sound Cath DSB",y:18030},
+          {x:"Huron-Superior Catholic DSB",y:18105},
+          {x:"CSC MonAvenir",y:0},
+          {x:"Northeastern Catholic DSB",y:18578},
+          {x:"DSB Ontario North East",y:18914},
+          {x:"CSD cath. du Nouvel-Ontario",y:20105},
+          {x:"CSD cath. des Grandes Rivières",y:20999},
+          {x:"Keewatin-Patricia DSB",y:0},
+          {x:"Northwest Catholic DSB",y:0},
+          {x:"Kenora Catholic DSB",y:0},
+          {x:"Rainy River DSB",y:0},
+          {x:"CSD catholique Franco-Nord",y:23060},
+          {x:"CSP du Nord-Est de l'Ontario",y:26063},
+          {x:"CSP du Grand Nord de l'Ontario",y:26940},
+          {x:"CSD cath. des Aurores boréales",y:0},
+          {x:"Superior North Catholic DSB",y:31200},
+          {x:"Superior-Greenstone DSB",y:35110}
+        ]
+      },
+      {
+        name: "Most Remote",
+        data: [
+          {x:"Halton Catholic DSB",y:0},
+          {x:"Halton DSB",y:0},
+          {x:"Durham DSB",y:0},
+          {x:"Waterloo Region DSB",y:0},
+          {x:"Simcoe County DSB",y:0},
+          {x:"York Region DSB",y:0},
+          {x:"Peel DSB",y:0},
+          {x:"Durham Catholic DSB",y:0},
+          {x:"Upper Grand DSB",y:0},
+          {x:"Waterloo Catholic DSB",y:0},
+          {x:"York Catholic DSB",y:0},
+          {x:"Thames Valley DSB",y:0},
+          {x:"Simcoe Muskoka Catholic DSB",y:0},
+          {x:"Dufferin-Peel Catholic DSB",y:0},
+          {x:"Hamilton-Wentworth Cath DSB",y:0},
+          {x:"DSB of Niagara",y:0},
+          {x:"Greater Essex County DSB",y:0},
+          {x:"Kawartha Pine Ridge DSB",y:0},
+          {x:"Brant Haldimand Norfolk CDSB",y:0},
+          {x:"Grand Erie DSB",y:0},
+          {x:"Ottawa Catholic DSB",y:0},
+          {x:"Niagara Catholic DSB",y:0},
+          {x:"London Dist. Catholic School",y:0},
+          {x:"Hamilton-Wentworth DSB",y:0},
+          {x:"PVNC Catholic DSB",y:0},
+          {x:"Ottawa-Carleton DSB",y:0},
+          {x:"Windsor-Essex Catholic DSB",y:0},
+          {x:"Bluewater DSB",y:0},
+          {x:"Wellington Catholic DSB",y:0},
+          {x:"Lambton Kent DSB",y:0},
+          {x:"Trillium Lakelands DSB",y:0},
+          {x:"Toronto Catholic DSB",y:0},
+          {x:"Toronto DSB",y:0},
+          {x:"Avon Maitland DSB",y:0},
+          {x:"Limestone DSB",y:0},
+          {x:"St. Clair Catholic DSB",y:0},
+          {x:"Upper Canada DSB",y:0},
+          {x:"Hastings & Prince Edward DSB",y:0},
+          {x:"Algonquin & Lakeshore Cath DSB",y:0},
+          {x:"Bruce-Grey Catholic DSB",y:0},
+          {x:"Cath DSB of Eastern Ontario",y:0},
+          {x:"Huron-Perth Catholic DSB",y:0},
+          {x:"Renfrew County DSB",y:0},
+          {x:"Lakehead DSB",y:15412},
+          {x:"Sudbury Catholic DSB",y:0},
+          {x:"Thunder Bay Catholic DSB",y:15719},
+          {x:"CSD cath. Centre-Est de l'Ont.",y:0},
+          {x:"Rainbow DSB",y:0},
+          {x:"Renfrew County Catholic DSB",y:0},
+          {x:"CEP de l'Est de l'Ontario",y:0},
+          {x:"Near North DSB",y:0},
+          {x:"CSC Providence",y:0},
+          {x:"CSD cath. de l'Est ontarien",y:0},
+          {x:"Algoma DSB",y:0},
+          {x:"Conseil scolaire Viamonde",y:0},
+          {x:"Nipissing-Parry Sound Cath DSB",y:0},
+          {x:"Huron-Superior Catholic DSB",y:0},
+          {x:"CSC MonAvenir",y:0},
+          {x:"Northeastern Catholic DSB",y:0},
+          {x:"DSB Ontario North East",y:0},
+          {x:"CSD cath. du Nouvel-Ontario",y:0},
+          {x:"CSD cath. des Grandes Rivières",y:0},
+          {x:"Keewatin-Patricia DSB",y:21282},
+          {x:"Northwest Catholic DSB",y:21420},
+          {x:"Kenora Catholic DSB",y:21424},
+          {x:"Rainy River DSB",y:22770},
+          {x:"CSD catholique Franco-Nord",y:0},
+          {x:"CSP du Nord-Est de l'Ontario",y:0},
+          {x:"CSP du Grand Nord de l'Ontario",y:0},
+          {x:"CSD cath. des Aurores boréales",y:30685},
+          {x:"Superior North Catholic DSB",y:0},
+          {x:"Superior-Greenstone DSB",y:0}
+        ]
+      }
+    ],
+    // colours match to series + legend
+    colors: [fao_light_blue_1,fao_blue,fao_pink],
+    xaxis: {
+    categories: [
+      "Halton Catholic DSB",
+      "Halton DSB",
+      "Durham DSB",
+      "Waterloo Region DSB",
+      "Simcoe County DSB",
+      "York Region DSB",
+      "Peel DSB",
+      "Durham Catholic DSB",
+      "Upper Grand DSB",
+      "Waterloo Catholic DSB",
+      "York Catholic DSB",
+      "Thames Valley DSB",
+      "Simcoe Muskoka Catholic DSB",
+      "Dufferin-Peel Catholic DSB",
+      "Hamilton-Wentworth Cath DSB",
+      "DSB of Niagara",
+      "Greater Essex County DSB",
+      "Kawartha Pine Ridge DSB",
+      "Brant Haldimand Norfolk CDSB",
+      "Grand Erie DSB",
+      "Ottawa Catholic DSB",
+      "Niagara Catholic DSB",
+      "London Dist. Catholic School",
+      "Hamilton-Wentworth DSB",
+      "PVNC Catholic DSB",
+      "Ottawa-Carleton DSB",
+      "Windsor-Essex Catholic DSB",
+      "Bluewater DSB",
+      "Wellington Catholic DSB",
+      "Lambton Kent DSB",
+      "Trillium Lakelands DSB",
+      "Toronto Catholic DSB",
+      "Toronto DSB",
+      "Avon Maitland DSB",
+      "Limestone DSB",
+      "St. Clair Catholic DSB",
+      "Upper Canada DSB",
+      "Hastings & Prince Edward DSB",
+      "Algonquin & Lakeshore Cath DSB",
+      "Bruce-Grey Catholic DSB",
+      "Cath DSB of Eastern Ontario",
+      "Huron-Perth Catholic DSB",
+      "Renfrew County DSB",
+      "Lakehead DSB",
+      "Sudbury Catholic DSB",
+      "Thunder Bay Catholic DSB",
+      "CSD cath. Centre-Est de l'Ont.",
+      "Rainbow DSB",
+      "Renfrew County Catholic DSB",
+      "CEP de l'Est de l'Ontario",
+      "Near North DSB",
+      "CSC Providence",
+      "CSD cath. de l'Est ontarien",
+      "Algoma DSB",
+      "Conseil scolaire Viamonde",
+      "Nipissing-Parry Sound Cath DSB",
+      "Huron-Superior Catholic DSB",
+      "CSC MonAvenir",
+      "Northeastern Catholic DSB",
+      "DSB Ontario North East",
+      "CSD cath. du Nouvel-Ontario",
+      "CSD cath. des Grandes Rivières",
+      "Keewatin-Patricia DSB",
+      "Northwest Catholic DSB",
+      "Kenora Catholic DSB",
+      "Rainy River DSB",
+      "CSD catholique Franco-Nord",
+      "CSP du Nord-Est de l'Ontario",
+      "CSP du Grand Nord de l'Ontario",
+      "CSD cath. des Aurores boréales",
+      "Superior North Catholic DSB",
+      "Superior-Greenstone DSB"
+    ]
+  },
+    yaxis:{
+      title: {text:'Per Student Funding'}
+    },
+    chart: {
+      height: 400
+    },
+    tooltip: {
+      enabled: true,
+      custom: function({ series, seriesIndex, dataPointIndex, w }) {
+        // console.log(w);
+        let en_dollar = new Intl.NumberFormat('en-CA');
+        let value_y = 0;
+        series.forEach((item, index) => {
+          value_y += item[dataPointIndex];
+        });
+        value_y = en_dollar.format(value_y);
+        return (
+          '<div class="custom-tt">' +
+          '  <div class="custom-tt-title">' +
+              w.globals.categoryLabels[dataPointIndex] +
+          '  </div>' +
+          '  <div class="custom-tt-series">' +
+          '  <strong>$' + value_y + '</strong> funding per student'+
+          '  </div>' +
+          '</div>'
+        );
+      }
+    }
+  };
+
+  renderBarChart('fig15', fig15_options);
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
