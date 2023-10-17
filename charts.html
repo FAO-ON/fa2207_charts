@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="map.css">
   <style>
     body{
-      max-width: 1170px;
+      max-width: 800px;
       margin-inline: auto;
     }
   </style>
@@ -20,7 +20,6 @@
 
   
 <style>
-
   .custom-tt{
     display:block; 
     background: rgba(255,255,255,.96);
@@ -119,6 +118,14 @@
 
 
 
+<div class="report-chart" id="fig9-image">
+  <p class="title"><span>Figure 9</span> Provincial funding to school boards per-student, 2021-22 school year, dollars</p>
+  <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig9.png" style="width: 100%; max-width: 100%;" />
+  <p class="source">Source: 2021-22 school board financial statements and FAO analysis of information provided by the Province.</p>
+  <p class="alt-text-link"><a href="#fig9">Accessible version</a></p>
+</div>
+
+
 
 
 <h3>Remoteness and Urban Factor</h3> 
@@ -151,6 +158,27 @@
 <!-- additional apexcharts code -->
 <script>
   //create chart options
+
+
+
+  // FIG  9 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  let fig9_options = {}
+
+  // FIG 11 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // stacked
+
+  // FIG 12 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+
+  // FIG 13 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+
+  // FIG 14 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 15 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
   let fig15_options = {
     // title: {text: 'Figure 15: District School board remoteness and per student funding, 2021-22 school year '},
     series: [
@@ -496,6 +524,41 @@
   };
 
   renderBarChart('fig15', fig15_options);
+
+
+  // FIG 16 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 17 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 18 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // stacked chart
+  
+  // FIG 19 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 20 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 23 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 27 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 29 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 32 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 34 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // bar chart
+  
+  // FIG 35 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+  // scatter plot
+
 </script>
 
 

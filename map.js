@@ -173,64 +173,64 @@ function getMapInfoTable(sbId){
   </th>
   <th>${thisBoard[1]}</th>
   <th>Ontario<br>Average</th>
-  <th>${thisBoard[1]} Rank</th>
+  <th>${thisBoard[1]} Rank (out of 72)</th>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Parent School Board category">School System</abbr></td>
+  <td><abbr tabindex="0" title="There are four school systems in Ontario: English Public, English Catholic, French Public and French Catholic">School System</abbr></td>
   <td>${thisBoard[2]}</td>
   <td>N/A</td>
   <td>N/A</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total number of students registered">Enrolment</abbr></td>
+  <td><abbr tabindex="0" title="Average Daily Enrolment">Enrolment</abbr></td>
   <td>${thisBoard[3]}</td>
   <td>${onAverage[3]}</td>
   <td>${ranking[3]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Maximum number of possible students">Capacity</abbr></td>
+  <td><abbr tabindex="0" title="School facilities' On-the-Ground Capacity">Spaces</abbr></td>
   <td>${thisBoard[4]}</td>
   <td>${onAverage[4]}</td>
   <td>${ranking[4]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total Revenue divided by number of enrolled students">Per-Student Funding ($)</abbr></td>
+  <td><abbr tabindex="0" title="Total Ministry of Education Funding Per Student">Per-Student Funding ($)</abbr></td>
   <td>${thisBoard[5]}</td>
   <td>${onAverage[5]}</td>
   <td>${ranking[5]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Rating given by the Education Quality and Accountability Office">EQAO Avg.</abbr></td>
+  <td><abbr tabindex="0" title="The share of EQAO tests administered that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
   <td>${thisBoard[6]}</td>
   <td>${onAverage[6]}</td>
   <td>${ranking[6]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total revenue from all sources">Total Revenue</abbr></td>
+  <td><abbr tabindex="0" title="Total school board revenue">Total Revenue</abbr></td>
   <td>${thisBoard[7]}</td>
   <td>${onAverage[7]}</td>
   <td>${ranking[7]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total expenditures">Total Expense</abbr></td>
+  <td><abbr tabindex="0" title="Total school board expense">Total Expense</abbr></td>
   <td>${thisBoard[8]}</td>
   <td>${onAverage[8]}</td>
   <td>${ranking[8]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Difference between Expenses and Revenue">Surplus</abbr></td>
+  <td><abbr tabindex="0" title="Total school board revenue less  total school board expense">Surplus</abbr></td>
   <td>${thisBoard[9]}</td>
   <td>${onAverage[9]}</td>
   <td>${ranking[9]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total surplus">Year-End Accumulated Surplus (August 31, 2022)</abbr></td>
+  <td><abbr tabindex="0" title="The sum of a school board's budget surpluses and deficits over time">Year-End Accumulated Surplus (August 31, 2022)</abbr></td>
   <td>${thisBoard[10]}</td>
   <td>${onAverage[10]}</td>
   <td>${ranking[10]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Relative difference between expenses and revenue">Surplus as Share of Revenue</abbr></td>
+  <td><abbr tabindex="0" title="School board Surplus as a share of its total revenue">Surplus as Share of Revenue</abbr></td>
   <td>${thisBoard[11]}</td>
   <td>${onAverage[11]}</td>
   <td>${ranking[11]}</td>
@@ -242,19 +242,19 @@ function getMapInfoTable(sbId){
   <td>${ranking[12]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="How far from an urban center the district is">Remoteness (KM)</abbr></td>
+  <td><abbr tabindex="0" title="The distance from a school board's central office to a major urban centre (with a population of at least 200,000)">Remoteness (KM)</abbr></td>
   <td>${thisBoard[13]}</td>
   <td>${onAverage[13]}</td>
   <td>${ranking[13]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="How large the district is">Dispersion (KM)</abbr></td>
+  <td><abbr tabindex="0" title="The weighted average of distance between schools within a school board, as well as the distance between a school board's central office and each of its schools">Dispersion (KM)</abbr></td>
   <td>${thisBoard[14]}</td>
   <td>${onAverage[14]}</td>
   <td>${ranking[14]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Inverse of Remoteness">Urban Factor</abbr></td>
+  <td><abbr tabindex="0" title="Urban factor ranges from zero (most urban) to one (most rural), based on the average population of its schools' census divisions, weighted by enrolment">Urban Factor</abbr></td>
   <td>${thisBoard[15]}</td>
   <td>${onAverage[15]}</td>
   <td>${ranking[15]}</td>
