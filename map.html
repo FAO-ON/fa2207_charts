@@ -6,6 +6,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="qs.css">
   <link rel="stylesheet" href="map.css">
+  <script defer src="map.js"></script> 
   <style>
     body{
       max-width: 1170px;
@@ -18,7 +19,8 @@
 
 
 
-
+<!-- for deployment -->
+<!-- <style>@import url("/web/default/files/publications/FA2207%20School%20Board%20Funding/map.css");</style> -->
 
 
 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis deserunt nesciunt doloremque assumenda vel minima a nam quo velit, id magni adipisci, quae inventore voluptatibus possimus quidem nemo nihil voluptates odit! Repellat ullam eveniet ratione tenetur vero sapiente odio illum, facilis eius neque iusto ut?</p>
@@ -555,7 +557,7 @@
   <label id="map-system-label" for="map-system">School System:</label>
   <select name="" id="map-system">
     <option value="ep" id="ep-system">English Public District School Boards</option>
-    <option value="ec" id="ec-system">English systemholic District School Boards</option>
+    <option value="ec" id="ec-system">English Catholic District School Boards</option>
     <option value="fp" id="fp-system">French Public District School Boards</option>
     <option value="fc" id="fc-system">French Catholic District School Boards</option>
   </select>
@@ -567,84 +569,84 @@
   <!-- <datalist id="map-select-list"> -->
   <select id="map-select">
     <optgroup label="English Public District School Boards">
-      <option id="Layer_1_option" value="Layer_1">DSB Ontario North East</option>
       <option id="Layer_2_option" value="Layer_2">Algoma DSB</option>
-      <option id="Layer_3_option" value="Layer_3">Rainbow DSB</option>
-      <option id="Layer_4_option" value="Layer_4">Near North DSB</option>
-      <option id="Layer_5_option" value="Layer_5">Keewatin-Patricia DSB</option>
-      <option id="Layer_6_option" value="Layer_6">Rainy River DSB</option>
-      <option id="Layer_7_option" value="Layer_7">Lakehead DSB</option>
-      <option id="Layer_8_option" value="Layer_8">Superior-Greenstone DSB</option>
-      <option id="Layer_9_option" value="Layer_9">Bluewater DSB</option>
       <option id="Layer_10_option" value="Layer_10">Avon Maitland DSB</option>
-      <option id="Layer_11_option" value="Layer_11">Greater Essex County DSB</option>
-      <option id="Layer_12_option" value="Layer_12">Lambton Kent DSB</option>
-      <option id="Layer_13_option" value="Layer_13">Thames Valley DSB</option>
-      <option id="Layer_14_option" value="Layer_14">Toronto DSB</option>
+      <option id="Layer_9_option" value="Layer_9">Bluewater DSB</option>
+      <option id="Layer_24_option" value="Layer_24">DSB of Niagara</option>
+      <option id="Layer_1_option" value="Layer_1">DSB Ontario North East</option>
       <option id="Layer_15_option" value="Layer_15">Durham DSB</option>
-      <option id="Layer_16_option" value="Layer_16">Kawartha Pine Ridge DSB</option>
-      <option id="Layer_17_option" value="Layer_17">Trillium Lakelands DSB</option>
-      <option id="Layer_18_option" value="Layer_18">York Region DSB</option>
-      <option id="Layer_19_option" value="Layer_19">Simcoe County DSB</option>
-      <option id="Layer_20_option" value="Layer_20">Upper Grand DSB</option>
-      <option id="Layer_21_option" value="Layer_21">Peel DSB</option>
+      <option id="Layer_25_option" value="Layer_25">Grand Erie DSB</option>
+      <option id="Layer_11_option" value="Layer_11">Greater Essex County DSB</option>
       <option id="Layer_22_option" value="Layer_22">Halton DSB</option>
       <option id="Layer_23_option" value="Layer_23">Hamilton-Wentworth DSB</option>
-      <option id="Layer_24_option" value="Layer_24">DSB of Niagara</option>
-      <option id="Layer_25_option" value="Layer_25">Grand Erie DSB</option>
-      <option id="Layer_26_option" value="Layer_26">Waterloo Region DSB</option>
-      <option id="Layer_27_option" value="Layer_27">Ottawa-Carleton DSB</option>
-      <option id="Layer_28_option" value="Layer_28">Upper Canada DSB</option>
-      <option id="Layer_29_option" value="Layer_29">Limestone DSB</option>
-      <option id="Layer_30_option" value="Layer_30">Renfrew County DSB</option>
       <option id="Layer_31_option" value="Layer_31">Hastings and Prince Edward DSB</option>
+      <option id="Layer_16_option" value="Layer_16">Kawartha Pine Ridge DSB</option>
+      <option id="Layer_5_option" value="Layer_5">Keewatin-Patricia DSB</option>
+      <option id="Layer_7_option" value="Layer_7">Lakehead DSB</option>
+      <option id="Layer_12_option" value="Layer_12">Lambton Kent DSB</option>
+      <option id="Layer_29_option" value="Layer_29">Limestone DSB</option>
+      <option id="Layer_4_option" value="Layer_4">Near North DSB</option>
+      <option id="Layer_27_option" value="Layer_27">Ottawa-Carleton DSB</option>
+      <option id="Layer_21_option" value="Layer_21">Peel DSB</option>
+      <option id="Layer_3_option" value="Layer_3">Rainbow DSB</option>
+      <option id="Layer_6_option" value="Layer_6">Rainy River DSB</option>
+      <option id="Layer_30_option" value="Layer_30">Renfrew County DSB</option>
+      <option id="Layer_19_option" value="Layer_19">Simcoe County DSB</option>
+      <option id="Layer_8_option" value="Layer_8">Superior-Greenstone DSB</option>
+      <option id="Layer_13_option" value="Layer_13">Thames Valley DSB</option>
+      <option id="Layer_14_option" value="Layer_14">Toronto DSB</option>
+      <option id="Layer_17_option" value="Layer_17">Trillium Lakelands DSB</option>
+      <option id="Layer_28_option" value="Layer_28">Upper Canada DSB</option>
+      <option id="Layer_20_option" value="Layer_20">Upper Grand DSB</option>
+      <option id="Layer_26_option" value="Layer_26">Waterloo Region DSB</option>
+      <option id="Layer_18_option" value="Layer_18">York Region DSB</option>
     </optgroup>
     <optgroup label="English Catholic District School Boards">
-      <option id="Layer_32_option" value="Layer_32">Northeastern Catholic DSB</option>
-      <option id="Layer_33_option" value="Layer_33">Nipissing-Parry Sound Catholic DSB</option>
-      <option id="Layer_34_option" value="Layer_34">Huron-Superior Catholic DSB</option>
-      <option id="Layer_35_option" value="Layer_35">Sudbury Catholic DSB</option>
-      <option id="Layer_36_option" value="Layer_36">Northwest Catholic DSB</option>
-      <option id="Layer_37_option" value="Layer_37">Kenora Catholic DSB</option>
-      <option id="Layer_38_option" value="Layer_38">Thunder Bay Catholic DSB</option>
-      <option id="Layer_39_option" value="Layer_39">Superior North Catholic DSB</option>
+      <option id="Layer_60_option" value="Layer_60">Algonquin and Lakeshore Catholic DSB</option>
+      <option id="Layer_56_option" value="Layer_56">Brant Haldimand Norfolk Catholic DSB </option>
       <option id="Layer_40_option" value="Layer_40">Bruce-Grey Catholic DSB</option>
-      <option id="Layer_41_option" value="Layer_41">Huron Perth Catholic DSB</option>
-      <option id="Layer_42_option" value="Layer_42">Windsor-Essex Catholic DSB</option>
-      <option id="Layer_43_option" value="Layer_43">London District Catholic School Board</option>
-      <option id="Layer_44_option" value="Layer_44">St. Clair Catholic DSB</option>
-      <option id="Layer_45_option" value="Layer_45">Toronto Catholic DSB</option>
-      <option id="Layer_46_option" value="Layer_46">Peterborough Victoria Northumberland and Clarington Catholic DSB </option>
-      <option id="Layer_47_option" value="Layer_47">York Catholic DSB</option>
+      <option id="Layer_57_option" value="Layer_57">Catholic DSB of Eastern Ontario</option>
       <option id="Layer_48_option" value="Layer_48">Dufferin-Peel Catholic DSB</option>
-      <option id="Layer_49_option" value="Layer_49">Simcoe Muskoka Catholic DSB</option>
       <option id="Layer_50_option" value="Layer_50">Durham Catholic DSB</option>
       <option id="Layer_51_option" value="Layer_51">Halton Catholic DSB</option>
       <option id="Layer_52_option" value="Layer_52">Hamilton-Wentworth Catholic DSB</option>
-      <option id="Layer_53_option" value="Layer_53">Wellington Catholic DSB</option>
-      <option id="Layer_54_option" value="Layer_54">Waterloo Catholic DSB</option>
+      <option id="Layer_41_option" value="Layer_41">Huron Perth Catholic DSB</option>
+      <option id="Layer_34_option" value="Layer_34">Huron-Superior Catholic DSB</option>
+      <option id="Layer_37_option" value="Layer_37">Kenora Catholic DSB</option>
+      <option id="Layer_43_option" value="Layer_43">London District Catholic School Board</option>
       <option id="Layer_55_option" value="Layer_55">Niagara Catholic DSB</option>
-      <option id="Layer_56_option" value="Layer_56">Brant Haldimand Norfolk Catholic DSB </option>
-      <option id="Layer_57_option" value="Layer_57">Catholic DSB of Eastern Ontario</option>
+      <option id="Layer_33_option" value="Layer_33">Nipissing-Parry Sound Catholic DSB</option>
+      <option id="Layer_32_option" value="Layer_32">Northeastern Catholic DSB</option>
+      <option id="Layer_36_option" value="Layer_36">Northwest Catholic DSB</option>
       <option id="Layer_58_option" value="Layer_58">Ottawa Catholic SB</option>
+      <option id="Layer_46_option" value="Layer_46">Peterborough Victoria Northumberland and Clarington Catholic DSB </option>
       <option id="Layer_59_option" value="Layer_59">Renfrew County Catholic DSB</option>
-      <option id="Layer_60_option" value="Layer_60">Algonquin and Lakeshore Catholic DSB</option>
+      <option id="Layer_49_option" value="Layer_49">Simcoe Muskoka Catholic DSB</option>
+      <option id="Layer_44_option" value="Layer_44">St. Clair Catholic DSB</option>
+      <option id="Layer_35_option" value="Layer_35">Sudbury Catholic DSB</option>
+      <option id="Layer_39_option" value="Layer_39">Superior North Catholic DSB</option>
+      <option id="Layer_38_option" value="Layer_38">Thunder Bay Catholic DSB</option>
+      <option id="Layer_45_option" value="Layer_45">Toronto Catholic DSB</option>
+      <option id="Layer_54_option" value="Layer_54">Waterloo Catholic DSB</option>
+      <option id="Layer_53_option" value="Layer_53">Wellington Catholic DSB</option>
+      <option id="Layer_42_option" value="Layer_42">Windsor-Essex Catholic DSB</option>
+      <option id="Layer_47_option" value="Layer_47">York Catholic DSB</option>
     </optgroup>
     <optgroup label="French Public District School Boards">
+      <option id="Layer_64_option" value="Layer_64">Conseil des écoles publiques de l&apos;Est de l&apos;Ontario</option>
       <option id="Layer_61_option" value="Layer_61">CSD du Nord-Est de l&apos;Ontario</option>
       <option id="Layer_62_option" value="Layer_62">CSP du Grand Nord de l&apos;Ontario</option>
       <option id="Layer_63_option" value="Layer_63">Conseil scolaire Viamonde</option>
-      <option id="Layer_64_option" value="Layer_64">Conseil des écoles publiques de l&apos;Est de l&apos;Ontario</option>
     </optgroup>
     <optgroup label="French Catholic District School Boards">
-      <option id="Layer_65_option" value="Layer_65">CSD catholique des Grandes Rivières </option>
-      <option id="Layer_66_option" value="Layer_66">CSD catholique Franco-Nord</option>
-      <option id="Layer_67_option" value="Layer_67">CSD catholique du Nouvel-Ontario</option>
-      <option id="Layer_68_option" value="Layer_68">CSD catholique des Aurores boréales </option>
-      <option id="Layer_69_option" value="Layer_69">CS catholique Providence</option>
       <option id="Layer_70_option" value="Layer_70">CS catholique MonAvenir</option>
+      <option id="Layer_69_option" value="Layer_69">CS catholique Providence</option>
       <option id="Layer_71_option" value="Layer_71">CSD catholique de l&apos;Est Ontarien</option>
+      <option id="Layer_68_option" value="Layer_68">CSD catholique des Aurores boréales </option>
+      <option id="Layer_65_option" value="Layer_65">CSD catholique des Grandes Rivières </option>
       <option id="Layer_72_option" value="Layer_72">CSD catholique du Centre-Est de l&apos;Ontario</option>
+      <option id="Layer_67_option" value="Layer_67">CSD catholique du Nouvel-Ontario</option>
+      <option id="Layer_66_option" value="Layer_66">CSD catholique Franco-Nord</option>
     </optgroup>
   </select>
   <!-- </datalist> -->
@@ -661,7 +663,9 @@
 </div>
     
 
-<script src="map.js"></script>
+<!-- for deployment -->
+<!-- <script src="/web/default/files/publications/FA2207%20School%20Board%20Funding/map.js"></script>  -->
+
 
 
 
