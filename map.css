@@ -33,11 +33,12 @@
 /* map                                         */
 
 .map-container{
-  /* max-width: 100vh; */
   margin-inline:auto;
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
+  border: 2px solid var(--fao-dark-blue);
+  padding: 0.5rem;
 }
 
 /* testing */

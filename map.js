@@ -169,7 +169,6 @@ function getMapInfoTable(sbId){
 <tr>
   <th>
     <!--<abbr tabindex="0" title="Name of the local School Board">Board</abbr>-->
-
   </th>
   <th>${thisBoard[1]}</th>
   <th>Ontario<br>Average</th>
@@ -182,7 +181,8 @@ function getMapInfoTable(sbId){
   <td>N/A</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Average Daily Enrolment">Enrolment</abbr></td>
+  <td><abbr tabindex="0" title="Based on Average Daily Enrolment (ADE), which is a full-time equivalent measure of student enrolment.
+  Spaces tooltip: School facilities’ on-the-ground capacity (excludes spaces in portable classrooms).">Enrolment</abbr></td>
   <td>${thisBoard[3]}</td>
   <td>${onAverage[3]}</td>
   <td>${ranking[3]}</td>
@@ -206,7 +206,7 @@ function getMapInfoTable(sbId){
   <td>${ranking[6]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="The share of EQAO tests administered that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
+  <td><abbr tabindex="0" title="The share of tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
   <td>${thisBoard[7]}</td>
   <td>${onAverage[7]}</td>
   <td>${ranking[7]}</td>
@@ -230,19 +230,19 @@ function getMapInfoTable(sbId){
   <td>${ranking[10]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="The sum of a school board's budget surpluses and deficits over time">Year-End Accumulated Surplus (August 31, 2022)</abbr></td>
+  <td><abbr tabindex="0" title="Year-end accumulated surplus as of August 31, 2022. Represents the sum of surpluses and deficits over time.">Accumulated Surplus (August 31, 2022)</abbr></td>
   <td>${thisBoard[11]}</td>
   <td>${onAverage[11]}</td>
   <td>${ranking[11]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="School board Surplus as a share of its total revenue">Surplus as Share of Revenue</abbr></td>
+  <td><abbr tabindex="0" title="School board surplus as a share of revenue">Surplus as Share of Revenue</abbr></td>
   <td>${thisBoard[12]}</td>
   <td>${onAverage[12]}</td>
   <td>${ranking[12]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Relative difference between expenses and revenue">Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)</abbr></td>
+  <td><abbr tabindex="0" title="Year-end accumulated surplus as a share of revenue as of August 31, 2022">Accumulated Surplus as Share of Revenue (August 31, 2022)</abbr></td>
   <td>${thisBoard[13]}</td>
   <td>${onAverage[13]}</td>
   <td>${ranking[13]}</td>
