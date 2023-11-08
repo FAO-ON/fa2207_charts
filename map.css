@@ -12,6 +12,10 @@
   opacity:1 !important;
   visibility: visible !important;
 }
+table.visible{
+  display:table !important;
+}
+
 
 :root{
 --fao-blue: #0f60d5;
@@ -105,8 +109,14 @@ g:focus{
 
 .map-container .map-info {
   grid-area: 3 / 2 / 4 / 3;
-  /* min-width: 45ch; */
 }
+
+
+.map-container label {
+  font-size: 14px;
+  line-height: 1;
+}
+
 
 .map-container .map-info > * {
   opacity: 0;
@@ -125,6 +135,39 @@ g:focus{
   display:block;
 }
 
+.map-info {
+  overflow-x: auto;
+  max-width:100%;
+}
+
+.map-info table{
+  border-collapse: collapse;
+  border: none;
+  width:100%;
+}
+.map-info table tr{
+  border-bottom: 1px solid var(--fao-light-blue-3);
+}
+.map-info table th{
+  background: var(--fao-dark-blue);
+  color: white;
+}  
+.map-info table :is(td,th){
+  padding: 0.25em;
+  text-align: left;
+}
+/* table column widths */
+.map-info table :is(th,td):nth-child(1) { width: 20ch; }
+.map-info table :is(th,td):nth-child(2) { width: 12ch; }
+.map-info table :is(th,td):nth-child(3) { width: 10ch; }
+.map-info table :is(th,td):nth-child(4) { width: 12ch; }
+
+
+/* colour third column */
+.map-info table td:nth-child(3) { background:var(--fao-light-blue-4); }
+
+
+
 abbr[title]::after{
   content: ' ? ';
   display: inline-block;
@@ -142,35 +185,13 @@ abbr[title]:focus::after{
   border-radius: 0.125em;
 }
 
-.map-info table{
-  border-collapse: collapse;
-  border:none;
-}
-.map-info table tr{
-  border-bottom: 1px solid var(--fao-light-blue-3);
-}
-.map-info table th{
-  background: var(--fao-dark-blue);
-  color: white;
-}  
-.map-info table :is(td,th){
-  padding: 0.25em;
-  text-align: left;
-}
-/* table column widths */
-.map-info table td:nth-child(1){ min-width: 12ch; }
-.map-info table td:nth-child(2){ width: 12ch; }
-.map-info table td:nth-child(3) {
-  background:var(--fao-light-blue-4);
-  width: 10ch;
-}
-.map-info table td:nth-child(4){ width: 12ch; }
 
 /* change map layout to single column stack for mobile */
 @media only screen and (max-width: 768px) {
   .map-container{
     grid-template-columns: 1fr;
     gap: 5px;
+    padding: 0;
   }
   .map-container #map-svg            { grid-area: 1 / 1 / 2 / 2; }
   .map-container #map-system-label   { grid-area: 2 / 1 / 3 / 2; }
