@@ -160,6 +160,8 @@ sbData.forEach(thisBoard =>{
   mapInfoContainer.innerHTML += getMapInfoTable(thisBoard[0]);
 })
 
+
+
 function getMapInfoTable(sbId){
   const thisBoard = sbData[sbId];
   const onAverage = sbData[0];
@@ -171,7 +173,7 @@ function getMapInfoTable(sbId){
     <!--<abbr tabindex="0" title="Name of the local School Board">Board</abbr>-->
   </th>
   <th>${thisBoard[1]}</th>
-  <th>Ontario<br>Average</th>
+  <th>Ontario Average</th>
   <th>${thisBoard[1]} Rank<br>(out of 72)</th>
 </tr>
 <tr>
@@ -211,25 +213,25 @@ function getMapInfoTable(sbId){
   <td>${ranking[7]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total school board revenue">Total Revenue</abbr></td>
+  <td><abbr tabindex="0" title="Total school board revenue">Total Revenue ($ million)</abbr></td>
   <td>${thisBoard[8]}</td>
   <td>${onAverage[8]}</td>
   <td>${ranking[8]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total school board expense">Total Expense</abbr></td>
+  <td><abbr tabindex="0" title="Total school board expense">Total Expense ($ million)</abbr></td>
   <td>${thisBoard[9]}</td>
   <td>${onAverage[9]}</td>
   <td>${ranking[9]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total school board revenue less  total school board expense">Surplus</abbr></td>
+  <td><abbr tabindex="0" title="Total school board revenue less  total school board expense">Surplus ($ million)</abbr></td>
   <td>${thisBoard[10]}</td>
   <td>${onAverage[10]}</td>
   <td>${ranking[10]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Year-end accumulated surplus as of August 31, 2022. Represents the sum of surpluses and deficits over time.">Accumulated Surplus (August 31, 2022)</abbr></td>
+  <td><abbr tabindex="0" title="Year-end accumulated surplus as of August 31, 2022. Represents the sum of surpluses and deficits over time.">Accumulated Surplus ($ million)</abbr></td>
   <td>${thisBoard[11]}</td>
   <td>${onAverage[11]}</td>
   <td>${ranking[11]}</td>
@@ -241,7 +243,7 @@ function getMapInfoTable(sbId){
   <td>${ranking[12]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Year-end accumulated surplus as a share of revenue as of August 31, 2022">Accumulated Surplus as Share of Revenue (August 31, 2022)</abbr></td>
+  <td><abbr tabindex="0" title="Year-end accumulated surplus as a share of revenue as of August 31, 2022">Accumulated Surplus as Share of Revenue</abbr></td>
   <td>${thisBoard[13]}</td>
   <td>${onAverage[13]}</td>
   <td>${ranking[13]}</td>
@@ -267,6 +269,24 @@ function getMapInfoTable(sbId){
 </table>`;
   return tableCode;
 }
+
+const sysData = [
+  'ep',
+  'ec',
+  'fp',
+  'fc',
+];
+sysData.forEach(thisSystem =>{
+  const mapInfoContainer = document.querySelector('.map-info');
+  mapInfoContainer.innerHTML += `
+<table id="${thisSystem}_info">
+<tr>
+  <td>${thisSystem} info</td>
+</tr>
+</table>  
+  `;
+})
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * //
 // set up event listeners on page load
@@ -305,8 +325,6 @@ function handleChangeOption(event){
 function handleSystemChangeOption(event){
   const systemId = event.target.value;
   console.log('systemId',systemId);
-  //get first district in system
-  const mapG = document.getElementById(systemId);
   displayNone();
   displaySystem(systemId);
 }
@@ -356,6 +374,7 @@ function displaySchoolBoard(sbId = null){
   }
   
   // #map-select
+  const mapSelect = document.getElementById('map-select');
   mapSelect.value = sbId;
   
   // #map-info
@@ -394,5 +413,18 @@ function displaySystem(systemId = 'ep'){
   // select#map-system
   const systemSelect = document.querySelector('select#map-system');
   if(systemSelect) systemSelect.value = systemG.id;
+
+  //district select
+  const mapSelect = document.getElementById('map-select');
+  if(mapSelect.value == ''){
+    console.log('no district selected');
+    //district info
+    // const mapInfos = document.querySelectorAll('.map-info > *');
+    // mapInfos.forEach(info => { info.classList.remove('visible'); });
+    const mapInfo = document.getElementById(systemId + '_info');
+    console.log('systemId:',systemId);
+    console.log('make visible mapInfo:',mapInfo);
+    mapInfo.classList.add('visible');
+  }
 }
 
