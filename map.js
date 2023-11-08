@@ -181,14 +181,13 @@ function getMapInfoTable(sbId){
   <td>N/A</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Based on Average Daily Enrolment (ADE), which is a full-time equivalent measure of student enrolment.
-  Spaces tooltip: School facilities’ on-the-ground capacity (excludes spaces in portable classrooms).">Enrolment</abbr></td>
+  <td><abbr tabindex="0" title="Based on Average Daily Enrolment (ADE), which is a full-time equivalent measure of student enrolment">Enrolment</abbr></td>
   <td>${thisBoard[3]}</td>
   <td>${onAverage[3]}</td>
   <td>${ranking[3]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="School facilities' On-the-Ground Capacity">Spaces</abbr></td>
+  <td><abbr tabindex="0" title="School facilities’ on-the-ground capacity (excludes spaces in portable classrooms)">Spaces</abbr></td>
   <td>${thisBoard[4]}</td>
   <td>${onAverage[4]}</td>
   <td>${ranking[4]}</td>
