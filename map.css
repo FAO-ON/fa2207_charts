@@ -122,6 +122,7 @@ g:focus{
   opacity: 0;
   display: none;
   font-size: 14px;
+  font-size: clamp(10px,2vw,14px);
   line-height: 1.5;
 }
 .map-container .map-info > * > * {
@@ -192,6 +193,7 @@ abbr[title]:focus::after{
     grid-template-columns: 1fr;
     gap: 5px;
     padding: 0;
+    margin-inline: -24px;
   }
   .map-container #map-svg            { grid-area: 1 / 1 / 2 / 2; }
   .map-container #map-system-label   { grid-area: 2 / 1 / 3 / 2; }
