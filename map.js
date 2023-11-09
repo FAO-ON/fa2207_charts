@@ -271,21 +271,87 @@ function getMapInfoTable(sbId){
 }
 
 const sysData = [
-  'ep',
-  'ec',
-  'fp',
-  'fc',
+  ['on',    'Ontario Average',     '499,434',      '581,018',      '13,364',    '14,426',    '67.7%',    '7,243',     '7,205',     '37',    '1,640',    '0.5%',    '22.6%'], 
+  ['ep',    'English Public',      '1,331,907',    '1,550,480',    '13,027',    '14,059',    '66.8%',    '18,815',    '18,726',    '89',    '3,702',    '0.5%',    '19.7%'],
+  ['ec',    'English Catholic',    '554,739',      '615,284',      '13,252',    '14,376',    '69.0%',    '8,004',     '7,975',     '28',    '2,029',    '0.4%',    '25.3%'], 
+  ['fp',    'French Public',       '34,588',       '48,177',       '18,585',    '19,969',    '74.2%',    '698',       '691',       '7',     '301',      '1.1%',    '43.1%'], 
+  ['fc',    'French Catholic',     '76,501',       '110,132',      '17,680',    '18,675',    '70.7%',    '1,454',     '1,429',     '25',    '527',      '1.7%',    '36.2%'], 
 ];
 sysData.forEach(thisSystem =>{
+  if(thisSystem[0] == 'on') return; //skip Ontario Average
   const mapInfoContainer = document.querySelector('.map-info');
-  mapInfoContainer.innerHTML += `
-<table id="${thisSystem}_info">
-<tr>
-  <td>${thisSystem} info</td>
-</tr>
-</table>  
-  `;
+  mapInfoContainer.innerHTML += getSysInfoTable(thisSystem);
 })
+
+function getSysInfoTable(thisSystem){
+  const onAverage = sysData[0];
+  let tableCode = `
+<table id="${thisSystem[0]}_info">
+  <tr>
+    <th>
+    <!-- <abbr tabindex="0" title="There are four school systems in Ontario: English Public, English Catholic, French Public and French Catholic">School System</abbr> -->
+    </th>
+    <th>${thisSystem[1]}</th>
+    <th>Ontario Average</th>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Based on Average Daily Enrolment (ADE), which is a full-time equivalent measure of student enrolment">Enrolment</abbr></td>
+    <td>${thisSystem[2]}</td>
+    <td>${onAverage[2]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="School facilities’ on-the-ground capacity (excludes spaces in portable classrooms)">Spaces</abbr></td>
+    <td>${thisSystem[3]}</td>
+    <td>${onAverage[3]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Total Ministry of Education Funding Per Student">Per-Student Funding ($)</abbr></td>
+    <td>${thisSystem[4]}</td>
+    <td>${onAverage[4]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Total school board expense per student">Per-Student Spending ($)</abbr></td>
+    <td>${thisSystem[5]}</td>
+    <td>${onAverage[5]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="The share of tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
+    <td>${thisSystem[6]}</td>
+    <td>${onAverage[6]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Total school board revenue">Total Revenue ($ million)</abbr></td>
+    <td>${thisSystem[7]}</td>
+    <td>${onAverage[7]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Total school board expense">Total Expense ($ million)</abbr></td>
+    <td>${thisSystem[8]}</td>
+    <td>${onAverage[8]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Total school board revenue less  total school board expense">Surplus ($ million)</abbr></td>
+    <td>${thisSystem[9]}</td>
+    <td>${onAverage[9]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Year-end accumulated surplus as of August 31, 2022. Represents the sum of surpluses and deficits over time.">Accumulated Surplus ($ million)</abbr></td>
+    <td>${thisSystem[10]}</td>
+    <td>${onAverage[10]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="School board surplus as a share of revenue">Surplus as Share of Revenue</abbr></td>
+    <td>${thisSystem[11]}</td>
+    <td>${onAverage[11]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Year-end accumulated surplus as a share of revenue as of August 31, 2022">Accumulated Surplus as Share of Revenue</abbr></td>
+    <td>${thisSystem[12]}</td>
+    <td>${onAverage[12]}</td>
+  </tr>
+</table>`;
+  return tableCode;
+}
 
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * //

@@ -158,7 +158,7 @@ g:focus{
   text-align: left;
 }
 /* table column widths */
-.map-info table :is(th,td):nth-child(1) { width: 20ch; }
+.map-info table :is(th,td):nth-child(1) { min-width: 25ch; }
 .map-info table :is(th,td):nth-child(2) { width: 12ch; }
 .map-info table :is(th,td):nth-child(3) { width: 10ch; }
 .map-info table :is(th,td):nth-child(4) { width: 12ch; }
