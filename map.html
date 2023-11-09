@@ -22,12 +22,13 @@
 <!-- for deployment -->
 <!-- <style>@import url("/web/default/files/publications/FA2207%20School%20Board%20Funding/map.css");</style> -->
 
-
+<h2>Summary</h2>
 <p>The FAO's report, <em>Ontario School Boards: Enrolment, Finances and Student Outcomes</em>, reviews the allocation of provincial funding across Ontario’s 72 district school boards, and four school systems (English Public, English Catholic, French Public and French Catholic). The report looks at key areas including the demographic composition of Ontario’s students and the availability of French-language and Catholic schools, school board spending, budget balance and accumulated surplus patterns, and academic performance by school board and system. </p>
 <p>The interactive chart below allows users to compare data from individual school boards to the provincial average, determine how a given school board ranks among Ontario’s 72 district school boards and evaluate different characteristics by individual school board such as: enrolment, spaces, per-student funding, revenue and expenses, dispersion, remoteness, Urban Factor and other attributes. To browse the available data, you can either select a school board directly from the second drop down menu or select a school system from the first drop down menu and click on the map to select a school board.</p>
 <p>To view the underlying data reflected in the interactive map and chart, please visit <a href="">LINK</a>.</p>
 <p>For more detailed information and analysis, see our <em>Ontario School Boards: Enrolment, Finances and Student Outcomes</em> report <a href="">here</a>.</p>
 
+<h2 id="map-heading">School System and School Board Characteristics</h2>
 <div class="map-container">
 
   <!-- svg default viewbox="0 0 230 256" -->
@@ -553,13 +554,14 @@
       </g>
     </g>
   </svg>
+  <div id="map-source">Source: FAO.</div>
 
   <label id="map-system-label" for="map-system">School System:</label>
   <select name="" id="map-system">
-    <option value="ep" id="ep-system">English Public District School Boards</option>
-    <option value="ec" id="ec-system">English Catholic District School Boards</option>
-    <option value="fp" id="fp-system">French Public District School Boards</option>
-    <option value="fc" id="fc-system">French Catholic District School Boards</option>
+    <option value="ep" id="ep-system">English Public School System</option>
+    <option value="ec" id="ec-system">English Catholic School System</option>
+    <option value="fp" id="fp-system">French Public School System</option>
+    <option value="fc" id="fc-system">French Catholic School System</option>
   </select>
   
   <label id="map-select-label" for="map-select">School Board:</label>
