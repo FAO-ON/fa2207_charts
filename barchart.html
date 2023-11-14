@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js Bar Chart</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        /* Add your custom styles here */
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            margin: 20px;
+        }
+
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            width: 800px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        .axis-y path {
+            display: none;
+        }
+        .tooltip {
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 8px;
+            font-size: 12px;
+        }
+        .tooltip-line {
+            stroke: black; /* Optional: add a dashed pattern to the line */
+        }
+
+    </style>
+</head>
+<body>
+    Aliqua cupidatat laboris irure dolor fugiat proident excepteur. Est est exercitation tempor et et cupidatat irure labore voluptate Lorem excepteur et duis irure. Nulla sint nulla consequat esse est adipisicing ullamco do est ea fugiat nostrud. Eu do laboris aliqua qui deserunt culpa dolor sint magna do in ea enim. Cupidatat magna Lorem laborum veniam qui aliqua. Eu sint proident et deserunt dolor consectetur reprehenderit laboris non reprehenderit laboris. Excepteur cillum magna nisi labore.
+    <div class="chart-container">
+        <div class="legend">
+            <div class="legend-item" id="legend-english-public">
+                <div class="legend-color" style="background-color: steelblue;"></div>
+                <div>English Public</div>
+            </div>
+            <div class="legend-item" id="legend-english-catholic">
+                <div class="legend-color" style="background-color: #ED7D31;"></div>
+                <div>English Catholic</div>
+            </div>
+            <div class="legend-item" id="legend-french-public">
+                <div class="legend-color" style="background-color: grey;"></div>
+                <div>French Public</div>
+            </div>
+            <div class="legend-item" id="legend-french-catholic">
+                <div class="legend-color" style="background-color: #F9C000;"></div>
+                <div>French Catholic</div>
+            </div>
+        </div>
+        <svg id="bar-chart"></svg>
+    </div>
+
+    <script src="chart.js"></script>
+</body>
+</html>
