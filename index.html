@@ -127,6 +127,15 @@
   <p class="alt-text-link"><a href="#fig18">Accessible version</a></p>
 </div>
 
+<p>Occaecat proident occaecat laborum et ut eiusmod adipisicing. Cupidatat culpa et proident officia exercitation. In eu ad dolor voluptate qui mollit ad ea ex irure pariatur. Dolor aliqua adipisicing mollit elit laborum tempor ad Lorem irure nulla aliqua cupidatat. Lorem sunt aute deserunt ut sit. Sit ea mollit dolor velit sunt ea reprehenderit exercitation consectetur laborum. Amet laborum minim ullamco dolore culpa.</p>
+
+<div class="report-chart" id="fig19-image">
+  <p class="title"><span>Figure 19:</span> Official Languages Projects program per-student funding, 2021-22 school year, dollars</p>
+  <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig19.png" style="width: 100%; max-width: 100%;" />
+  <p class="source">Source: 2021-22 school board financial statements and FAO analysis of information provided by the Province.</p>
+  <p class="alt-text-link"><a href="#fig19">Accessible version</a></p>
+</div>
+
 <p>Ullamco Lorem in nisi cillum. Est ea est mollit esse amet pariatur tempor pariatur tempor consequat. Reprehenderit et commodo proident elit tempor ad cillum Lorem occaecat culpa nulla in. Lorem quis occaecat reprehenderit cupidatat. Enim veniam dolore ipsum sit et eiusmod adipisicing cupidatat voluptate ullamco in sunt est aliquip.</p>
 
 <div class="report-chart" id="fig33-image">
@@ -238,8 +247,9 @@
     const fig_10 = Plot.plot({
       padding: 0.6,
       width: 800,
+      className: "fig9",
       y: {domain:[0,20000]},
-      x: {domain: ["English Public", "English Catholic", "French Public", "French Catholic", "Average"]},
+      x: {label: "School System", domain: ["English Public", "English Catholic", "French Public", "French Catholic", "Average"]},
       color: {legend: true, domain: ["Grants for Student Needs", "Priorities and Partnership Fund", "Official Languages Project"], range: ["#1060D5", "#90B7F2", "#B2D235"], marginLeft: 130},
       marks: [
         Plot.barY(tidy, {x: "System", y: "Value",  fill: "Program", tip: true}),
@@ -355,30 +365,118 @@
     const fig_15_div = document.querySelector("#fig15-image img");
     fig_15_div.after(fig_15);
     
-    // FIG 16 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
-    // bar chart, in the end with FIG 11
 
-    
     // FIG 17 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
     // bar chart
-
-    const fig_17 = Plot.plot({
-      marks:[
-        Plot.barY(d, {
-          x: "Board",
-          y: "Per-student Funding ($)",
-          fill: "System",
-        })
-      ]
+    d3.csv("fig17_data.csv").then(d => {
+      let fig17_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": +d[k], System: k})));
+      fig17_tidy = fig17_tidy.filter(d => d.System != 'Average');
+      for(let i = 0; i < fig17_tidy.length; i++){
+        //if the per student funding is "" then remove it
+        if(fig17_tidy[i]["Per Student Funding"] == 0){
+          fig17_tidy.splice(i, 1);
+          i--;
+        }
+      }
+      console.log(fig17_tidy);
+      const fig_17 = Plot.plot({
+        width: 800,
+        padding: 0.3,
+        className: "fig9",
+        x:{label: "School Board", nice: true, tickFormat: d => null},
+        y:{domain: [0, 4500], label: "Per Student Funding", nice: true},
+        marks: [
+          Plot.barY(fig17_tidy, {
+            x: "Board", 
+            y: "Per Student Funding", 
+            fill: 'System', 
+            tip: true,
+            title: (d) => "School Board: " + `${d.Board},  "\nSchool System:" ${d.System}` + "\nPer Student Funding: " + `${d["Per Student Funding"]}`,
+            channels: {'Per Student Funding': 'Per Student Funding'},
+            sort: {x: "Per Student Funding"}
+          }),
+        ],
+        color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"], marginLeft: 150}
+      });
+      const fig_17_div = document.querySelector("#fig17-image img");
+      fig_17_div.after(fig_17);
     })
-    const fig_17_div = document.querySelector("#fig17-image img");
-    fig_17_div.after(fig_17);
-    
-    // FIG 18  BELOW/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
-    // stacked chart
+
+    //FIG 18 / / / / / / / / / /
+    // Stacked
+    d3.csv("fig18_data.csv").then(d => {
+    let fig18_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Allocation: k, Total: d['Total']})));
+    for(let i = 0; i < fig18_tidy.length; i++){
+      //cast each Per Student Funding to a number
+      fig18_tidy[i]["Total"] = +fig18_tidy[i]["Total"];
+      //if the per student funding is "" then remove it
+      if(fig18_tidy[i]["Per Student Funding"] == ""){
+        fig18_tidy.splice(i, 1);
+        i--;
+      }
+    }
+    //filter out Average
+    fig18_tidy = fig18_tidy.filter(d => d.Allocation != 'Average' && d.Allocation != 'Total');
+    //remove Total and Average from Grant
+    console.log(fig18_tidy);
+    const fig_18 = Plot.plot({
+      width: 800,
+      padding: 0.3,
+      className: "fig9",
+      x:{label: "School Board", nice: true, tickFormat: d => null},
+      y:{domain: [0, 4500], label: "Per Student Funding", nice: true},
+      marks: [
+        Plot.barY(fig18_tidy, {
+          x: "Board", 
+          y: "Per Student Funding", 
+          fill: 'Allocation', 
+          tip: true,
+          channels: {'Total': 'Total'},
+          sort: {x: "Total"}
+        }),
+      ],
+    });
+    const fig_18_div = document.querySelector("#fig18-image img");
+    fig_18_div.after(fig_18);
+    })
     
     // FIG 19 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
     // bar chart
+    d3.csv("fig19_data.csv").then(d=>{
+    let fig19_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Language: k})));
+    //get rid of duplicate boards
+    for(let i = 0; i < fig19_tidy.length; i++){
+      //cast each Per Student Funding to a number
+      fig19_tidy[i]["Per Student Funding"] = +fig19_tidy[i]["Per Student Funding"];
+      //if the per student funding is "" then remove it
+      if(fig19_tidy[i]["Per Student Funding"] == ""){
+        fig19_tidy.splice(i, 1);
+        i--;
+      }
+    }
+    console.log(fig19_tidy);
+    const fig_19 =
+      Plot.plot({
+        width: 800,
+        padding: 0.3,
+        className: "fig9",
+        x:{label: "School Board", nice: true, tickFormat: d => null},
+        y:{domain: [0, 600], label: "Per Student Funding", nice: true},
+        marks:[
+          Plot.barY(fig19_tidy, {
+            x: "Board",
+            y: "Per Student Funding",
+            fill: "Language",
+            channels: {"Per Student Funding": "Per Student Funding"},
+            sort: {x: "Per Student Funding"},
+            tip: true,
+          }),
+        ]
+      })
+    const fig_19_div = document.querySelector("#fig19-image img");
+    fig_19_div.after(fig_19);
+    })
+
     
     // FIG 20 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
     // bar chart
@@ -479,7 +577,6 @@
       //filter out Average
       fig16_tidy = fig16_tidy.filter(d => d.Language != ' Average ');
       //remove Total and Average from Grant
-      console.log(fig16_tidy);
       const fig_16 = Plot.plot({
         width: 800,
         padding: 0.3,
@@ -503,32 +600,9 @@
   })
 
   //FIG 18 STACKED, cant figure out why its not sorting
-  d3.csv("fig18_data.csv").then(d => {
-    let fig18_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Allocation: k, Total: d['Total']})));
-    //filter out Average
-    fig18_tidy = fig18_tidy.filter(d => d.Allocation != 'Average' && d.Allocation != 'Total');
-    //remove Total and Average from Grant
-    console.log(fig18_tidy);
-    const fig_18 = Plot.plot({
-      width: 800,
-      padding: 0.3,
-      className: "fig9",
-      x:{label: "School Board", nice: true, tickFormat: d => null},
-      y:{domain: [0, 4500], label: "Per Student Funding", nice: true},
-      marks: [
-        Plot.barY(fig18_tidy, {
-          x: "Board", 
-          y: "Per Student Funding", 
-          fill: 'Allocation', 
-          tip: true,
-          channels: {'Total': 'Total'},
-          sort: {x: "Total"}
-        }),
-      ],
-    });
-    const fig_18_div = document.querySelector("#fig18-image img");
-    fig_18_div.after(fig_18);
-  })
+
+
+  //FIG 19
 
 
     
