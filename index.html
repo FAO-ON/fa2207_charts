@@ -243,6 +243,7 @@
                     width: 800,
                     padding: 0.3,
                     className: "fig9",
+                    marginLeft: 75,
                     //center the plot
                     x:{label: "School Board", nice: true,
                         tickFormat: d => null,
@@ -274,6 +275,7 @@
                           //anchor: "bottom"
                           //make
                         })),
+                        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
                         
                         
                     ],
@@ -391,6 +393,7 @@
       width: 800,
       padding: 0.3,
       className: "fig9",
+      marginLeft: 75,
       x:{label: "School Board", nice: true, tickFormat: d => null},
       y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
       marks:[
@@ -398,7 +401,6 @@
           x: "Board",
           y: "Per-student Funding ($)",
           fill: "Dispersion",
-          tip: true,
           channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
           sort: {x: "Per-student Funding ($)"},
           stroke: white,
@@ -406,6 +408,14 @@
           strokeOpacity: 1,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.tip(d, Plot.pointerX({
+          x: "Board",
+          y: "Per-student Funding ($)",
+          lineWidth: 1000,
+          //anchor: "bottom"
+          //make
+        })),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
       color: {legend: true, domain: ["Least Disperse", "Medium Disperse", "Most Disperse"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 180}
     })
@@ -419,12 +429,14 @@
       width: 800,
       padding: 0.3,
       className: "fig9",
+      marginLeft: 75,
       x:{label: "School Board", nice: true, tickFormat: d => null},
       marks:[
         Plot.barY(d, {
           x: "Board",
           y: "Per-student Funding ($)",
           tip: true,
+          title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + `${d["Per-student Funding ($)"]}`,
           fill: "Remote",
           channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
           sort: {x: "Per-student Funding ($)"},
