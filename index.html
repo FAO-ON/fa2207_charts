@@ -23,12 +23,39 @@
       font-size: 14px;
       overflow: visible;
       margin: 0;
+      margin-bottom: 15px;
     }
-    .fig9-legend{
-      margin-left: 50%;
+    .fig-legend-swatch{
+      font-size: 13px;
+      font-family: Helvetica, Arial;
     }
     g[aria-label="bar"]:has(rect:hover) rect:not(:hover){
       fill:#ccc;
+    }
+    g[aria-label="y-axis label"] text{
+      font-size: 14px;
+    }
+    g[aria-label="x-axis label"]{
+      font-size: 14px;
+      /*add a bit of space between the axis label and the axis*/
+      transform: translateY(36px);
+    }
+    g[aria-label="text"] text{
+      font-size: 13px;
+    }
+
+    .fig9-swatch{
+      font-size: 13px;
+      font-family: Helvetica, Arial;
+    }
+
+    g[aria-label="dot"]:has(circle:hover) circle:not(:hover){
+      fill:#ccc;
+    }
+
+    g[aria-label="text"] text{
+      font-size: 14px;
+      font-family: Helvetica, Arial;
     }
 
   </style>
@@ -259,8 +286,8 @@
                             channels:{'Per-student Funding ($)': "Per-student Funding ($)"},
                             sort: {x: "Per-student Funding ($)"},
                             stroke: white,
-                            strokeWidth: 2,
-                            strokeOpacity: 1,
+                            strokeWidth: 3,
+                            strokeOpacity: 2,
                           }),
                         
                         //Plot a line that indicates the average
@@ -285,7 +312,8 @@
                         //center the legend
                         domain:['English Public','English Catholic','French Public','French Catholic'],
                         range:['#1060D5','#90B7F2','#E43D96','#E6C7D8'],
-                        marginLeft: 150
+                        marginLeft: 150,
+                        className : "fig-legend",
                     }
                 });
     const fig_9_div = document.querySelector("#fig9-image img");
@@ -367,10 +395,11 @@
           channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
           sort: {x: "Per-student Funding ($)"},
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average, 12,701"], {y: 13950, dx: -150}),
         Plot.tip(d, Plot.pointerX({
           x: "Board",
           y: "Per-student Funding ($)",
@@ -380,7 +409,7 @@
         })),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
-      color:{legend: true, domain: ["Small", "Medium", "Large"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 250},
+      color:{legend: true, domain: ["Small", "Medium", "Large"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 300},
 
     })
     const fig_12_div = document.querySelector("#fig12-image img");
@@ -404,10 +433,11 @@
           channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
           sort: {x: "Per-student Funding ($)"},
           stroke: white,
-          strokeWidth: 2,
-          strokeOpacity: 1,
+          strokeWidth: 3,
+          strokeOpacity: 2,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average, 12,701"], {y: 13950, dx: -150}),
         Plot.tip(d, Plot.pointerX({
           x: "Board",
           y: "Per-student Funding ($)",
@@ -417,7 +447,7 @@
         })),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
-      color: {legend: true, domain: ["Least Disperse", "Medium Disperse", "Most Disperse"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 180}
+      color: {legend: true, domain: ["Least Disperse", "Medium Disperse", "Most Disperse"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 230}
     })
     const fig_13_div = document.querySelector("#fig13-image img");
     fig_13_div.after(fig_13);
@@ -441,11 +471,12 @@
           channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
           sort: {x: "Per-student Funding ($)"},
           stroke: white,
-          strokeWidth: 2,
-          strokeOpacity: 1,
-        })
+          strokeWidth: 3,
+          strokeOpacity: 2,
+        }),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
-      color: {legend: true, domain: ["Least Remote", "Medium Remote", "Most Remote"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 180}
+      color: {legend: true, domain: ["Least Remote", "Medium Remote", "Most Remote"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 230}
     })
     const fig_14_div = document.querySelector("#fig14-image img");
     fig_14_div.after(fig_14);
@@ -456,6 +487,7 @@
       width: 800,
       padding: 0.3,
       className: "fig9",
+      marginLeft: 75,
       x:{label: "School Board", nice: true, tickFormat: d => null},
       y:{label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
       marks: [
@@ -463,15 +495,17 @@
           x: "Board", 
           y: "Per-student Funding ($)",
           tip: true,
+          title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + `${d["Per-student Funding ($)"]}`,
           fill: "Urban",
           channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
           sort: {x: "Per-student Funding ($)"},
           stroke: white,
-          strokeWidth: 2,
-          strokeOpacity: 1,
-        })
+          strokeWidth: 3,
+          strokeOpacity: 2,
+        }),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
-      color: {legend: true, domain: ["Rural", "Leans Rural", "Leans Urban", "Urban"], range: ["#E43D96", "#FAD8EA", "#93BBF7", "#1060D5"], marginLeft: 180}
+      color: {legend: true, domain: ["Rural", "Leans Rural", "Leans Urban", "Urban"], range: ["#E43D96", "#FAD8EA", "#93BBF7", "#1060D5"], marginLeft: 230}
     })
     const fig_15_div = document.querySelector("#fig15-image img");
     fig_15_div.after(fig_15);
@@ -493,9 +527,10 @@
       const fig_17 = Plot.plot({
         width: 800,
         padding: 0.3,
+        marginLeft: 75,
         className: "fig9",
         x:{label: "School Board", nice: true, tickFormat: d => null},
-        y:{domain: [0, 4500], label: "Per Student Funding", nice: true},
+        y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
         marks: [
           Plot.barY(fig17_tidy, {
             x: "Board", 
@@ -506,9 +541,10 @@
             channels: {'Per Student Funding': 'Per Student Funding'},
             sort: {x: "Per Student Funding"},
             stroke: white,
-            strokeWidth: 2,
-            strokeOpacity: 1,
+            strokeWidth: 3,
+            strokeOpacity: 2,
           }),
+          Plot.axisY({ labelAnchor: "center", labelArrow: "none",  })
         ],
         color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"], marginLeft: 150}
       });
@@ -519,43 +555,43 @@
     //FIG 18 / / / / / / / / / /
     // Stacked
     d3.csv("fig18_data.csv").then(d => {
-    let fig18_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Allocation: k, Total: d['Total']})));
-    for(let i = 0; i < fig18_tidy.length; i++){
-      //cast each Per Student Funding to a number
-      fig18_tidy[i]["Total"] = +fig18_tidy[i]["Total"];
-      //if the per student funding is "" then remove it
-      if(fig18_tidy[i]["Per Student Funding"] == ""){
-        fig18_tidy.splice(i, 1);
-        i--;
+      let fig18_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Allocation: k, Total: d['Total']})));
+      for(let i = 0; i < fig18_tidy.length; i++){
+        //cast each Per Student Funding to a number
+        fig18_tidy[i]["Total"] = +fig18_tidy[i]["Total"];
+        //if the per student funding is "" then remove it
+        if(fig18_tidy[i]["Per Student Funding"] == ""){
+          fig18_tidy.splice(i, 1);
+          i--;
+        }
       }
-    }
-    //filter out Average
-    fig18_tidy = fig18_tidy.filter(d => d.Allocation != 'Average' && d.Allocation != 'Total');
-    //remove Total and Average from Grant
-    console.log(fig18_tidy);
-    const fig_18 = Plot.plot({
-      width: 800,
-      padding: 0.3,
-      className: "fig9",
-      x:{label: "School Board", nice: true, tickFormat: d => null},
-      y:{domain: [0, 4500], label: "Per Student Funding", nice: true},
-      marks: [
-        Plot.barY(fig18_tidy, {
-          x: "Board", 
-          y: "Per Student Funding", 
-          fill: 'Allocation', 
-          tip: true,
-          channels: {'Total': 'Total'},
-          sort: {x: "Total"},
-          stroke: white,
-          strokeWidth: 2,
-          strokeOpacity: 1,
-        }),
-      ],
-      color: {legend: true, domain: ["Grants for Student Needs", "Priorities and Partnership Fund", "Official Languages Project"], range: ["#1060D5", "#90B7F2", "#E43D96"], marginLeft: 150}
-    });
-    const fig_18_div = document.querySelector("#fig18-image img");
-    fig_18_div.after(fig_18);
+      //filter out Average
+      fig18_tidy = fig18_tidy.filter(d => d.Allocation != 'Average' && d.Allocation != 'Total');
+      //remove Total and Average from Grant
+      console.log(fig18_tidy);
+      const fig_18 = Plot.plot({
+        width: 800,
+        padding: 0.3,
+        className: "fig9",
+        x:{label: "School Board", nice: true, tickFormat: d => null},
+        y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
+        marks: [
+          Plot.barY(fig18_tidy, {
+            x: "Board", 
+            y: "Per Student Funding", 
+            fill: 'Allocation', 
+            tip: true,
+            channels: {'Total': 'Total'},
+            sort: {x: "Total"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
+          }),
+        ],
+        color: {legend: true, domain: ["COVID-related", "Tutoring Supports", "Reading Supports & Assessments", "All Other"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_blue_2], marginLeft: 150}
+      });
+      const fig_18_div = document.querySelector("#fig18-image img");
+      fig_18_div.after(fig_18);
     })
     
     // FIG 19 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
@@ -588,9 +624,10 @@
             channels: {"Per Student Funding": "Per Student Funding"},
             sort: {x: "Per Student Funding"},
             tip: true,
+            title: (d) => "School Board: " + `${d.Board},  "\nSchool Board Language:" ${d.Language}` + "\nPer Student Funding: " + `${d["Per Student Funding"]}`,
             stroke: white,
-            strokeWidth: 2,
-            strokeOpacity: 1,
+            strokeWidth: 3,
+            strokeOpacity: 2,
           }),
         ],
         color: {legend: true, domain: ["English-language School Board", "French-language School Board"], range: [fao_blue, fao_pink], marginLeft: 150}
@@ -622,8 +659,8 @@
             channels: {'Per Student Revenue': 'Per Student Revenue'},
             sort: {x: "Per Student Revenue"},
             stroke: white,
-            strokeWidth: 2,
-            strokeOpacity: 1,
+            strokeWidth: 3,
+            strokeOpacity: 2,
           }),
         ],
         color: {legend: true, domain: ["Revenue for Infrastructure Projects", "Provincial and Own Source Operating Revenue", "Federal Transfers Revenue"], range: [fao_pink, fao_light_blue_1, fao_blue], marginLeft: 150}
@@ -652,7 +689,7 @@
           channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
           sort: {x: "Per-student Spending ($)"},
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
         }),
         Plot.ruleY([14426], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
@@ -684,7 +721,7 @@
           channels: {"Surplus as Share of Revenue": "Surplus as Share of Revenue"},
           sort: {x: "Surplus as Share of Revenue"},
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
         }),
         //make the X axis start as 0 and be dashed
@@ -716,7 +753,7 @@
           sort: {x: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"},
           title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nYear-End Accumulated Surplus as Share of Revenue (August 31, 2022): " + `${d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]}`,
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
         }),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
@@ -747,7 +784,7 @@
           channels: {"EQAO Pass Rate": "EQAO Pass Rate"},
           sort: {x: "EQAO Pass Rate"},
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
           title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nEQAO Pass Rate: " + `${d["EQAO Pass Rate"]}`,
         }),
@@ -755,7 +792,7 @@
         Plot.ruleY([67.7], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
         Plot.text(["Average, 67.7%"], {y: 70, dx: -50}),  
       ],
-      color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"], marginLeft: 230}
+      color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"], marginLeft: 180}
     })
 
     const fig_34_div = document.querySelector("#fig34-image img");
@@ -780,7 +817,7 @@
           channels: {"EQAO Pass Rate": "EQAO Pass Rate"},
           sort: {x: "EQAO Pass Rate"},
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
         }),
         Plot.ruleY([.677], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
@@ -813,7 +850,7 @@
           sort: {x: "Per Student Funding"},
           r: 5.5,
           stroke: white,
-          strokeWidth: 2,
+          strokeWidth: 3,
           strokeOpacity: 1,
         }),
         Plot.ruleX([13364], {stroke: "blue", strokeDasharray: "6,6", weight: 1}),
@@ -841,7 +878,7 @@
         marginLeft: 75,
         className: "fig9",
         x:{label: "School Board", nice: true, tickFormat: d => null},
-        y:{domain: [0, 35000], label: "Per Student Funding", nice: true},
+        y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
         marks: [
           Plot.barY(fig11_tidy, {
             x: "Board", 
@@ -851,8 +888,8 @@
             channels: {'Total': 'Total'},
             sort: {x: "Total"},
             stroke: white,
-            strokeWidth: 2,
-            strokeOpacity: 1,
+            strokeWidth: 3,
+            strokeOpacity: 2,
           }),
           Plot.tip(fig11_tidy, Plot.pointerX({
             x: "Board",
@@ -864,7 +901,7 @@
           })),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
-        color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"], marginLeft: 0}
+        color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"], marginLeft: 100}
       });
       const fig_11_div = document.querySelector("#fig11-image img");
       fig_11_div.after(fig_11);
@@ -881,8 +918,9 @@
         width: 800,
         padding: 0.3,
         className: "fig9",
+        marginLeft: 75,
         x:{label: "School Board", nice: true, tickFormat: d => null},
-        y:{domain: [0, 35000], label: "Per Student Funding", nice: true},
+        y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
         marks: [
           Plot.barY(fig16_tidy, {
             x: "Board", 
@@ -892,11 +930,12 @@
             channels: {'Per Student Funding': 'Per Student Funding'},
             sort: {x: "Per Student Funding"},
             stroke: white,
-            strokeWidth: 2,
-            strokeOpacity: 1,
+            strokeWidth: 3,
+            strokeOpacity: 2,
           }),
+          Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
-        color: {legend: true, domain:["English-language School Board", "French-language School Board"], range: ["#1060D5", "#E43D96"], marginLeft: 150}
+        color: {legend: true, domain:["English-language School Board", "French-language School Board"], range: ["#1060D5", "#E43D96"], marginLeft: 180}
       });
       const fig_16_div = document.querySelector("#fig16-image img");
       fig_16_div.after(fig_16);
