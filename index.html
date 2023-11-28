@@ -293,12 +293,12 @@
                         //Plot a line that indicates the average
                         Plot.ruleY([13364], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
                         //sit above the line
-                        Plot.text(["Average: 13,364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start",  fontSize: 12, text: d => d}),
+                        Plot.text(["Average, 13,364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start",  fontSize: 12, text: d => d}),
                         
                         Plot.tip(d, Plot.pointerX({
                           x: "Board",
                           y: "Per-student Funding ($)",
-                          title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${d["Per-student Funding ($)"]}` + "\nSystem: " + `${d.System}`,
+                          title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per-student Funding ($)"])}` + "\nSystem: " + `${d.System}`,
                           lineWidth: 1000,
                           //anchor: "bottom"
                           //make
@@ -471,6 +471,8 @@
           strokeWidth: 3,
           strokeOpacity: 0,
         }),
+        Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average, 12,701"], {y: 13950, dx: -150}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
       color: {legend: true, domain: ["Least Remote", "Medium Remote", "Most Remote"], range: ["#93BBF7", "#1060D5", "#E23C94"], marginLeft: 230}
@@ -501,6 +503,8 @@
           strokeOpacity: 0,
         }),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average, 12,701"], {y: 13950, dx: -150}),
         Plot.tip(d, Plot.pointerX({
           x: "Board",
           y: "Per-student Funding ($)",
@@ -549,6 +553,8 @@
             strokeWidth: 3,
             strokeOpacity: 0,
           }),
+          Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
+          Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, text: d => d}),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
           Plot.tip(fig17_tidy, Plot.pointerX({
             x: "Board",
@@ -602,6 +608,8 @@
             strokeWidth: 3,
             strokeOpacity: 0,
           }),
+          Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
+          Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, text: d => d}),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
         color: {legend: true, domain: ["COVID-related", "Tutoring Supports", "Reading Supports & Assessments", "All Other"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_blue_2], marginLeft: 150}
@@ -668,7 +676,7 @@
 
     d3.csv("fig22_data.csv").then(d => {
       let fig22_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Revenue": +d[k], System: k})));
-      fig22_tidy = fig22_tidy.filter(d => d.System != 'Average' && d.System != 'Total');
+      fig22_tidy = fig22_tidy.filter(d => d.System != 'Average');
       console.log(fig22_tidy);
       const fig_22 = Plot.plot({
         width: 800,
@@ -690,6 +698,8 @@
             strokeWidth: 3,
             strokeOpacity: 0,
           }),
+          Plot.ruleY([14501], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
+          Plot.text(["Average, 14,501"], {y: 15500, dx: -200}),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  })
         ],
         color: {legend: true, domain: ["Revenue for Infrastructure Projects", "Provincial and Own Source Operating Revenue", "Federal Transfers Revenue"], range: [fao_pink, fao_light_blue_1, fao_blue], marginLeft: 50, className: "fig-legend", width: 900}
@@ -723,7 +733,7 @@
           strokeOpacity: 0,
         }),
         Plot.ruleY([14426], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-        Plot.text(["Average: 14,426"], {y: 15500, dx: -200}),
+        Plot.text(["Average, 14,426"], {y: 15500, dx: -200}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
       color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink], marginLeft: 170},
@@ -755,8 +765,10 @@
           strokeWidth: 3,
           strokeOpacity: 0,
         }),
+        Plot.ruleY([0.005], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average, 0.5%"], {y: 0.008, dx: -230}),
         //make the X axis start as 0 and be dashed
-        Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        //Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
       color:{legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink], marginLeft: 170}
@@ -787,6 +799,8 @@
           strokeWidth: 3,
           strokeOpacity: 0,
         }),
+        Plot.ruleY([22.6], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average, 22.6%"], {y: 26.5, dx: -180}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
       ],
       color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink], marginLeft: 170}
@@ -961,6 +975,8 @@
             strokeOpacity: 0,
             r: 5.5,
           }),
+          Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+          Plot.text(["Average, 12,701"], {y: 13950, dx: -150}),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
         color: {legend: true, domain:["English-language School Board", "French-language School Board"], range: ["#1060D5", "#E43D96"], marginLeft: 180}
