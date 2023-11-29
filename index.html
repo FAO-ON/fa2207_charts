@@ -748,6 +748,8 @@
     // FIG 29 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
     // bar chart
 
+    let fig_29_data = d.map(d => ({Board: d.Board, "Surplus as Share of Revenue": +d["Surplus as Share of Revenue"], System: d.System}));
+
     const fig_29 = Plot.plot({
       width: 800,
       padding: 0.3,
@@ -757,7 +759,7 @@
       //add percent to the Y axis
       y:{percent: true, domain:[-4, 6], label: "Surplus as Share of Revenue (%)", tickFormat: d => d + "%"},
       marks:[
-        Plot.barY(d,{
+        Plot.barY(fig_29_data,{
           x: "Board",
           y: "Surplus as Share of Revenue",
           fill: "System",
