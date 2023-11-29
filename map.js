@@ -378,6 +378,10 @@ mapAreas.forEach(area => {
   //click map
   area.addEventListener('pointerdown', handleClickMap);
 });
+//add listener for clicking on non-SB map area
+const mapBase = document.querySelector('svg#map-svg g#base');
+mapBase.addEventListener('pointerdown', handleClickBase);
+
 //change distrct option
 const mapSelect = document.getElementById('map-select');
 mapSelect.addEventListener('change', handleChangeOption);
@@ -412,7 +416,12 @@ function handleSystemChangeOption(event){
   displayNone();
   displaySystem(systemId);
 }
-
+function handleClickBase(event){
+  const systemId = document.getElementById('map-system').value;
+  console.log('handleSystemChangeOption: systemId',systemId);
+  displayNone();
+  displaySystem(systemId);
+}
 // reset display
 displayNone();
 displaySystem('ep');
