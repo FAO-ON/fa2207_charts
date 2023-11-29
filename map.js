@@ -1,5 +1,6 @@
 //all data
 const sbData = [
+  //id,School Board,  School System,  Enrolment,  Spaces,  "Per-student Funding ($) 2021-22",  "Per-student Revenue ($) 2021-22",  "Per-student Spending ($) 2021-22",  Average EQAO Pass Rate,  "Total Revenue  ($ million)  2021-22",  "Total Expense  ($ million)  2021-22",  "Surplus / (Deficit)  ($ million)  2021-22",  "Year-end Accumulated Surplus / (Deficit) (August 31 2022)  ($ million)",  Surplus / (Deficit) as Share of Revenue 2021-22,  Year-end Accumulated Surplus / (Deficit) as Share of Revenue (August 31 2022),  Remoteness (km),  Dispersion (km),  Urban Factor
   [0, 'Ontario Average',                                'Ontario Average',  '27,746',  '32,279',  '13,364',   '14,501',   '14,426',  '67.7%',  '402',    '400',      '2',         '91',     '1.2%',   '22.6%',  'N/A',    '29.4',     '0.6' ],
   [1, 'DSB Ontario North East',                         'English Public',   '6,562',   '13,434',  '19,559',   '21,628',   '21,462',  '46.4%',  '142'    ,'141'      ,'1'         ,'37'     ,'0.8%',   '26.4%',  '659',    '53.89',    '1.0' ],
   [2, 'Algoma DSB',                                     'English Public',   '9,762',   '15,269',  '16,757',   '19,614',   '19,329',  '56.0%',  '191'    ,'189'      ,'3'         ,'27'     ,'1.5%',   '14.0%',  '628',    '37.17',    '0.8' ],
@@ -61,95 +62,95 @@ const sbData = [
   [58,'Ottawa Catholic DSB',                            'English Catholic', '44,713',  '46,290',  '13,120',   '14,121',   '13,790',  '74.3%',  '631'    ,'617'      ,'15'        ,'140'    ,'2.3%',   '22.2%',  '<151',   '6.38',     '-'   ],
   [59,'Renfrew County Catholic DSB',                    'English Catholic', '4,742',   '6,131',   '16,469',   '17,339',   '17,384',  '77.2%',  '82'     ,'82'       ,'(0)'       ,'15'     ,'-0.3%',  '17.7%',  '<151',   '23.28',    '1.0' ],
   [60,'Algonquin and Lakeshore Catholic DSB',           'English Catholic', '11,344',  '11,371',  '14,425',   '15,262',   '15,200',  '59.1%',  '173'    ,'172'      ,'1'         ,'22'     ,'0.4%',   '12.5%',  '181',    '24.49',    '0.7' ],
-  [61,'CSP du Nord-Est de l&apos;Ontario',              'French Public',    '2,024',   '3,719',   '27,268',   '29,870',   '29,569',  '61.1%',  '60'     ,'60'       ,'1'         ,'15'     ,'1.0%',   '24.5%',  '313',    '123.84',   '0.9' ],
-  [62,'CSP du Grand Nord de l&apos;Ontario',            'French Public',    '2,629',   '6,198',   '27,517',   '29,013',   '29,151',  '53.0%',  '76'     ,'77'       ,'(0)'       ,'12'     ,'-0.5%',  '15.6%',  '363',    '103.5',    '0.3' ],
+  [61,'CSP du Nord-Est de l’Ontario',                   'French Public',    '2,024',   '3,719',   '27,268',   '29,870',   '29,569',  '61.1%',  '60'     ,'60'       ,'1'         ,'15'     ,'1.0%',   '24.5%',  '313',    '123.84',   '0.9' ],
+  [62,'CSP du Grand Nord de l’Ontario',                 'French Public',    '2,629',   '6,198',   '27,517',   '29,013',   '29,151',  '53.0%',  '76'     ,'77'       ,'(0)'       ,'12'     ,'-0.5%',  '15.6%',  '363',    '103.5',    '0.3' ],
   [63,'CS Viamonde',                                    'French Public',    '13,105',  '18,674',  '18,175',   '19,300',   '19,404',  '78.3%',  '253'    ,'254'      ,'(1)'       ,'137'    ,'-0.5%',  '54.2%',  '<151',   '40.84',    '0.2' ],
-  [64,'CÉP de l&apos;Est de l&apos;Ontario',            'French Public',    '16,830',  '19,586',  '16,465',   '18,328',   '17,820',  '75.7%',  '308'    ,'300'      ,'9'         ,'137'    ,'2.8%',   '44.5%',  '<151',   '29.83',    '0.2' ],
+  [64,'CÉP de l’Est de l’Ontario',                      'French Public',    '16,830',  '19,586',  '16,465',   '18,328',   '17,820',  '75.7%',  '308'    ,'300'      ,'9'         ,'137'    ,'2.8%',   '44.5%',  '<151',   '29.83',    '0.2' ],
   [65,'CSD catholique des Grandes Rivières',            'French Catholic',  '5,494',   '11,745',  '21,514',   '22,553',   '22,261',  '57.3%',  '124'    ,'122'      ,'2'         ,'23'     ,'1.3%',   '18.7%',  '654',    '49.47',    '1.0' ],
   [66,'CSD catholique Franco-Nord',                     'French Catholic',  '2,535',   '4,913',   '23,563',   '25,859',   '25,848',  '52.6%',  '66'     ,'66'       ,'0'         ,'16'     ,'0.0%',   '24.4%',  '312',    '25.21',    '0.9' ],
   [67,'CSD catholique du Nouvel-Ontario',               'French Catholic',  '5,986',   '12,726',  '20,327',   '21,786',   '21,722',  '58.2%',  '130'    ,'130'      ,'0'         ,'24'     ,'0.3%',   '18.4%',  '364',    '60.34',    '0.4' ],
   [68,'CSD catholique des Aurores boreales',            'French Catholic',  '815',     '1,725',   '35,192',   '33,357',   '32,376',  '58.6%',  '27'     ,'26'       ,'1'         ,'23'     ,'2.9%',   '83.4%',  '1,255',  '188.95',   '0.7' ],
   [69,'CS catholique Providence',                       'French Catholic',  '9,465',   '12,095',  '17,137',   '17,640',   '18,209',  '69.0%',  '167'    ,'172'      ,'(5)'       ,'50'     ,'-3.2%',  '29.9%',  '<151',   '41.42',    '0.6' ],
   [70,'CS catholique MonAvenir',                        'French Catholic',  '16,287',  '20,273',  '17,477',   '19,769',   '18,844',  '75.7%',  '322'    ,'307'      ,'15'        ,'192'    ,'4.7%',   '59.6%',  '<151',   '32.4',     '0.3' ],
-  [71,'CSD catholique de l&apos;Est ontarien',          'French Catholic',  '10,410',  '17,893',  '17,468',   '18,313',   '18,241',  '67.5%',  '191'    ,'190'      ,'1'         ,'23'     ,'0.4%',   '12.1%',  '<151',   '15.97',    '1.0' ],
-  [72,'CSD catholique du Centre-Est de l&apos;Ontario', 'French Catholic',  '25,510',  '28,762',  '15,507',   '16,741',   '16,281',  '77.3%',  '427'    ,'415'      ,'12'        ,'176'    ,'2.7%',   '41.2%',  '<151',   '20.45',    '0.1' ],
+  [71,'CSD catholique de l’Est ontarien',               'French Catholic',  '10,410',  '17,893',  '17,468',   '18,313',   '18,241',  '67.5%',  '191'    ,'190'      ,'1'         ,'23'     ,'0.4%',   '12.1%',  '<151',   '15.97',    '1.0' ],
+  [72,'CSD catholique du Centre-Est de l’Ontario',      'French Catholic',  '25,510',  '28,762',  '15,507',   '16,741',   '16,281',  '77.3%',  '427'    ,'415'      ,'12'        ,'176'    ,'2.7%',   '41.2%',  '<151',   '20.45',    '0.1' ],
 ];
 
 //rankings data
 const sbDataRankings = [
-  [0 ,'' ,'' ,0    ,0    ,0    ,0   ,  0    ,  0    ,0    ,0    ,0    ,0    ,0    ,0    ,0     ,0    ,0   ],
-  [1 ,'' ,'','53'  ,'46' ,'14' ,'13',  'N/A',  '71' ,'50' ,'50' ,'40' ,'34' ,'45' ,'19' ,'N/A' ,'12' ,'17'],
-  [2 ,'' ,'','45'  ,'42' ,'21' ,'18',  'N/A',  '61' ,'42' ,'43' ,'30' ,'41' ,'29' ,'52' ,'N/A' ,'17' ,'26'],
-  [3 ,'' ,'','41'  ,'39' ,'26' ,'25',  'N/A',  '40' ,'37' ,'37' ,'35' ,'36' ,'44' ,'49' ,'N/A' ,'20' ,'52'],
-  [4 ,'' ,'','46'  ,'44' ,'22' ,'24',  'N/A',  '67' ,'44' ,'46' ,'26' ,'39' ,'17' ,'45' ,'N/A' ,'22' ,'22'],
-  [5 ,'' ,'','60'  ,'56' ,'11' ,'9' ,  'N/A',  '62' ,'56' ,'57' ,'24' ,'32' ,'5'  ,'13' ,'N/A' ,'5'  ,'1' ],
-  [6 ,'' ,'','66'  ,'64' , '6' ,'6' ,  'N/A',  '68' ,'65' ,'65' ,'34' ,'40' ,'4'  ,'6'  ,'N/A' ,'13' ,'1' ],
-  [7 ,'' ,'','50'  ,'50' ,'30' ,'27',  'N/A',  '49' ,'47' ,'49' ,'16' ,'69' ,'1'  ,'69' ,'N/A' ,'24' ,'42'],
-  [8 ,'' ,'','70'  ,'63' , '3' ,'1' ,  'N/A',  '72' ,'67' ,'67' ,'49' ,'61' ,'34' ,'18' ,'N/A' ,'8'  ,'1' ],
-  [9 ,'' ,'','32'  ,'33' ,'42' ,'51',  'N/A',  '52' ,'35' ,'35' ,'22' ,'31' ,'19' ,'39' ,'N/A' ,'31' ,'1' ],
-  [10,'' ,'','37'  ,'35' ,'38' ,'39',  'N/A',  '29' ,'38' ,'39' ,'25' ,'51' ,'21' ,'66' ,'N/A' ,'41' ,'11'],
-  [11,'' ,'','16'  ,'16' ,'55' ,'61',  'N/A',  '41' ,'16' ,'16' ,'28' ,'28' ,'46' ,'60' ,'N/A' ,'57' ,'47'],
-  [12,'' ,'','28'  ,'22' ,'45' ,'43',  'N/A',  '60' ,'27' ,'27' ,'17' ,'27' ,'14' ,'42' ,'N/A' ,'40' ,'35'],
-  [13,'' ,'','5'   ,'6'  ,'59' ,'63',  'N/A',  '42' ,'5'  ,'5'  ,'69' ,'19' ,'66' ,'64' ,'N/A' ,'51' ,'48'],
-  [14,'' ,'','1'   ,'1'  ,'44' ,'34',  'N/A',  '18' ,'1'  ,'1'  ,'72' ,'72' ,'70' ,'72' ,'N/A' ,'71' ,'67'],
-  [15,'' ,'','6'   ,'8'  ,'70' ,'72',  'N/A',  '22' ,'8'  ,'8'  ,'11' ,'5'  ,'33' ,'14' ,'N/A' ,'64' ,'45'],
-  [16,'' ,'','19'  ,'17' ,'53' ,'52',  'N/A',  '34' ,'17' ,'17' ,'29' ,'25' ,'47' ,'59' ,'N/A' ,'43' ,'25'],
-  [17,'' ,'','34'  ,'28' ,'40' ,'50',  'N/A',  '46' ,'36' ,'36' ,'20' ,'46' ,'11' ,'65' ,'N/A' ,'21' ,'24'],
-  [18,'' ,'','3'   ,'3'  ,'67' ,'67',  'N/A',  '2'  ,'3'  ,'3'  ,'1'  ,'1'  ,'27' ,'4'  ,'N/A' ,'61' ,'59'],
-  [19,'' ,'','11'  ,'13' ,'68' ,'69',  'N/A',  '38' ,'12' ,'12' ,'2'  ,'12' ,'8'  ,'29' ,'N/A' ,'45' ,'28'],
-  [20,'' ,'','18'  ,'18' ,'57' ,'64',  'N/A',  '26' ,'19' ,'18' ,'56' ,'20' ,'57' ,'32' ,'N/A' ,'50' ,'29'],
-  [21,'' ,'','2'   ,'2'  ,'64' ,'62',  'N/A',  '24' ,'2'  ,'2'  ,'67' ,'2'  ,'61' ,'15' ,'N/A' ,'69' ,'66'],
-  [22,'' ,'','9'   ,'10' ,'71' ,'71',  'N/A',  '6'  ,'9'  ,'9'  ,'7'  ,'4'  ,'25' ,'12' ,'N/A' ,'62' ,'56'],
-  [23,'' ,'','13'  ,'12' ,'60' ,'44',  'N/A',  '55' ,'11' ,'11' ,'4'  ,'17' ,'20' ,'41' ,'N/A' ,'70' ,'67'],
-  [24,'' ,'','15'  ,'15' ,'56' ,'58',  'N/A',  '3'  ,'15' ,'15' ,'12' ,'18' ,'22' ,'30' ,'N/A' ,'59' ,'33'],
-  [25,'' ,'','22'  ,'21' ,'54' ,'57',  'N/A',  '58' ,'23' ,'23' ,'27' ,'57' ,'38' ,'70' ,'N/A' ,'47' ,'29'],
-  [26,'' ,'','10'  ,'9'  ,'69' ,'70',  'N/A',  '28' ,'10' ,'10' ,'19' ,'10' ,'41' ,'26' ,'N/A' ,'67' ,'51'],
-  [27,'' ,'','7'   ,'7'  ,'50' ,'45',  'N/A',  '19' ,'6'  ,'6'  ,'9'  ,'13' ,'36' ,'54' ,'N/A' ,'63' ,'67'],
-  [28,'' ,'','21'  ,'19' ,'34' ,'36',  'N/A',  '59' ,'22' ,'22' ,'21' ,'33' ,'30' ,'67' ,'N/A' ,'30' ,'13'],
-  [29,'' ,'','31'  ,'26' ,'37' ,'40',  'N/A',  '50' ,'31' ,'31' ,'23' ,'30' ,'23' ,'47' ,'N/A' ,'46' ,'40'],
-  [30,'' ,'','48'  ,'45' ,'28' ,'29',  'N/A',  '48' ,'49' ,'48' ,'53' ,'60' ,'54' ,'62' ,'N/A' ,'27' ,'1' ],
-  [31,'' ,'','36'  ,'37' ,'36' ,'37',  'N/A',  '47' ,'39' ,'38' ,'63' ,'66' ,'63' ,'71' ,'N/A' ,'42' ,'20'],
-  [32,'' ,'','65'  ,'68' ,'13' ,'15',  'N/A',  '70' ,'68' ,'68' ,'50' ,'65' ,'35' ,'35' ,'N/A' ,'10' ,'18'],
-  [33,'' ,'','62'  ,'65' ,'15' ,'16',  'N/A',  '57' ,'66' ,'66' ,'41' ,'67' ,'26' ,'51' ,'N/A' ,'37' ,'23'],
-  [34,'' ,'','61'  ,'58' ,'16' ,'14',  'N/A',  '44' ,'58' ,'58' ,'51' ,'62' ,'48' ,'53' ,'N/A' ,'9'  ,'27'],
-  [35,'' ,'','54'  ,'57' ,'27' ,'28',  'N/A',  '63' ,'57' ,'56' ,'37' ,'56' ,'28' ,'50' ,'N/A' ,'35' ,'61'],
-  [36,'' ,'','69'  ,'72' ,'8'  ,'10',  'N/A',  '64' ,'70' ,'70' ,'44' ,'53' ,'15' ,'3'  ,'N/A' ,'2'  ,'1' ],
-  [37,'' ,'','68'  ,'70' ,'9'  ,'7' ,  'N/A',  '39' ,'69' ,'69' ,'55' ,'70' ,'53' ,'34' ,'N/A' ,'7'  ,'1' ],
-  [38,'' ,'','52'  ,'55' ,'25' ,'23',  'N/A',  '35' ,'54' ,'53' ,'66' ,'55' ,'69' ,'55' ,'N/A' ,'72' ,'44'],
-  [39,'' ,'','72'  ,'69' ,'2'  ,'2' ,  'N/A',  '69' ,'72' ,'72' ,'46' ,'71' ,'13' ,'17' ,'N/A' ,'6'  ,'1' ],
-  [40,'' ,'','58'  ,'66' ,'33' ,'32',  'N/A',  '37' ,'62' ,'62' ,'64' ,'64' ,'67' ,'48' ,'N/A' ,'29' ,'1' ],
-  [41,'' ,'','59'  ,'61' ,'31' ,'31',  'N/A',  '13' ,'61' ,'61' ,'48' ,'68' ,'43' ,'63' ,'N/A' ,'32' ,'12'],
-  [42,'' ,'','29'  ,'27' ,'48' ,'60',  'N/A',  '11' ,'33' ,'33' ,'18' ,'35' ,'16' ,'58' ,'N/A' ,'53' ,'49'],
-  [43,'' ,'','25'  ,'31' ,'52' ,'66',  'N/A',  '30' ,'29' ,'29' ,'10' ,'26' ,'6'  ,'40' ,'N/A' ,'48' ,'57'],
-  [44,'' ,'','49'  ,'54' ,'39' ,'41',  'N/A',  '31' ,'52' ,'52' ,'38' ,'43' ,'40' ,'31' ,'N/A' ,'34' ,'39'],
-  [45,'' ,'','4'   ,'4'  ,'43' ,'38',  'N/A',  '25' ,'4'  ,'4'  ,'70' ,'3'  ,'68' ,'10' ,'N/A' ,'68' ,'67'],
-  [46,'' ,'','38'  ,'41' ,'46' ,'47',  'N/A',  '33' ,'40' ,'40' ,'61' ,'37' ,'60' ,'46' ,'N/A' ,'38' ,'31'],
-  [47,'' ,'','12'  ,'11' ,'65' ,'59',  'N/A',  '7'  ,'13' ,'13' ,'31' ,'6'  ,'51' ,'9'  ,'N/A' ,'54' ,'62'],
-  [48,'' ,'','8'   ,'5'  ,'61' ,'46',  'N/A',  '14' ,'7'  ,'7'  ,'71' ,'7'  ,'71' ,'20' ,'N/A' ,'65' ,'65'],
-  [49,'' ,'','26'  ,'29' ,'58' ,'65',  'N/A',  '43' ,'30' ,'30' ,'13' ,'23' ,'7'  ,'28' ,'N/A' ,'36' ,'32'],
-  [50,'' ,'','27'  ,'32' ,'63' ,'42',  'N/A',  '23' ,'26' ,'25' ,'32' ,'22' ,'42' ,'23' ,'N/A' ,'56' ,'46'],
-  [51,'' ,'','17'  ,'20' ,'72' ,'68',  'N/A',  '12' ,'18' ,'19' ,'14' ,'9'  ,'24' ,'11' ,'N/A' ,'55' ,'55'],
-  [52,'' ,'','20'  ,'23' ,'62' ,'54',  'N/A',  '17' ,'21' ,'21' ,'59' ,'21' ,'59' ,'24' ,'N/A' ,'66' ,'67'],
-  [53,'' ,'','51'  ,'53' ,'41' ,'48',  'N/A',  '16' ,'55' ,'55' ,'39' ,'44' ,'37' ,'25' ,'N/A' ,'49' ,'43'],
-  [54,'' ,'','24'  ,'30' ,'66' ,'53',  'N/A',  '15' ,'24' ,'24' ,'3'  ,'24' ,'2'  ,'43' ,'N/A' ,'58' ,'58'],
-  [55,'' ,'','30'  ,'25' ,'51' ,'49',  'N/A',  '21' ,'32' ,'32' ,'58' ,'42' ,'58' ,'68' ,'N/A' ,'52' ,'34'],
-  [56,'' ,'','43'  ,'52' ,'49' ,'56',  'N/A',  '36' ,'48' ,'47' ,'54' ,'38' ,'55' ,'33' ,'N/A' ,'44' ,'36'],
-  [57,'' ,'','39'  ,'43' ,'32' ,'33',  'N/A',  '32' ,'41' ,'41' ,'33' ,'52' ,'32' ,'61' ,'N/A' ,'26' ,'15'],
-  [58,'' ,'','14'  ,'14' ,'47' ,'55',  'N/A',  '10' ,'14' ,'14' ,'6'  ,'14' ,'18' ,'27' ,'N/A' ,'60' ,'67'],
-  [59,'' ,'','57'  ,'60' ,'23' ,'26',  'N/A',  '5'  ,'59' ,'59' ,'60' ,'59' ,'62' ,'38' ,'N/A' ,'28' ,'1' ],
-  [60,'' ,'','42'  ,'51' ,'35' ,'35',  'N/A',  '51' ,'45' ,'44' ,'45' ,'50' ,'49' ,'56' ,'N/A' ,'25' ,'38'],
-  [61,'' ,'','67'  ,'67' ,'5'  ,'4' ,  'N/A',  '45' ,'64' ,'64' ,'47' ,'58' ,'39' ,'21' ,'N/A' ,'3'  ,'19'],
-  [62,'' ,'','63'  ,'59' ,'4'  ,'5' ,  'N/A',  '65' ,'60' ,'60' ,'62' ,'63' ,'64' ,'44' ,'N/A' ,'4'  ,'54'],
-  [63,'' ,'','40'  ,'38' ,'17' ,'17',  'N/A',  '1'  ,'34' ,'34' ,'65' ,'16' ,'65' ,'5'  ,'N/A' ,'16' ,'63'],
-  [64,'' ,'','33'  ,'36' ,'24' ,'22',  'N/A',  '8'  ,'28' ,'28' ,'15' ,'15' ,'10' ,'7'  ,'N/A' ,'19' ,'60'],
-  [65,'' ,'','56'  ,'49' ,'10' ,'11',  'N/A',  '56' ,'53' ,'54' ,'36' ,'48' ,'31' ,'36' ,'N/A' ,'14' ,'16'],
-  [66,'' ,'','64'  ,'62' ,'7'  ,'8' ,  'N/A',  '66' ,'63' ,'63' ,'57' ,'54' ,'56' ,'22' ,'N/A' ,'23' ,'21'],
-  [67,'' ,'','55'  ,'47' ,'12' ,'12',  'N/A',  '54' ,'51' ,'51' ,'52' ,'45' ,'52' ,'37' ,'N/A' ,'11' ,'50'],
-  [68,'' ,'','71'  ,'71' ,'1'  ,'3' ,  'N/A',  '53' ,'71' ,'71' ,'42' ,'49' ,'9'  ,'1'  ,'N/A' ,'1'  ,'37'],
-  [69,'' ,'','47'  ,'48' ,'20' ,'21',  'N/A',  '20' ,'46' ,'45' ,'68' ,'29' ,'72' ,'16' ,'N/A' ,'15' ,'41'],
-  [70,'' ,'','35'  ,'34' ,'18' ,'19',  'N/A',  '9'  ,'25' ,'26' ,'5'  ,'8'  ,'3'  ,'2'  ,'N/A' ,'18' ,'53'],
-  [71,'' ,'','44'  ,'40' ,'19' ,'20',  'N/A',  '27' ,'43' ,'42' ,'43' ,'47' ,'50' ,'57' ,'N/A' ,'39' ,'14'],
-  [72,'' ,'','23'  ,'24' ,'29' ,'30',  'N/A',  '3'  ,'20' ,'20' ,'8'  ,'11' ,'12' ,'8'  ,'N/A' ,'33' ,'64'],
+  [0,'','',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+  [1,'','',53,46,14,13,13,71,50,50,40,34,45,19,"N/A",12,17],
+  [2,'','',45,42,21,18,18,61,42,43,30,41,29,52,"N/A",17,26],
+  [3,'','',41,39,26,24,25,40,37,37,35,36,44,49,"N/A",20,52],
+  [4,'','',46,44,22,22,24,67,44,46,26,39,17,45,"N/A",22,22],
+  [5,'','',60,56,11,9,9,62,56,57,24,32,5,13,"N/A",5,1],
+  [6,'','',66,64,6,5,6,68,65,65,34,40,4,6,"N/A",13,1],
+  [7,'','',50,50,30,23,27,49,47,49,16,69,1,69,"N/A",24,42],
+  [8,'','',70,63,3,1,1,72,67,67,49,61,34,18,"N/A",8,1],
+  [9,'','',32,33,42,50,51,52,35,35,22,31,19,39,"N/A",31,1],
+  [10,'','',37,35,38,36,39,29,38,39,25,51,21,66,"N/A",41,11],
+  [11,'','',16,16,55,63,61,41,16,16,28,28,46,60,"N/A",57,47],
+  [12,'','',28,22,45,41,43,60,27,27,17,27,14,42,"N/A",40,35],
+  [13,'','',5,6,59,66,63,42,5,5,69,19,66,64,"N/A",51,48],
+  [14,'','',1,1,44,40,34,18,1,1,72,72,70,72,"N/A",71,67],
+  [15,'','',6,8,70,72,72,22,8,8,11,5,33,14,"N/A",64,45],
+  [16,'','',19,17,53,54,52,34,17,17,29,25,47,59,"N/A",43,25],
+  [17,'','',34,28,40,47,50,46,36,36,20,46,11,65,"N/A",21,24],
+  [18,'','',3,3,67,65,67,2,3,3,1,1,27,4,"N/A",61,59],
+  [19,'','',11,13,68,68,69,38,12,12,2,12,8,29,"N/A",45,28],
+  [20,'','',18,18,57,67,64,26,19,18,56,20,57,32,"N/A",50,29],
+  [21,'','',2,2,64,64,62,24,2,2,67,2,61,15,"N/A",69,66],
+  [22,'','',9,10,71,70,71,6,9,9,7,4,25,12,"N/A",62,56],
+  [23,'','',13,12,60,44,44,55,11,11,4,17,20,41,"N/A",70,67],
+  [24,'','',15,15,56,53,58,3,15,15,12,18,22,30,"N/A",59,33],
+  [25,'','',22,21,54,55,57,58,23,23,27,57,38,70,"N/A",47,29],
+  [26,'','',10,9,69,71,70,28,10,10,19,10,41,26,"N/A",67,51],
+  [27,'','',7,7,50,46,45,19,6,6,9,13,36,54,"N/A",63,67],
+  [28,'','',21,19,34,34,36,59,22,22,21,33,30,67,"N/A",30,13],
+  [29,'','',31,26,37,37,40,50,31,31,23,30,23,47,"N/A",46,40],
+  [30,'','',48,45,28,30,29,48,49,48,53,60,54,62,"N/A",27,1],
+  [31,'','',36,37,36,38,37,47,39,38,63,66,63,71,"N/A",42,20],
+  [32,'','',65,68,13,15,15,70,68,68,50,65,35,35,"N/A",10,18],
+  [33,'','',62,65,15,16,16,57,66,66,41,67,26,51,"N/A",37,23],
+  [34,'','',61,58,16,14,14,44,58,58,51,62,48,53,"N/A",9,27],
+  [35,'','',54,57,27,28,28,63,57,56,37,56,28,50,"N/A",35,61],
+  [36,'','',69,72,8,10,10,64,70,70,44,53,15,3,"N/A",2,1],
+  [37,'','',68,70,9,7,7,39,69,69,55,70,53,34,"N/A",7,1],
+  [38,'','',52,55,25,26,23,35,54,53,66,55,69,55,"N/A",72,44],
+  [39,'','',72,69,2,2,2,69,72,72,46,71,13,17,"N/A",6,1],
+  [40,'','',58,66,33,32,32,37,62,62,64,64,67,48,"N/A",29,1],
+  [41,'','',59,61,31,31,31,13,61,61,48,68,43,63,"N/A",32,12],
+  [42,'','',29,27,48,56,60,11,33,33,18,35,16,58,"N/A",53,49],
+  [43,'','',25,31,52,61,66,30,29,29,10,26,6,40,"N/A",48,57],
+  [44,'','',49,54,39,39,41,31,52,52,38,43,40,31,"N/A",34,39],
+  [45,'','',4,4,43,42,38,25,4,4,70,3,68,10,"N/A",68,67],
+  [46,'','',38,41,46,49,47,33,40,40,61,37,60,46,"N/A",38,31],
+  [47,'','',12,11,65,60,59,7,13,13,31,6,51,9,"N/A",54,62],
+  [48,'','',8,5,61,57,46,14,7,7,71,7,71,20,"N/A",65,65],
+  [49,'','',26,29,58,62,65,43,30,30,13,23,7,28,"N/A",36,32],
+  [50,'','',27,32,63,43,42,23,26,25,32,22,42,23,"N/A",56,46],
+  [51,'','',17,20,72,69,68,12,18,19,14,9,24,11,"N/A",55,55],
+  [52,'','',20,23,62,58,54,17,21,21,59,21,59,24,"N/A",66,67],
+  [53,'','',51,53,41,48,48,16,55,55,39,44,37,25,"N/A",49,43],
+  [54,'','',24,30,66,45,53,15,24,24,3,24,2,43,"N/A",58,58],
+  [55,'','',30,25,51,52,49,21,32,32,58,42,58,68,"N/A",52,34],
+  [56,'','',43,52,49,59,56,36,48,47,54,38,55,33,"N/A",44,36],
+  [57,'','',39,43,32,33,33,32,41,41,33,52,32,61,"N/A",26,15],
+  [58,'','',14,14,47,51,55,10,14,14,6,14,18,27,"N/A",60,67],
+  [59,'','',57,60,23,27,26,5,59,59,60,59,62,38,"N/A",28,1],
+  [60,'','',42,51,35,35,35,51,45,44,45,50,49,56,"N/A",25,38],
+  [61,'','',67,67,5,4,4,45,64,64,47,58,39,21,"N/A",3,19],
+  [62,'','',63,59,4,6,5,65,60,60,62,63,64,44,"N/A",4,54],
+  [63,'','',40,38,17,19,17,1,34,34,65,16,65,5,"N/A",16,63],
+  [64,'','',33,36,24,20,22,8,28,28,15,15,10,7,"N/A",19,60],
+  [65,'','',56,49,10,11,11,56,53,54,36,48,31,36,"N/A",14,16],
+  [66,'','',64,62,7,8,8,66,63,63,57,54,56,22,"N/A",23,21],
+  [67,'','',55,47,12,12,12,54,51,51,52,45,52,37,"N/A",11,50],
+  [68,'','',71,71,1,3,3,53,71,71,42,49,9,1,"N/A",1,37],
+  [69,'','',47,48,20,25,21,20,46,45,68,29,72,16,"N/A",15,41],
+  [70,'','',35,34,18,17,19,9,25,26,5,8,3,2,"N/A",18,53],
+  [71,'','',44,40,19,21,20,27,43,42,43,47,50,57,"N/A",39,14],
+  [72,'','',23,24,29,29,30,3,20,20,8,11,12,8,"N/A",33,64],
 ];
 
 // generate map-info tables
@@ -195,7 +196,7 @@ function getMapInfoTable(sbId){
   <td>${ranking[4]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total Ministry of Education funding per student">Per-Student Funding ($)</abbr></td>
+  <td><abbr tabindex="0" title="Total Ministry of Education funding per student, 2021-22 school year">Per-student Funding ($)</abbr></td>
   <td>${thisBoard[5]}</td>
   <td>${onAverage[5]}</td>
   <td>${ranking[5]}</td>
@@ -207,7 +208,7 @@ function getMapInfoTable(sbId){
   <td>${ranking[6]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-Student Spending ($)</abbr></td>
+  <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-student Spending ($)</abbr></td>
   <td>${thisBoard[7]}</td>
   <td>${onAverage[7]}</td>
   <td>${ranking[7]}</td>
@@ -231,37 +232,37 @@ function getMapInfoTable(sbId){
   <td>${ranking[10]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total school board revenue less  total school board expense, 2021-22 school year">Surplus ($ million)</abbr></td>
+  <td><abbr tabindex="0" title="Total school board revenue less  total school board expense, 2021-22 school year">Surplus / (Deficit) ($ million)</abbr></td>
   <td>${thisBoard[11]}</td>
   <td>${onAverage[11]}</td>
   <td>${ranking[11]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as of August 31, 2022. Represents the sum of surpluses and deficits over time">Accumulated Surplus ($ million)</abbr></td>
+  <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as of August 31, 2022. Represents the sum of surpluses and deficits over time">Accumulated Surplus / (Deficit) ($ million)</abbr></td>
   <td>${thisBoard[12]}</td>
   <td>${onAverage[12]}</td>
   <td>${ranking[12]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="School board surplus / (deficit) as a share of its total revenue, 2021-22 school year">Surplus as Share of Revenue</abbr></td>
+  <td><abbr tabindex="0" title="School board surplus / (deficit) as a share of its total revenue, 2021-22 school year">Surplus / (Deficit) as Share of Revenue</abbr></td>
   <td>${thisBoard[13]}</td>
   <td>${onAverage[13]}</td>
   <td>${ranking[13]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as a share of revenue as of August 31, 2022">Accumulated Surplus as Share of Revenue</abbr></td>
+  <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as a share of revenue as of August 31, 2022">Accumulated Surplus / (Deficit)  as Share of Revenue</abbr></td>
   <td>${thisBoard[14]}</td>
   <td>${onAverage[14]}</td>
   <td>${ranking[14]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="The distance from a school board's central office to a major urban centre (with a population of at least 200,000)">Remoteness (KM)</abbr></td>
+  <td><abbr tabindex="0" title="The distance from a school board's central office to a major urban centre (with a population of at least 200,000)">Remoteness (km)</abbr></td>
   <td>${thisBoard[15]}</td>
   <td>${onAverage[15]}</td>
   <td>${ranking[15]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="The weighted average of distance between schools within a school board, as well as the distance between a school board's central office and each of its schools">Dispersion (KM)</abbr></td>
+  <td><abbr tabindex="0" title="The weighted average of distance between schools within a school board, as well as the distance between a school board's central office and each of its schools">Dispersion (km)</abbr></td>
   <td>${thisBoard[16]}</td>
   <td>${onAverage[16]}</td>
   <td>${ranking[16]}</td>
@@ -275,13 +276,13 @@ function getMapInfoTable(sbId){
 </table>`;
   return tableCode;
 }
-
 const sysData = [
-  ['on',    'Ontario Average',     '499,434',      '581,018',      '13,364',    '14,426',    '67.7%',    '7,243',     '7,205',     '37',    '1,640',    '0.5%',    '22.6%'], 
-  ['ep',    'English Public',      '1,331,907',    '1,550,480',    '13,027',    '14,059',    '66.8%',    '18,815',    '18,726',    '89',    '3,702',    '0.5%',    '19.7%'],
-  ['ec',    'English Catholic',    '554,739',      '615,284',      '13,252',    '14,376',    '69.0%',    '8,004',     '7,975',     '28',    '2,029',    '0.4%',    '25.3%'], 
-  ['fp',    'French Public',       '34,588',       '48,177',       '18,585',    '19,969',    '74.2%',    '698',       '691',       '7',     '301',      '1.1%',    '43.1%'], 
-  ['fc',    'French Catholic',     '76,501',       '110,132',      '17,680',    '18,675',    '70.7%',    '1,454',     '1,429',     '25',    '527',      '1.7%',    '36.2%'], 
+  //id,  System,               Enrolment,    Spaces,       Per-student Funding,  Per-student Revenue,  Per-student Spending,  EQAO,        Total Revenue,  Total Expense,  Surplus,  Year-end Surplus,  Surplus as Share of Revenue,  Year-end Surplus as Share of Revenue
+  ['on', 'Ontario Average',   '499,434',    '581,018',    '13,364',              '14,126',              '14,426',              '67.7%',    '7,243',         '7,205',        '37',      '1,640',          '0.5%',                       '22.6%'], 
+  ['ep', 'English Public',    '1,331,907',  '1,550,480',  '13,027',              '14,428',              '14,059',              '66.8%',    '18,815',        '18,726',       '89',      '3,702',          '0.5%',                       '19.7%'],
+  ['ec', 'English Catholic',  '554,739',    '615,284',    '13,252',              '20,184',              '14,376',              '69.0%',    '8,004',         '7,975',        '28',      '2,029',          '0.4%',                       '25.3%'], 
+  ['fp', 'French Public',     '34,588',     '48,177',     '18,585',              '19,002',              '19,969',              '74.2%',    '698',           '691',          '7',       '301',            '1.1%',                       '43.1%'], 
+  ['fc', 'French Catholic',   '76,501',     '110,132',    '17,680',              '14,501',              '18,675',              '70.7%',    '1,454',         '1,429',        '25',      '527',            '1.7%',                       '36.2%'], 
 ];
 sysData.forEach(thisSystem =>{
   if(thisSystem[0] == 'on') return; //skip Ontario Average
@@ -301,57 +302,62 @@ function getSysInfoTable(thisSystem){
     <th>Ontario Average</th>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Based on Average Daily Enrolment (ADE), which is a full-time equivalent measure of student enrolment">Enrolment</abbr></td>
+    <td><abbr tabindex="0" title="Average Daily Enrolment (ADE) which is a full-time equivalent measure of student enrolment.">Enrolment</abbr></td>
     <td>${thisSystem[2]}</td>
     <td>${onAverage[2]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="School facilities’ on-the-ground capacity (excludes spaces in portable classrooms)">Spaces</abbr></td>
+    <td><abbr tabindex="0" title="School facilities' On-the-Ground Capacity (excludes spaces in portable classrooms)">Spaces</abbr></td>
     <td>${thisSystem[3]}</td>
     <td>${onAverage[3]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total Ministry of Education Funding Per Student">Per-Student Funding ($)</abbr></td>
+    <td><abbr tabindex="0" title="Total Ministry of Education funding per student, 2021-22 school year">Per-student Funding ($)</abbr></td>
     <td>${thisSystem[4]}</td>
     <td>${onAverage[4]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total school board expense per student">Per-Student Spending ($)</abbr></td>
+    <td><abbr tabindex="0" title="Total school board revenue per student, 2021-22 school year">Per-student Revenue ($)</abbr></td>
     <td>${thisSystem[5]}</td>
     <td>${onAverage[5]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="The share of tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
+    <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-student Spending ($)</abbr></td>
     <td>${thisSystem[6]}</td>
     <td>${onAverage[6]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total school board revenue">Total Revenue ($ million)</abbr></td>
+    <td><abbr tabindex="0" title="The share of EQAO tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
     <td>${thisSystem[7]}</td>
     <td>${onAverage[7]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total school board expense">Total Expense ($ million)</abbr></td>
+    <td><abbr tabindex="0" title="Total school board revenue, 2021-22 school year">Total Revenue ($ million)</abbr></td>
     <td>${thisSystem[8]}</td>
     <td>${onAverage[8]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total school board revenue less  total school board expense">Surplus ($ million)</abbr></td>
+    <td><abbr tabindex="0" title="Total school board expense, 2021-22 school year">Total Expense ($ million)</abbr></td>
     <td>${thisSystem[9]}</td>
     <td>${onAverage[9]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Year-end accumulated surplus as of August 31, 2022. Represents the sum of surpluses and deficits over time.">Accumulated Surplus ($ million)</abbr></td>
+    <td><abbr tabindex="0" title="Total school board revenue less  total school board expense, 2021-22 school year">Surplus / (Deficit) ($ million)</abbr></td>
     <td>${thisSystem[10]}</td>
     <td>${onAverage[10]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="School board surplus as a share of revenue">Surplus as Share of Revenue</abbr></td>
+    <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as of August 31, 2022. Represents the sum of surpluses and deficits over time">Accumulated Surplus / (Deficit) ($ million)</abbr></td>
     <td>${thisSystem[11]}</td>
     <td>${onAverage[11]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Year-end accumulated surplus as a share of revenue as of August 31, 2022">Accumulated Surplus as Share of Revenue</abbr></td>
+    <td><abbr tabindex="0" title="School board surplus / (deficit) as a share of its total revenue, 2021-22 school year">Surplus / (Deficit) as Share of Revenue</abbr></td>
+    <td>${thisSystem[12]}</td>
+    <td>${onAverage[12]}</td>
+  </tr>
+  <tr>
+    <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as a share of revenue as of August 31, 2022">Accumulated Surplus / (Deficit)  as Share of Revenue</abbr></td>
     <td>${thisSystem[12]}</td>
     <td>${onAverage[12]}</td>
   </tr>
