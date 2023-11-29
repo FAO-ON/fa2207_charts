@@ -30,7 +30,7 @@
       font-family: Helvetica, Arial;
     }
     g[aria-label="bar"]:has(rect:hover) rect:not(:hover){
-      fill:#ccc;
+      fill:#00000011;
     }
     g[aria-label="y-axis label"] text{
       font-size: 14px;
@@ -258,7 +258,11 @@
   const fao_pink = '#e23e94';
   const fao_light_pink = "#E6C7D8";
 
-
+  function replaceFig(figId,graphElement){
+    const img = document.querySelector('#' + figId + '-image img');
+    graphElement.after(fig);
+    fig.style.display = "none";
+  }
 
   // load data from CSV
   d3.csv("master_board.csv").then( d => {
@@ -702,7 +706,7 @@
           Plot.text(["Average, 14,501"], {y: 15500, dx: -200}),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  })
         ],
-        color: {legend: true, domain: ["Revenue for Infrastructure Projects", "Provincial and Own Source Operating Revenue", "Federal Transfers Revenue"], range: [fao_pink, fao_light_blue_1, fao_blue], marginLeft: 50, className: "fig-legend", width: 900}
+        color: {legend: true, domain: ["Provincial and Own Source Operating Revenue", "Revenue for Infrastructure Projects", "Federal Transfers Revenue"], range: [fao_light_blue_1, fao_pink, fao_blue], marginLeft: 50, className: "fig-legend", width: 900}
       });
       const fig_22_div = document.querySelector("#fig22-image img");
       fig_22_div.after(fig_22);
@@ -922,8 +926,8 @@
       const fig_11 = Plot.plot({
         width: 800,
         padding: 0.3,
+        // className: "fig9",
         marginLeft: 75,
-        className: "fig9",
         x:{label: "School Board", nice: true, tickFormat: d => null},
         y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
         marks: [
@@ -941,7 +945,7 @@
           }),
           Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
-        color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"], marginLeft: 0, className: "fig-legend", width: 900}
+        color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"]}
       });
       const fig_11_div = document.querySelector("#fig11-image img");
       fig_11_div.after(fig_11);
