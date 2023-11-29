@@ -1,6 +1,6 @@
 //all data
 const sbData = [
-  //id,School Board,  School System,  Enrolment,  Spaces,  "Per-Student Funding ($) 2021-22",  "Per-Student Revenue ($) 2021-22",  "Per-Student Spending ($) 2021-22",  Average EQAO Pass Rate,  "Total Revenue  ($ million)  2021-22",  "Total Expense  ($ million)  2021-22",  "Surplus / (Deficit)  ($ million)  2021-22",  "Year-end Accumulated Surplus / (Deficit) (August 31 2022)  ($ million)",  Surplus / (Deficit) as Share of Revenue 2021-22,  Year-end Accumulated Surplus / (Deficit) as Share of Revenue (August 31 2022),  Remoteness (km),  Dispersion (km),  Urban Factor
+  //id,School Board,  School System,  Enrolment,  Spaces,  "Per-student Funding ($) 2021-22",  "Per-student Revenue ($) 2021-22",  "Per-student Spending ($) 2021-22",  Average EQAO Pass Rate,  "Total Revenue  ($ million)  2021-22",  "Total Expense  ($ million)  2021-22",  "Surplus / (Deficit)  ($ million)  2021-22",  "Year-end Accumulated Surplus / (Deficit) (August 31 2022)  ($ million)",  Surplus / (Deficit) as Share of Revenue 2021-22,  Year-end Accumulated Surplus / (Deficit) as Share of Revenue (August 31 2022),  Remoteness (km),  Dispersion (km),  Urban Factor
   [0, 'Ontario Average',                                'Ontario Average',  '27,746',  '32,279',  '13,364',   '14,501',   '14,426',  '67.7%',  '402',    '400',      '2',         '91',     '1.2%',   '22.6%',  'N/A',    '29.4',     '0.6' ],
   [1, 'DSB Ontario North East',                         'English Public',   '6,562',   '13,434',  '19,559',   '21,628',   '21,462',  '46.4%',  '142'    ,'141'      ,'1'         ,'37'     ,'0.8%',   '26.4%',  '659',    '53.89',    '1.0' ],
   [2, 'Algoma DSB',                                     'English Public',   '9,762',   '15,269',  '16,757',   '19,614',   '19,329',  '56.0%',  '191'    ,'189'      ,'3'         ,'27'     ,'1.5%',   '14.0%',  '628',    '37.17',    '0.8' ],
@@ -196,19 +196,19 @@ function getMapInfoTable(sbId){
   <td>${ranking[4]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total Ministry of Education funding per student, 2021-22 school year">Per-Student Funding ($)</abbr></td>
+  <td><abbr tabindex="0" title="Total Ministry of Education funding per student, 2021-22 school year">Per-student Funding ($)</abbr></td>
   <td>${thisBoard[5]}</td>
   <td>${onAverage[5]}</td>
   <td>${ranking[5]}</td>
 </tr>
 <tr>
-<td><abbr tabindex="0" title="Total school board revenue per student, 2021-22 school year">Per-Student Revenue ($)</abbr></td>
+<td><abbr tabindex="0" title="Total school board revenue per student, 2021-22 school year">Per-student Revenue ($)</abbr></td>
   <td>${thisBoard[6]}</td>
   <td>${onAverage[6]}</td>
   <td>${ranking[6]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-Student Spending ($)</abbr></td>
+  <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-student Spending ($)</abbr></td>
   <td>${thisBoard[7]}</td>
   <td>${onAverage[7]}</td>
   <td>${ranking[7]}</td>
@@ -277,7 +277,7 @@ function getMapInfoTable(sbId){
   return tableCode;
 }
 const sysData = [
-  //id,  System,               Enrolment,    Spaces,       Per-Student Funding,  Per-Student Revenue,  Per-Student Spending,  EQAO,        Total Revenue,  Total Expense,  Surplus,  Year-end Surplus,  Surplus as Share of Revenue,  Year-end Surplus as Share of Revenue
+  //id,  System,               Enrolment,    Spaces,       Per-student Funding,  Per-student Revenue,  Per-student Spending,  EQAO,        Total Revenue,  Total Expense,  Surplus,  Year-end Surplus,  Surplus as Share of Revenue,  Year-end Surplus as Share of Revenue
   ['on', 'Ontario Average',   '499,434',    '581,018',    '13,364',              '14,126',              '14,426',              '67.7%',    '7,243',         '7,205',        '37',      '1,640',          '0.5%',                       '22.6%'], 
   ['ep', 'English Public',    '1,331,907',  '1,550,480',  '13,027',              '14,428',              '14,059',              '66.8%',    '18,815',        '18,726',       '89',      '3,702',          '0.5%',                       '19.7%'],
   ['ec', 'English Catholic',  '554,739',    '615,284',    '13,252',              '20,184',              '14,376',              '69.0%',    '8,004',         '7,975',        '28',      '2,029',          '0.4%',                       '25.3%'], 
@@ -312,17 +312,17 @@ function getSysInfoTable(thisSystem){
     <td>${onAverage[3]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total Ministry of Education funding per student, 2021-22 school year">Per-Student Funding ($)</abbr></td>
+    <td><abbr tabindex="0" title="Total Ministry of Education funding per student, 2021-22 school year">Per-student Funding ($)</abbr></td>
     <td>${thisSystem[4]}</td>
     <td>${onAverage[4]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total school board revenue per student, 2021-22 school year">Per-Student Revenue ($)</abbr></td>
+    <td><abbr tabindex="0" title="Total school board revenue per student, 2021-22 school year">Per-student Revenue ($)</abbr></td>
     <td>${thisSystem[5]}</td>
     <td>${onAverage[5]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-Student Spending ($)</abbr></td>
+    <td><abbr tabindex="0" title="Total school board expense per student, 2021-22 school year">Per-student Spending ($)</abbr></td>
     <td>${thisSystem[6]}</td>
     <td>${onAverage[6]}</td>
   </tr>
