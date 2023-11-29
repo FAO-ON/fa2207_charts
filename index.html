@@ -260,8 +260,9 @@
 
   function replaceFig(figId,graphElement){
     const img = document.querySelector('#' + figId + '-image img');
-    graphElement.after(fig);
-    fig.style.display = "none";
+    img.after(graphElement);
+    img.style.display = "none";
+
   }
 
   // load data from CSV
@@ -321,8 +322,9 @@
                         className : "fig-legend",
                     }
                 });
-    const fig_9_div = document.querySelector("#fig9-image img");
-    fig_9_div.after(fig_9);
+    // const fig_9_div = document.querySelector("#fig9-image img");
+    // fig_9_div.after(fig_9);
+    replaceFig("fig9",fig_9)
 
 
     // FIG 10 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
