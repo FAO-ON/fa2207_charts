@@ -184,7 +184,7 @@ function getMapInfoTable(sbId){
   <td>N/A</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="Average Daily Enrolment (ADE) which is a full-time equivalent measure of student enrolment.">Enrolment</abbr></td>
+  <td><abbr tabindex="0" title="Average Daily Enrolment (ADE) which is a full-time equivalent measure of student enrolment">Enrolment</abbr></td>
   <td>${thisBoard[3]}</td>
   <td>${onAverage[3]}</td>
   <td>${ranking[3]}</td>
@@ -214,7 +214,7 @@ function getMapInfoTable(sbId){
   <td>${ranking[7]}</td>
 </tr>
 <tr>
-  <td><abbr tabindex="0" title="The share of EQAO tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
+  <td><abbr tabindex="0" title="The share of EQAO tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard">EQAO Pass Rate</abbr></td>
   <td>${thisBoard[8]}</td>
   <td>${onAverage[8]}</td>
   <td>${ranking[8]}</td>
@@ -302,7 +302,7 @@ function getSysInfoTable(thisSystem){
     <th>Ontario Average</th>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="Average Daily Enrolment (ADE) which is a full-time equivalent measure of student enrolment.">Enrolment</abbr></td>
+    <td><abbr tabindex="0" title="Average Daily Enrolment (ADE) which is a full-time equivalent measure of student enrolment">Enrolment</abbr></td>
     <td>${thisSystem[2]}</td>
     <td>${onAverage[2]}</td>
   </tr>
@@ -327,7 +327,7 @@ function getSysInfoTable(thisSystem){
     <td>${onAverage[6]}</td>
   </tr>
   <tr>
-    <td><abbr tabindex="0" title="The share of EQAO tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard.">EQAO Pass Rate</abbr></td>
+    <td><abbr tabindex="0" title="The share of EQAO tests administered across all disciplines and grades that were assessed as meeting or exceeding the provincial standard">EQAO Pass Rate</abbr></td>
     <td>${thisSystem[7]}</td>
     <td>${onAverage[7]}</td>
   </tr>
