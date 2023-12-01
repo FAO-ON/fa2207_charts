@@ -420,9 +420,6 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         strokeWidth: 3,
         strokeOpacity: 0,
         }),
-        Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-        Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, text: d => d}),
-        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
 
         Plot.barY(fig4_10_invisible, {
             x: "Board",
@@ -435,7 +432,10 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
             stroke: white,
             strokeWidth: 3,
             strokeOpacity: 0,
-        })   
+        })   ,
+        Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
+        Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, text: d => d}),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         
     ],
     color: {legend: true, domain: ["COVID-related", "Tutoring Supports", "Reading Supports & Assessments", "All Other"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_blue_2]}
