@@ -43,6 +43,32 @@ function parseAllocationString(board, allocation){
     return allocationString;
 }
 
+function parseGrantString(board, grant){
+    let grantString = "";
+    for(let i = 0; i < grant.length; i++){
+        //console.log(allocation[i]);
+        if(grant[i].includes(board)){
+            for(let j = 0; j < grant[i].length; j++){
+                if(grant[i][j] != board){
+                    if(typeof grant[i][j] == "number"){
+                        grant[i][j] = Math.round(grant[i][j]);
+                    }
+                    if(j == 1){
+                        grantString += grant[i][j] + ": $";
+                    }
+                    //add comma after the allocation
+                    else if(j == grant[i].length - 1){
+                        grantString += grant[i][j] + "\n";
+                    }
+                    else{
+                        grantString += grant[i][j] + ", ";
+                    }
+                }
+            }
+        }
+    }
+    return grantString;
+}
 
 
 // load data from CSV
@@ -361,12 +387,18 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         }
     }
 
-    console.log(allocations);
 
 
     fig4_10_tidy = fig4_10_tidy.filter(d => d.Allocation != 'Average');
-    //remove Total and Average from Grant
-    console.log(fig4_10_tidy);
+
+
+    //fig4_10_invisble should just have board and total
+    let fig4_10_invisible = [];
+    for(let i = 0; i < fig4_10_tidy.length; i++){
+        if(fig4_10_tidy[i].Allocation == "Total"){
+            fig4_10_invisible.push(fig4_10_tidy[i]);
+        }
+    }
     const fig4_10 = Plot.plot({
     width: 800,
     padding: 0.3,
@@ -379,9 +411,8 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         x: "Board", 
         y: "Per Student Funding", 
         fill: 'Allocation', 
-        tip: true,
+        //tip: true,
         //list all the allocation and their values in the title
-        title: (d) => "School Board: " + `${d.Board}`  + "\nTotal: " + "$" + `${Math.round(d.Total)}` + "\n" + parseAllocationString(d.Board, allocations),
         //title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}`  + "\nTotal: " + "$" + `${Math.round(d.Total)}` ,
         channels: {'Total': 'Total'},
         sort: {x: "Total"},
@@ -392,6 +423,20 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
         Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, text: d => d}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+
+        Plot.barY(fig4_10_invisible, {
+            x: "Board",
+            y: "Total",
+            fill: "transparent",
+            tip: true,
+            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Math.round(d.Total)}` + "\n" + parseAllocationString(d.Board, allocations),
+            channels: {"Total": "Total"},
+            sort: {x: "Total"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
+        })   
+        
     ],
     color: {legend: true, domain: ["COVID-related", "Tutoring Supports", "Reading Supports & Assessments", "All Other"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_blue_2]}
     });
@@ -699,7 +744,15 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
     console.log(d);
     let fig4_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, Grant: k, Value: d[k], Total: d['Total']})));
     //remove Total and Average from Grant
+    fig4_3_tidy_invisible = fig4_3_tidy.filter(d => d.Grant == 'Average');
     fig4_3_tidy = fig4_3_tidy.filter(d => d.Grant != 'Total' && d.Grant != 'Average');
+    grants = [];
+    for(let i = 0; i < fig4_3_tidy.length; i++){
+        //don't add the total to the allocations array
+        if(fig4_3_tidy[i].Grant != "Total" && fig4_3_tidy[i].Grant != "Average"){
+            grants.push([fig4_3_tidy[i].Board ,fig4_3_tidy[i].Grant , +fig4_3_tidy[i].Value]);
+        }
+    }
     console.log(fig4_3_tidy);
     const fig4_3 = Plot.plot({
     width: 800,
@@ -709,18 +762,34 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
     marks: [
+        //Make an invisible bar to make the tooltip work
+       
         Plot.barY(fig4_3_tidy, {
-        x: "Board", 
-        y: "Value", 
-        fill: 'Grant', 
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d.Value)}` + "\nGrant: " + `${d.Grant}` + "\nTotal Per Student Funding: $" + `${Math.round(d.Total)}`,
-        channels: {'Total': 'Total'},
-        sort: {x: "Total"},
-        stroke: white,
-        strokeWidth: 3,
-        strokeOpacity: 0,
+            x: "Board", 
+            y: "Value", 
+            fill: 'Grant', 
+            //tip: true,
+            channels: {'Total': 'Total'},
+            sort: {x: "Total"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
         }),
+        Plot.barY(fig4_3_tidy_invisible, {
+            x: "Board",
+            y: "Total",
+            tip: true,
+            //title should display the board, all the grants and their values, and the total
+            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Math.round(d.Total)}` + "\n" + parseGrantString(d.Board, grants),
+            //make the bar transparent
+            fill: "transparent",
+            channels: {"Total": "Total"},
+            sort: {x: "Total"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
+        }),
+        
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
     ],
     color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"]}
