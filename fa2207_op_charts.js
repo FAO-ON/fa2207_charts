@@ -503,6 +503,33 @@ d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
 d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
     let fig5_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Revenue": +d[k], System: k, Total: +d['Total']})));
     fig5_3_tidy = fig5_3_tidy.filter(d => d.System != 'Average');
+    console.log(fig5_3_tidy);
+
+
+    for(let i = 0; i < fig5_3_tidy.length; i++){
+    //if the per student funding is "" then remove it
+        if(fig5_3_tidy[i]["Per Student Revenue"] == ""){
+            fig5_3_tidy.splice(i, 1);
+            i--;
+        }
+    }
+
+    let allocations = [];
+    for(let i = 0; i < fig5_3_tidy.length; i++){
+        //don't add the total to the allocations array
+        if(fig5_3_tidy[i].System != "Total"){
+            allocations.push([fig5_3_tidy[i].Board ,fig5_3_tidy[i].System , +fig5_3_tidy[i]["Per Student Revenue"]]);
+        }
+    }
+
+    //fig 5.3 invisible should just have board and total
+    let fig5_3_invisible = [];
+    for(let i = 0; i < fig5_3_tidy.length; i++){
+        if(fig5_3_tidy[i].System == "Total"){
+            fig5_3_invisible.push(fig5_3_tidy[i]);
+        }
+    }
+
     const fig5_3 = Plot.plot({
     width: 800,
     padding: 0.3,
@@ -515,17 +542,28 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
         x: "Board", 
         y: "Per Student Revenue", 
         fill: 'System', 
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Revenue: " + "$" + `${Math.round(d["Per Student Revenue"])}` + "\nSystem: " + `${d.System}` + "\nTotal: $" + `${Math.round(d.Total)}`,
         channels: {'Per Student Revenue': 'Per Student Revenue'},
         sort: {x: "Per Student Revenue"},
         stroke: white,
         strokeWidth: 3,
         strokeOpacity: 0,
         }),
+        Plot.barY(fig5_3_invisible, {
+            x: "Board",
+            y: "Per Student Revenue",
+            tip: true,
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Revenue: " + "$" + `${Math.round(d["Per Student Revenue"])}` + "\nSystem: " + parseAllocationString(d.Board, allocations) + "Total: $" + `${Math.round(d.Total)}`,
+            fill: "transparent",
+            channels: {"Per Student Revenue": "Per Student Revenue"},
+            sort: {x: "Per Student Revenue"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
+        }),
         Plot.ruleY([14501], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
         Plot.text(["Average, 14,501"], {y: 15500, dx: -200, fontWeight: "bold"}),
-        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  })
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+
     ],
     color: {legend: true, domain: ["Provincial and Own Source Operating Revenue", "Revenue for Infrastructure Projects", "Federal Transfers Revenue"], range: [fao_light_blue_1, fao_pink, fao_blue]}
     });
@@ -779,10 +817,10 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
             x: "Board",
             y: "Total",
             tip: true,
+            fill: "transparent",
             //title should display the board, all the grants and their values, and the total
             title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Math.round(d.Total)}` + "\n" + parseGrantString(d.Board, grants),
             //make the bar transparent
-            fill: "transparent",
             channels: {"Total": "Total"},
             sort: {x: "Total"},
             stroke: white,
