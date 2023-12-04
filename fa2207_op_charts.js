@@ -1,3 +1,10 @@
+////////////////////////////////////////////////////////////////////////
+// FA2207 - Ontario Public School Boards Interactive Charts ////////////
+// Created By: Rishabh Kumar Chowdhary /////////////////////////////////
+// Last Updated: 2023-12-04 ////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+//Constant Definitions
 const fao_blue = '#0f60d5';
 const white = '#ffffff';
 const fao_dark_blue = '#1a2b4a';
@@ -9,7 +16,11 @@ const fao_green = '#b2d235';
 const fao_pink = '#e23e94';
 const fao_light_pink = "#E6C7D8";
 
+
 function replaceFig(figId,graphElement){
+    //DOCSTRING: Replaces the image with the graph element
+    //figId: the id of the figure
+    //graphElement: the graph element to replace the image with
     const img = document.querySelector('#' + figId + '-image img');
     img.after(graphElement);
     img.style.display = "none";
@@ -17,6 +28,9 @@ function replaceFig(figId,graphElement){
 }
 
 function parseAllocationString(board, allocation){
+    //DOCSTRING: parses the string for tooltip allocation
+    //board: array of all the schoolboards
+    //allocation: array of each allocation to parse to the string
     let allocationString = "";
     for(let i = 0; i < allocation.length; i++){
         //console.log(allocation[i]);
@@ -24,7 +38,7 @@ function parseAllocationString(board, allocation){
             for(let j = 0; j < allocation[i].length; j++){
                 if(allocation[i][j] != board){
                     if(typeof allocation[i][j] == "number"){
-                        allocation[i][j] = Math.round(allocation[i][j]);
+                        allocation[i][j] = Intl.NumberFormat('en-US').format(Math.round(allocation[i][j]));
                     }
                     if(j == 1){
                         allocationString += allocation[i][j] + ": $";
@@ -44,14 +58,16 @@ function parseAllocationString(board, allocation){
 }
 
 function parseGrantString(board, grant){
+    //DOCSTRING: parses the string shown to the tooltip with each grant
+    //board: an array of all the school boards
+    //grant: an array of each grant to parse to the string
     let grantString = "";
     for(let i = 0; i < grant.length; i++){
-        //console.log(allocation[i]);
         if(grant[i].includes(board)){
             for(let j = 0; j < grant[i].length; j++){
                 if(grant[i][j] != board){
                     if(typeof grant[i][j] == "number"){
-                        grant[i][j] = Math.round(grant[i][j]);
+                        grant[i][j] = Intl.NumberFormat('en-US').format(Math.round(grant[i][j]));
                     }
                     if(j == 1){
                         grantString += grant[i][j] + ": $";
@@ -73,10 +89,8 @@ function parseGrantString(board, grant){
 
 // load data from CSV
 d3.csv("fa2207_chart_csv/master_board.csv").then( d => {
-console.log(d);
 
 // FIG 4.1  / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
-// bar chart
 const fig4_1 = Plot.plot({
                 width: 800,
                 padding: 0.3,
@@ -101,20 +115,20 @@ const fig4_1 = Plot.plot({
                         strokeOpacity: 0,
                         }),
                     
-                    //Plot a line that indicates the average
+                    //Plot a line that indicates the Average:
                     Plot.ruleY([13364], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
                     //sit above the line
-                    Plot.text(["Average, 13,364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
+                    Plot.text(["Average: 13,364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
+                    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
                     
                     Plot.tip(d, Plot.pointerX({
                         x: "Board",
                         y: "Per-student Funding ($)",
-                        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per-student Funding ($)"])}` + "\nSystem: " + `${d.System}`,
+                        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSystem: " + `${d.System}`,
                         lineWidth: 1000,
                         //anchor: "bottom"
                         //make
                     })),
-                    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
                     
                     
                 ],
@@ -126,7 +140,6 @@ const fig4_1 = Plot.plot({
                     range:['#1060D5','#90B7F2','#E43D96','#E6C7D8'],
                 }
             });
-const fig4_1_div = document.querySelector("#fig4_1-image img");
 replaceFig("fig4_1",fig4_1);
 
 
@@ -163,12 +176,12 @@ d3.csv("fa2207_chart_csv/fig4.4_data.csv").then(d => {
             strokeOpacity: 0,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-        Plot.text(["Average, 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+        Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.tip(fig4_4_tidy, Plot.pointerX({
             x: "Board",
             y: "Per-student Funding ($)",
-            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per-student Funding ($)"])}` + "\nSize: " + `${d.Size}`,
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSize: " + `${d.Size}`,
             lineWidth: 1000,
             //anchor: "bottom"
             //make
@@ -214,12 +227,12 @@ d3.csv("fa2207_chart_csv/fig4.5_data.csv").then(d => {
             strokeOpacity: 0,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-        Plot.text(["Average, 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+        Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.tip(fig4_5_tidy, Plot.pointerX({
             x: "Board",
             y: "Per-student Funding ($)",
-            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per-student Funding ($)"])}` + "\nDispersion: " + `${d.Dispersion}`,
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nDispersion: " + `${d.Dispersion}`,
             lineWidth: 1000,
             //anchor: "bottom"
             //make
@@ -251,21 +264,28 @@ d3.csv("fa2207_chart_csv/fig4.6_data.csv").then(d => {
         className: "sb-chart",
         x:{label: "School Board", nice: true, tickFormat: d => null},
         marks:[
-        Plot.barY(fig4_6_tidy, {
-            x: "Board",
-            y: "Per-student Funding ($)",
-            tip: true,
-            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per-student Funding ($)"])}` + "\nRemoteness: " + `${d.Remote}`,
-            fill: "Remote",
-            channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
-            sort: {x: "Per-student Funding ($)"},
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
-        }),
-        Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-        Plot.text(["Average, 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
-        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+            Plot.barY(fig4_6_tidy, {
+                x: "Board",
+                y: "Per-student Funding ($)",
+                //tip: true,
+                //title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nRemoteness: " + `${d.Remote}`,
+                fill: "Remote",
+                channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
+                sort: {x: "Per-student Funding ($)"},
+                stroke: white,
+                strokeWidth: 3,
+                strokeOpacity: 0,
+            }),
+            Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+            Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+            Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+            Plot.tip(fig4_6_tidy, Plot.pointerX({
+                x: "Board",
+                y: "Per-student Funding ($)",
+                title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nRemoteness: " + `${d.Remote}`,
+                lineWidth: 1000,
+                //make
+            })),
         ],
         color: {legend: true, domain: ["Least Remote", "Medium Remote", "Most Remote"], range: ["#93BBF7", "#1060D5", "#E23C94"]}
     })
@@ -308,11 +328,11 @@ d3.csv("fa2207_chart_csv/fig4.7_data.csv").then(d => {
         }),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-        Plot.text(["Average, 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+        Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
         Plot.tip(fig4_7_tidy, Plot.pointerX({
             x: "Board",
             y: "Per-student Funding ($)",
-            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per-student Funding ($)"])}` + "\nUrban Factor: " + `${d.Urban}`,
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nUrban Factor: " + `${d.Urban}`,
             lineWidth: 1000,
             //anchor: "bottom"
             //make
@@ -350,8 +370,7 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
         x: "Board", 
         y: "Per Student Funding", 
         fill: 'System', 
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}` + "\nSystem: " + `${d.System}`,
+       //tip: true,
         channels: {'Per Student Funding': 'Per Student Funding'},
         sort: {x: "Per Student Funding"},
         stroke: white,
@@ -359,8 +378,16 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
         strokeOpacity: 0,
         }),
         Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-        Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, fontWeight:"bold",text: d => d}),
+        Plot.text(["Average: 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, fontWeight:"bold",text: d => d}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(fig4_9_tidy, Plot.pointerX({
+            x: "Board",
+            y: "Per Student Funding",
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding"]))}` + "\nSystem: " + `${d.System}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
     ],
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"]}
     });
@@ -425,17 +452,24 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
             x: "Board",
             y: "Total",
             fill: "transparent",
-            tip: true,
-            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Math.round(d.Total)}` + "\n" + parseAllocationString(d.Board, allocations),
+            //tip: true,
             channels: {"Total": "Total"},
             sort: {x: "Total"},
             stroke: white,
             strokeWidth: 3,
             strokeOpacity: 0,
-        })   ,
+        }),
         Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-        Plot.text(["Average, 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, text: d => d}),
+        Plot.text(["Average: 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(fig4_10_invisible, Plot.pointerX({
+            x: "Board",
+            y: "Total",
+            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}` + "\n" + parseAllocationString(d.Board, allocations),
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
         
     ],
     color: {legend: true, domain: ["COVID-related", "Tutoring Supports", "Reading Supports & Assessments", "All Other"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_blue_2]}
@@ -551,8 +585,7 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
         Plot.barY(fig5_3_invisible, {
             x: "Board",
             y: "Per Student Revenue",
-            tip: true,
-            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Revenue: " + "$" + `${Math.round(d["Per Student Revenue"])}` + "\nSystem: " + parseAllocationString(d.Board, allocations) + "Total: $" + `${Math.round(d.Total)}`,
+            //tip: true,
             fill: "transparent",
             channels: {"Per Student Revenue": "Per Student Revenue"},
             sort: {x: "Per Student Revenue"},
@@ -561,8 +594,16 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
             strokeOpacity: 0,
         }),
         Plot.ruleY([14501], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-        Plot.text(["Average, 14,501"], {y: 15500, dx: -200, fontWeight: "bold"}),
+        Plot.text(["Average: 14,501"], {y: 15500, dx: -200, fontWeight: "bold"}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(fig5_3_invisible, Plot.pointerX({
+            x: "Board",
+            y: "Per Student Revenue",
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Revenue: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Revenue"]))}` + "\nSystem: " + parseAllocationString(d.Board, allocations) + "Total: $" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
 
     ],
     color: {legend: true, domain: ["Provincial and Own Source Operating Revenue", "Revenue for Infrastructure Projects", "Federal Transfers Revenue"], range: [fao_light_blue_1, fao_pink, fao_blue]}
@@ -583,21 +624,28 @@ const fig6_4 = Plot.plot({
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{label: "Per Student Spending ($)", nice: true, domain: [0, 45000]},
     marks:[
-    Plot.barY(d,{
-        x: "Board",
-        y: "Per-student Spending ($)",
-        fill: "System",
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Spending: " + "$" + `${Math.round(d["Per-student Spending ($)"])}` + "\nSchool Board Type: " + `${d.System}`,
-        channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
-        sort: {x: "Per-student Spending ($)"},
-        stroke: white,
-        strokeWidth: 3,
-        strokeOpacity: 0,
-    }),
-    Plot.ruleY([14426], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Average, 14,426"], {y: 15500, dx: -200, fontWeight: "bold"}),
-    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.barY(d,{
+            x: "Board",
+            y: "Per-student Spending ($)",
+            fill: "System",
+            //tip: true,
+            channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
+            sort: {x: "Per-student Spending ($)"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
+        }),
+        Plot.ruleY([14426], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average: 14,426"], {y: 15500, dx: -200, fontWeight: "bold"}),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(d, Plot.pointerX({
+            x: "Board",
+            y: "Per-student Spending ($)",
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Spending: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Spending ($)"]))}` + "\nSchool Board Type: " + `${d.System}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        })),
     ],
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]},
 })
@@ -618,23 +666,30 @@ const fig_7_1 = Plot.plot({
     //add percent to the Y axis
     y:{percent: true, domain:[-4, 6], label: "Surplus as Share of Revenue (%)", tickFormat: d => d + "%"},
     marks:[
-    Plot.barY(fig_7_1_data,{
-        x: "Board",
-        y: "Surplus as Share of Revenue",
-        fill: "System",
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nSurplus as Share of Revenue: " + `${Math.round((+d["Surplus as Share of Revenue"]*100) * 100) / 100}` + "%\nSchool Board Type: " + `${d.System}`,
-        channels: {"Surplus as Share of Revenue": "Surplus as Share of Revenue"},
-        sort: {x: "Surplus as Share of Revenue"},
-        stroke: white,
-        strokeWidth: 3,
-        strokeOpacity: 0,
-    }),
-    Plot.ruleY([0.005], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Average, 0.5%"], {y: 0.008, dx: -230}),
-    //make the X axis start as 0 and be dashed
-    //Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.barY(fig_7_1_data,{
+            x: "Board",
+            y: "Surplus as Share of Revenue",
+            fill: "System",
+            //tip: true,
+            channels: {"Surplus as Share of Revenue": "Surplus as Share of Revenue"},
+            sort: {x: "Surplus as Share of Revenue"},
+            stroke: white,
+            strokeWidth: 3,
+            strokeOpacity: 0,
+        }),
+        Plot.ruleY([0.005], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average: 0.5%"], {y: 0.008, dx: -230, fontWeight: "bold"}),
+        //make the X axis start as 0 and be dashed
+        //Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(fig_7_1_data, Plot.pointerX({
+            x: "Board",
+            y: "Surplus as Share of Revenue",
+            title: (d) => "School Board: " + `${d.Board}` + "\nSurplus as Share of Revenue: " + `${Math.round((+d["Surplus as Share of Revenue"]*100) * 100) / 100}` + "%\nSchool Board Type: " + `${d.System}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
     ],
     color:{legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]}
 })
@@ -652,21 +707,28 @@ const fig7_3 = Plot.plot({
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [-10, 90], label: "Year-End Accumulated Surplus as Share of Expenses", tickFormat: d => d + "%"},
     marks:[
-    Plot.barY(fig7_3_data,{
-        x: "Board",
-        y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
-        fill: "System",
-        tip: true,
-        channels: {"Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)": "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"},
-        sort: {x: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"},
-        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nYear-End Accumulated Surplus as Share of Revenue: " + `${Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100)/100}`,
-        stroke: white,
-        strokeWidth: 2,
-        strokeOpacity: 1,
-    }),
-    Plot.ruleY([22.6], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Average, 22.6%"], {y: 26.5, dx: -180, fontWeight: "bold"}),
-    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.barY(fig7_3_data,{
+            x: "Board",
+            y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
+            fill: "System",
+            //tip: true,
+            channels: {"Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)": "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"},
+            sort: {x: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"},
+            stroke: white,
+            strokeWidth: 2,
+            strokeOpacity: 1,
+        }),
+        Plot.ruleY([22.6], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average: 22.6%"], {y: 26.5, dx: -180, fontWeight: "bold"}),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(fig7_3_data, Plot.pointerX({
+            x: "Board",
+            y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
+            title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nYear-End Accumulated Surplus as Share of Revenue: " + `${Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100)/100}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
     ],
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]}
     //color:{legend: true, domain: ["Small", "Medium", "Large"], range: [fao_blue, fao_light_blue_1, fao_pink], marginLeft: 250}
@@ -686,21 +748,28 @@ const fig8_2 = Plot.plot({
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{label: "EQAO Pass Rate (%)", nice: true, domain: [0, 100], tickFormat: d => d + "%"},
     marks: [
-    Plot.barY(fig8_2_d, {
-        x: "Board",
-        y: "EQAO Pass Rate",
-        fill: "System",
-        tip: true,
-        channels: {"EQAO Pass Rate": "EQAO Pass Rate"},
-        sort: {x: "EQAO Pass Rate"},
-        stroke: white,
-        strokeWidth: 2,
-        strokeOpacity: 1,
-        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nEQAO Pass Rate: " + `${Math.round(+d["EQAO Pass Rate"]*100)/100}` + "%",
-    }),
-    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
-    Plot.ruleY([67.7], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Average, 67.7%"], {y: 70, dx: -50, fontWeight: "bold"}),  
+        Plot.barY(fig8_2_d, {
+            x: "Board",
+            y: "EQAO Pass Rate",
+            fill: "System",
+            //tip: true,
+            channels: {"EQAO Pass Rate": "EQAO Pass Rate"},
+            sort: {x: "EQAO Pass Rate"},
+            stroke: white,
+            strokeWidth: 2,
+            strokeOpacity: 1,
+        }),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.ruleY([67.7], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average: 67.7%"], {y: 70, dx: -50, fontWeight: "bold"}),  
+        Plot.tip(fig8_2_d, Plot.pointerX({
+            x: "Board",
+            y: "EQAO Pass Rate",
+            title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nEQAO Pass Rate: " + `${Math.round(+d["EQAO Pass Rate"]*100)/100}` + "%",
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
     ],
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"]}
 })
@@ -719,21 +788,28 @@ const fig8_4 = Plot.plot({
     y:{percent: true, label: "EQAO Pass Rate (%)",domain:[0, 100]},
     x:{label: "School Board", nice: true, tickFormat: d => null},
     marks:[
-    Plot.barY(d,{
-        x: "Board",
-        y: "EQAO Pass Rate",
-        fill: "Urban",
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round(((+d["EQAO Pass Rate"]*100)*100))/100}` + "%\nUrban Factor: " + `${d.Urban}`,
-        channels: {"EQAO Pass Rate": "EQAO Pass Rate"},
-        sort: {x: "EQAO Pass Rate"},
-        stroke: white,
-        strokeWidth: 2,
-        strokeOpacity: 1,
-    }),
-    Plot.ruleY([.677], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Average, 67.7%"], {y: .70, dx: -30, fontWeight: "bold"}),  
-    Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.barY(d,{
+            x: "Board",
+            y: "EQAO Pass Rate",
+            fill: "Urban",
+            //tip: true,
+            channels: {"EQAO Pass Rate": "EQAO Pass Rate"},
+            sort: {x: "EQAO Pass Rate"},
+            stroke: white,
+            strokeWidth: 2,
+            strokeOpacity: 1,
+        }),
+        Plot.ruleY([.677], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average: 67.7%"], {y: .70, dx: -30, fontWeight: "bold"}),  
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(d, Plot.pointerX({
+            x: "Board",
+            y: "EQAO Pass Rate",
+            title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round(((+d["EQAO Pass Rate"]*100)*100))/100}` + "%\nUrban Factor: " + `${d.Urban}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        }))
     ],
     color: {legend: true, domain: ["Rural", "Leans Rural", "Leans Urban", "Urban"], range: ["#E43D96", "#FAD8EA", "#93BBF7", "#1060D5"]}
 })
@@ -767,7 +843,7 @@ const fig8_5 = Plot.plot({
     }),
     Plot.ruleX([13364], {stroke: "blue", strokeDasharray: "6,6", weight: 1}),
     Plot.ruleY([67.7], {stroke: "blue", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Average pass \nrate 67.7%"], {y: 70, dx: 350}),
+    Plot.text(["Average pass \nrate 67.7%"], {y: 70, dx: 250}),
     Plot.text(["Average per \nstudent funding \n$13,364"], {y: 82, dx: -220}),
     Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
     ],
@@ -780,9 +856,10 @@ replaceFig("fig8_5",fig8_5);
 //Figure 4.3
 d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
     console.log(d);
-    let fig4_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, Grant: k, Value: d[k], Total: d['Total']})));
-    //remove Total and Average from Grant
-    fig4_3_tidy_invisible = fig4_3_tidy.filter(d => d.Grant == 'Average');
+    let fig4_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, Grant: k, Value: +d[k], Total: +d['Total']})));
+    //remove Total and Average: from Grant
+    fig4_3_tidy_invisible = fig4_3_tidy.filter(d => (d.Grant == 'Average'));
+    console.log(fig4_3_tidy_invisible);
     fig4_3_tidy = fig4_3_tidy.filter(d => d.Grant != 'Total' && d.Grant != 'Average');
     grants = [];
     for(let i = 0; i < fig4_3_tidy.length; i++){
@@ -816,10 +893,10 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
         Plot.barY(fig4_3_tidy_invisible, {
             x: "Board",
             y: "Total",
-            tip: true,
+            //tip: true,
             fill: "transparent",
             //title should display the board, all the grants and their values, and the total
-            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Math.round(d.Total)}` + "\n" + parseGrantString(d.Board, grants),
+            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}` + "\n" + parseGrantString(d.Board, grants),
             //make the bar transparent
             channels: {"Total": "Total"},
             sort: {x: "Total"},
@@ -827,8 +904,19 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
             strokeWidth: 3,
             strokeOpacity: 0,
         }),
-        
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
+        Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+        
+        Plot.tip(fig4_3_tidy_invisible, Plot.pointerX({
+            x: "Board",
+            y: "Total",
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Value))}` + "\nGrant: " + `${d.Grant}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        })),
+        
     ],
     color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"]}
     });
@@ -839,10 +927,17 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
 
 //figure 4.8
 d3.csv("fa2207_chart_csv/fig4.8_data.csv").then(d =>{
-    let fig4_8_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Language: k})));
-    //filter out Average
+    let fig4_8_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding ($)": +d[k], Language: k})));
+    //Get rid of any sub array that has a per student funding of 0
     fig4_8_tidy = fig4_8_tidy.filter(d => d.Language != ' Average ');
-    //remove Total and Average from Grant
+    for(let i = 0; i < fig4_8_tidy.length; i++){
+    //if the per student funding is "" then remove it
+        if(fig4_8_tidy[i]["Per Student Funding ($)"] == 0){
+            fig4_8_tidy.splice(i, 1);
+            i--;
+        }
+    }
+    console.log(fig4_8_tidy);
     const fig4_8 = Plot.plot({
     width: 800,
     padding: 0,
@@ -853,20 +948,27 @@ d3.csv("fa2207_chart_csv/fig4.8_data.csv").then(d =>{
     marks: [
         Plot.barY(fig4_8_tidy, {
         x: "Board", 
-        y: "Per Student Funding", 
+        y: "Per Student Funding ($)", 
         fill: 'Language', 
-        tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}` + "\nSchool Board Type: " + `${d.Language}`,
-        channels: {'Per Student Funding': 'Per Student Funding'},
-        sort: {x: "Per Student Funding"},
+        //tip: true,
+        channels: {'Per Student Funding ($)': 'Per Student Funding ($)'},
+        sort: {x: "Per Student Funding ($)"},
         stroke: white,
         strokeWidth: 2,
         strokeOpacity: 1,
         r: 5.5,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-        Plot.text(["Average, 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+        Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.tip(fig4_8_tidy, Plot.pointerX({
+            x: "Board",
+            y: "Per Student Funding ($)",
+            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding ($)"]))}` + "\nSchool Board Type: " + `${d.Language}`,
+            lineWidth: 1000,
+            //anchor: "bottom"
+            //make
+        })),
     ],
     color: {legend: true, domain:["English-language School Board", "French-language School Board"], range: ["#1060D5", "#E43D96"]}
     });
