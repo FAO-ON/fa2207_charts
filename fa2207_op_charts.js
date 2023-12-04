@@ -487,14 +487,16 @@ d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
             strokeWidth: stroke_options.strokeWidth,
             strokeOpacity: stroke_options.strokeOpacity,
         }),
+        
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.tip(fig4_11_tidy, Plot.pointerX({
             x: "Board",
             y: "Per Student Funding",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}` + "\nSchool Board Type: " + `${d.Language}`,
             lineWidth: 1000,
         })),
-        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
+        
         color: {legend: true, domain: ["English-language School Board", "French-language School Board"], range: [fao_blue, fao_pink]}
     })
     replaceFig("fig4_11",fig4_11);
