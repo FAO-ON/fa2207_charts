@@ -1,7 +1,7 @@
 //all data
 const sbData = [
-  //id,School Board,  School System,  Enrolment,  Spaces,  "Per-student Funding ($) 2021-22",  "Per-student Revenue ($) 2021-22",  "Per-student Spending ($) 2021-22",  Average EQAO Pass Rate,  "Total Revenue  ($ million)  2021-22",  "Total Expense  ($ million)  2021-22",  "Surplus / (Deficit)  ($ million)  2021-22",  "Year-end Accumulated Surplus / (Deficit) (August 31 2022)  ($ million)",  Surplus / (Deficit) as Share of Revenue 2021-22,  Year-end Accumulated Surplus / (Deficit) as Share of Revenue (August 31 2022),  Remoteness (km),  Dispersion (km),  Urban Factor
-  [0, 'Ontario Average',                                'Ontario Average',  '27,746',  '32,279',  '13,364',   '14,501',   '14,426',  '67.7%',  '402',    '400',      '2',         '91',     '1.2%',   '22.6%',  'N/A',    '29.4',     '0.6' ],
+  //id,School Board,                                     School System,     Enrolment,  Spaces,  PS Funding, PS Revenue, PS Spending, EQAO,    Revenue, Expense,  Surplus, YEA Surplus, as Share,  YEA as Share,  Remoteness,  Dispersion,  Urban Factor
+  [0, 'Ontario Average',                                'Ontario Average',  '27,746',  '32,279',  '13,364',   '14,501',   '14,426',  '67.7%',  '402',    '400',      '2',         '91',     '0.5%',   '22.6%',  'N/A',    '29.4',     '0.6' ],
   [1, 'DSB Ontario North East',                         'English Public',   '6,562',   '13,434',  '19,559',   '21,628',   '21,462',  '46.4%',  '142'    ,'141'      ,'1'         ,'37'     ,'0.8%',   '26.4%',  '659',    '53.89',    '1.0' ],
   [2, 'Algoma DSB',                                     'English Public',   '9,762',   '15,269',  '16,757',   '19,614',   '19,329',  '56.0%',  '191'    ,'189'      ,'3'         ,'27'     ,'1.5%',   '14.0%',  '628',    '37.17',    '0.8' ],
   [3, 'Rainbow DSB',                                    'English Public',   '12,987',  '18,367',  '15,926',   '17,816',   '17,671',  '62.7%',  '231'    ,'229'      ,'2'         ,'33'     ,'0.8%',   '14.3%',  '363',    '27.2',     '0.3' ],
@@ -263,8 +263,8 @@ function getMapInfoTable(sbId){
 </tr>
 <tr>
   <td><abbr tabindex="0" title="The weighted average of distance between schools within a school board, as well as the distance between a school board's central office and each of its schools">Dispersion (km)</abbr></td>
-  <td>${thisBoard[16]}</td>
-  <td>${onAverage[16]}</td>
+  <td>${parseFloat(thisBoard[16]).toFixed(1)}</td>
+  <td>${parseFloat(onAverage[16]).toFixed(1)}</td>
   <td>${ranking[16]}</td>
 </tr>
 <tr>
@@ -278,11 +278,11 @@ function getMapInfoTable(sbId){
 }
 const sysData = [
   //id,  System,               Enrolment,    Spaces,       Per-student Funding,  Per-student Revenue,  Per-student Spending,  EQAO,        Total Revenue,  Total Expense,  Surplus,  Year-end Surplus,  Surplus as Share of Revenue,  Year-end Surplus as Share of Revenue
-  ['on', 'Ontario Average',   '499,434',    '581,018',    '13,364',              '14,126',              '14,426',              '67.7%',    '7,243',         '7,205',        '37',      '1,640',          '0.5%',                       '22.6%'], 
-  ['ep', 'English Public',    '1,331,907',  '1,550,480',  '13,027',              '14,428',              '14,059',              '66.8%',    '18,815',        '18,726',       '89',      '3,702',          '0.5%',                       '19.7%'],
-  ['ec', 'English Catholic',  '554,739',    '615,284',    '13,252',              '20,184',              '14,376',              '69.0%',    '8,004',         '7,975',        '28',      '2,029',          '0.4%',                       '25.3%'], 
-  ['fp', 'French Public',     '34,588',     '48,177',     '18,585',              '19,002',              '19,969',              '74.2%',    '698',           '691',          '7',       '301',            '1.1%',                       '43.1%'], 
-  ['fc', 'French Catholic',   '76,501',     '110,132',    '17,680',              '14,501',              '18,675',              '70.7%',    '1,454',         '1,429',        '25',      '527',            '1.7%',                       '36.2%'], 
+  ['on', 'Ontario Average',   '499,434',    '581,018',    '13,364',              '14,501',              '14,426',              '67.7%',    '7,243',         '7,205',        '37',      '1,640',          '0.5%',                       '22.6%'], 
+  ['ep', 'English Public',    '1,331,907',  '1,550,480',  '13,027',              '14,126',              '14,059',              '66.8%',    '18,815',        '18,726',       '89',      '3,702',          '0.5%',                       '19.7%'],
+  ['ec', 'English Catholic',  '554,739',    '615,284',    '13,252',              '14,428',              '14,376',              '69.0%',    '8,004',         '7,975',        '28',      '2,029',          '0.4%',                       '25.3%'], 
+  ['fp', 'French Public',     '34,588',     '48,177',     '18,585',              '20,184',              '19,969',              '74.2%',    '698',           '691',          '7',       '301',            '1.1%',                       '43.1%'], 
+  ['fc', 'French Catholic',   '76,501',     '110,132',    '17,680',              '19,002',              '18,675',              '70.7%',    '1,454',         '1,429',        '25',      '527',            '1.7%',                       '36.2%'], 
 ];
 sysData.forEach(thisSystem =>{
   if(thisSystem[0] == 'on') return; //skip Ontario Average
@@ -358,8 +358,8 @@ function getSysInfoTable(thisSystem){
   </tr>
   <tr>
     <td><abbr tabindex="0" title="Year-end accumulated surplus / (deficit) as a share of revenue as of August 31, 2022">Accumulated Surplus / (Deficit)  as Share of Revenue</abbr></td>
-    <td>${thisSystem[12]}</td>
-    <td>${onAverage[12]}</td>
+    <td>${thisSystem[13]}</td>
+    <td>${onAverage[13]}</td>
   </tr>
 </table>`;
   return tableCode;
