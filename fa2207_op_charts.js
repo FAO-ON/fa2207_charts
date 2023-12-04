@@ -34,7 +34,7 @@ function parseAllocationString(board, allocation){
     //allocation: array of each allocation to parse to the string
     let allocationString = "";
     for(let i = 0; i < allocation.length; i++){
-        //console.log(allocation[i]);
+        ////console.log(allocation[i]);
         if(allocation[i].includes(board)){
             for(let j = 0; j < allocation[i].length; j++){
                 if(allocation[i][j] != board){
@@ -84,13 +84,13 @@ function parseGrantString(board, grant){
             }
         }
     }
-    console.log(grantString)
+    //console.log(grantString)
     return grantString;
 }
 
 
 // load data from CSV
-d3.csv("fa2207_chart_csv/master_board.csv").then( d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/master_board.csv").then( d => {
 
 // FIG 4.1  / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 const fig4_1 = Plot.plot({
@@ -134,12 +134,12 @@ const fig4_1 = Plot.plot({
                     range:['#1060D5','#90B7F2','#E43D96','#E6C7D8'],
                 }
             });
-replaceFig("fig4_1",fig4_1);
+replaceFig("fig4-1",fig4_1);
 
 
 // FIG 4.4 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
-d3.csv("fa2207_chart_csv/fig4.4_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.4_data.csv").then(d => {
     let fig4_4_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per-student Funding ($)": +d[k], Size: k})));
     fig4_4_tidy = fig4_4_tidy.filter(d => d.Size != 'Average');
     //remove the boards that have no per student funding
@@ -182,13 +182,13 @@ d3.csv("fa2207_chart_csv/fig4.4_data.csv").then(d => {
 
     })
     const fig4_4_div = document.querySelector("#fig4_4-image img");
-    replaceFig("fig4_4",fig4_4);
+    replaceFig("fig4-4",fig4_4);
 })
 
 // FIG 4.5 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
 
-d3.csv("fa2207_chart_csv/fig4.5_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.5_data.csv").then(d => {
     let fig4_5_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per-student Funding ($)": +d[k], Dispersion: k})));
     fig4_5_tidy = fig4_5_tidy.filter(d => d.Dispersion != 'Average');
     //remove the boards that have no per student funding
@@ -230,12 +230,12 @@ d3.csv("fa2207_chart_csv/fig4.5_data.csv").then(d => {
         color: {legend: true, domain: ["Low Dispersion", "Medium Dispersion", "High Dispersion"], range: [fao_light_blue_1, fao_blue, fao_pink]}
     })
     const fig4_5_div = document.querySelector("#fig4_5-image img");
-    replaceFig("fig4_5",fig4_5);
+    replaceFig("fig4-5",fig4_5);
 })
 
 // FIG 4.6 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
-d3.csv("fa2207_chart_csv/fig4.6_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.6_data.csv").then(d => {
     let fig4_6_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per-student Funding ($)": +d[k], Remote: k})));
     fig4_6_tidy = fig4_6_tidy.filter(d => d.Remote != 'Average');
     //remove the boards that have no per student funding
@@ -276,12 +276,12 @@ d3.csv("fa2207_chart_csv/fig4.6_data.csv").then(d => {
         color: {legend: true, domain: ["Least Remote", "Medium Remote", "Most Remote"], range: ["#93BBF7", "#1060D5", "#E23C94"]}
     })
     const fig4_6_div = document.querySelector("#fig4_6-image img");
-    replaceFig("fig4_6",fig4_6);
+    replaceFig("fig4-6",fig4_6);
 })
 
 // FIG 4.7 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
-d3.csv("fa2207_chart_csv/fig4.7_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.7_data.csv").then(d => {
     let fig4_7_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per-student Funding ($)": +d[k], Urban: k})));
     fig4_7_tidy = fig4_7_tidy.filter(d => d.Urban != 'Average');
     //remove the boards that have no per student funding
@@ -323,13 +323,13 @@ d3.csv("fa2207_chart_csv/fig4.7_data.csv").then(d => {
         color: {legend: true, domain: ["Rural", "Leans Rural", "Leans Urban", "Urban"], range: ["#E43D96", "#FAD8EA", "#93BBF7", "#1060D5"]}
     })
     const fig4_7_div = document.querySelector("#fig4_7-image img");
-    replaceFig("fig4_7",fig4_7);
+    replaceFig("fig4-7",fig4_7);
 })
 
 
 // FIG 4.9 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
-d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.9_data.csv").then(d => {
     let fig4_9_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": +d[k], System: k})));
     fig4_9_tidy = fig4_9_tidy.filter(d => d.System != 'Average');
     for(let i = 0; i < fig4_9_tidy.length; i++){
@@ -339,7 +339,7 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
             i--;
         }
     }
-    console.log(fig4_9_tidy);
+    //console.log(fig4_9_tidy);
     const fig4_9 = Plot.plot({
     width: 800,
     padding: 0.3,
@@ -371,12 +371,12 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"]}
     });
     const fig4_9_div = document.querySelector("#fig4_9-image img");
-    replaceFig("fig4_9",fig4_9);
+    replaceFig("fig4-9",fig4_9);
 })
 
 //FIG 4.10 / / / / / / / / / /
 // Stacked
-d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.10_data.csv").then(d => {
     let fig4_10_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Allocation: k, Total: +d['Total']})));
     for(let i = 0; i < fig4_10_tidy.length; i++){
     //if the per student funding is "" then remove it
@@ -450,12 +450,12 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
     color: {legend: true, domain: ["COVID-related", "Tutoring Supports", "Reading Supports & Assessments", "All Other"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_blue_2]}
     });
     const fig4_10_div = document.querySelector("#fig4_10-image img");
-    replaceFig("fig4_10",fig4_10);
+    replaceFig("fig4-10",fig4_10);
 })
 
 // FIG 4.11 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
-d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.11_data.csv").then(d=>{
     let fig4_11_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding": d[k], Language: k})));
     //get rid of duplicate boards
     for(let i = 0; i < fig4_11_tidy.length; i++){
@@ -467,7 +467,7 @@ d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
         i--;
     }
     }
-    console.log(fig4_11_tidy);
+    //console.log(fig4_11_tidy);
     const fig4_11 =
     Plot.plot({
         width: 800,
@@ -499,17 +499,17 @@ d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
         
         color: {legend: true, domain: ["English-language School Board", "French-language School Board"], range: [fao_blue, fao_pink]}
     })
-    replaceFig("fig4_11",fig4_11);
+    replaceFig("fig4-11",fig4_11);
 })
 
 
 // FIG 5.3 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
 
-d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig5.3_data.csv").then(d => {
     let fig5_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Revenue": +d[k], System: k, Total: +d['Total']})));
     fig5_3_tidy = fig5_3_tidy.filter(d => d.System != 'Average');
-    console.log(fig5_3_tidy);
+    //console.log(fig5_3_tidy);
 
 
     for(let i = 0; i < fig5_3_tidy.length; i++){
@@ -578,7 +578,7 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
     color: {legend: true, domain: ["Provincial and Own Source Operating Revenue", "Revenue for Infrastructure Projects", "Federal Transfers Revenue"], range: [fao_light_blue_1, fao_pink, fao_blue]}
     });
     const fig5_3_div = document.querySelector("#fig5_3-image img");
-    replaceFig("fig5_3",fig5_3);
+    replaceFig("fig5-3",fig5_3);
 })
 
 
@@ -619,7 +619,7 @@ const fig6_4 = Plot.plot({
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]},
 })
 const fig6_4_div = document.querySelector("#fig6_4-image img");
-replaceFig("fig6_4",fig6_4);
+replaceFig("fig6-4",fig6_4);
 
 // FIG 7.1 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
@@ -663,7 +663,7 @@ const fig_7_1 = Plot.plot({
     color:{legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]}
 })
 const fig_7_1_div = document.querySelector("#fig7_1-image img");
-replaceFig("fig7_1",fig_7_1);
+replaceFig("fig7-1",fig_7_1);
 
 // FIG 7.3 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
@@ -703,7 +703,7 @@ const fig7_3 = Plot.plot({
     //color:{legend: true, domain: ["Small", "Medium", "Large"], range: [fao_blue, fao_light_blue_1, fao_pink], marginLeft: 250}
 })
 const fig7_3_div = document.querySelector("#fig7_3-image img");
-replaceFig("fig7_3",fig7_3);
+replaceFig("fig7-3",fig7_3);
 
 // FIG 8.2 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
@@ -744,7 +744,7 @@ const fig8_2 = Plot.plot({
 })
 
 const fig8_2_div = document.querySelector("#fig8_2-image img");
-replaceFig("fig8_2",fig8_2);
+replaceFig("fig8-2",fig8_2);
 
 // FIG 8.4 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 // bar chart
@@ -783,7 +783,7 @@ const fig8_4 = Plot.plot({
     color: {legend: true, domain: ["Rural", "Leans Rural", "Leans Urban", "Urban"], range: ["#E43D96", "#FAD8EA", "#93BBF7", "#1060D5"]}
 })
 const fig8_4_div = document.querySelector("#fig8_4-image img");
-replaceFig("fig8_4",fig8_4);
+replaceFig("fig8-4",fig8_4);
 
 
 // FIG 8.5 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
@@ -818,17 +818,17 @@ const fig8_5 = Plot.plot({
     ],
 })
 const fig8_5_div = document.querySelector("#fig8_5-image img");
-replaceFig("fig8_5",fig8_5);
+replaceFig("fig8-5",fig8_5);
 
 })
 
 //Figure 4.3
-d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
-    console.log(d);
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.3_data.csv").then(d =>{
+    //console.log(d);
     let fig4_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, Grant: k, Value: +d[k], Total: +d['Total']})));
     //remove Total and Average: from Grant
     fig4_3_tidy_invisible = fig4_3_tidy.filter(d => (d.Grant == 'Average'));
-    console.log(fig4_3_tidy_invisible);
+    //console.log(fig4_3_tidy_invisible);
     fig4_3_tidy = fig4_3_tidy.filter(d => d.Grant != 'Total' && d.Grant != 'Average');
     grants = [];
     for(let i = 0; i < fig4_3_tidy.length; i++){
@@ -837,7 +837,7 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
             grants.push([fig4_3_tidy[i].Board ,fig4_3_tidy[i].Grant , +fig4_3_tidy[i].Value]);
         }
     }
-    console.log(fig4_3_tidy);
+    //console.log(fig4_3_tidy);
     const fig4_3 = Plot.plot({
     width: 800,
     padding: 0.3,
@@ -889,12 +889,12 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
     color: {legend: true, domain: ["Pupil Foundation Grant", "Special Education Grant", "Geographic Circumstances Grant", "Language Grant", "All Other Grants"], range: ["#1060D5", "#E43D96", "#B2D235","#93BBF7","#BFBFBF"]}
     });
     const fig4_3_div = document.querySelector("#fig4_3-image img");
-    replaceFig("fig4_3",fig4_3);
+    replaceFig("fig4-3",fig4_3);
 })
 
 
 //figure 4.8
-d3.csv("fa2207_chart_csv/fig4.8_data.csv").then(d =>{
+d3.csv("/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/fig4.8_data.csv").then(d =>{
     let fig4_8_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per Student Funding ($)": +d[k], Language: k})));
     //Get rid of any sub array that has a per student funding of 0
     fig4_8_tidy = fig4_8_tidy.filter(d => d.Language != ' Average ');
@@ -905,7 +905,7 @@ d3.csv("fa2207_chart_csv/fig4.8_data.csv").then(d =>{
             i--;
         }
     }
-    console.log(fig4_8_tidy);
+    //console.log(fig4_8_tidy);
     const fig4_8 = Plot.plot({
     width: 800,
     padding: 0,
@@ -941,6 +941,5 @@ d3.csv("fa2207_chart_csv/fig4.8_data.csv").then(d =>{
     color: {legend: true, domain:["English-language School Board", "French-language School Board"], range: ["#1060D5", "#E43D96"]}
     });
     const fig4_8_div = document.querySelector("#fig4_8-image img");
-    replaceFig("fig4_8",fig4_8);
+    replaceFig("fig4-8",fig4_8);
 })
-
