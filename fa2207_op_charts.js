@@ -16,6 +16,7 @@ const fao_green = '#b2d235';
 const fao_pink = '#e23e94';
 const fao_light_pink = "#E6C7D8";
 const stroke_options = {stroke: white, strokeWidth: 3, strokeOpacity: 0};
+const chart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLeft: 75};
 
 
 function replaceFig(figId,graphElement){
@@ -94,10 +95,10 @@ d3.csv("fa2207_chart_csv/master_board.csv").then( d => {
 
 // FIG 4.1  / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
 const fig4_1 = Plot.plot({
-                width: 800,
-                padding: 0.3,
-                className: "sb-chart",
-                marginLeft: 75,
+                width: chart_options.width,
+                padding: chart_options.padding.padding,
+                className: chart_options.className,
+                marginLeft: chart_options.marginLeft,
                 //center the plot
                 x:{label: "School Board", nice: true,
                     tickFormat: d => null,
@@ -151,10 +152,10 @@ d3.csv("fa2207_chart_csv/fig4.4_data.csv").then(d => {
         }
     }
     const fig4_4 = Plot.plot({
-        width: 800,
-        padding: 0.3,
-        marginLeft: 75,
-        className: "sb-chart",
+        width: chart_options.width,
+        padding: chart_options.padding,
+        marginLeft: chart_options.marginLeft,
+        className: chart_options.className,
         x: {label: "School Board", nice: true, tickFormat: d => null},
         y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
         marks:[
@@ -200,10 +201,10 @@ d3.csv("fa2207_chart_csv/fig4.5_data.csv").then(d => {
         }
     }
     const fig4_5 = Plot.plot({
-        width: 800,
-        padding: 0.3,
-        marginLeft: 75,
-        className: "sb-chart",
+        width: chart_options.width,
+        padding: chart_options.padding,
+        marginLeft: chart_options.marginLeft,
+        className: chart_options.className,
         x:{label: "School Board", nice: true, tickFormat: d => null},
         y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
         marks:[
@@ -247,10 +248,10 @@ d3.csv("fa2207_chart_csv/fig4.6_data.csv").then(d => {
         }
     }
     const fig4_6 = Plot.plot({
-        width: 800,
-        padding: 0.3,
-        marginLeft: 75,
-        className: "sb-chart",
+        width: chart_options.width,
+        padding: chart_options.padding,
+        marginLeft: chart_options.marginLeft,
+        className: chart_options.className,
         x:{label: "School Board", nice: true, tickFormat: d => null},
         marks:[
             Plot.barY(fig4_6_tidy, {
@@ -293,10 +294,10 @@ d3.csv("fa2207_chart_csv/fig4.7_data.csv").then(d => {
         }
     }
     const fig4_7 = Plot.plot({
-        width: 800,
-        padding: 0.3,
-        marginLeft: 75,
-        className: "sb-chart",
+        width: chart_options.width,
+        padding: chart_options.padding,
+        marginLeft: chart_options.marginLeft,
+        className: chart_options.className,
         x:{label: "School Board", nice: true, tickFormat: d => null},
         y:{label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
         marks: [
@@ -341,10 +342,10 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
     }
     console.log(fig4_9_tidy);
     const fig4_9 = Plot.plot({
-    width: 800,
-    padding: 0.3,
-    marginLeft: 75,
-    className: "sb-chart",
+    width: chart_options.width,
+    padding: chart_options.padding,
+    marginLeft: chart_options.marginLeft,
+    className: chart_options.className,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
     marks: [
@@ -406,10 +407,10 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         }
     }
     const fig4_10 = Plot.plot({
-    width: 800,
-    padding: 0.3,
-    className: "sb-chart",
-    marginLeft: 75,
+    width: chart_options.width,
+    padding: chart_options.padding,
+    className: chart_options.className,
+    marginLeft: chart_options.marginLeft,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
     marks: [
@@ -470,10 +471,10 @@ d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
     console.log(fig4_11_tidy);
     const fig4_11 =
     Plot.plot({
-        width: 800,
-        padding: 0.3,
-        className: "sb-chart",
-        marginLeft: 75,
+        width: chart_options.width,
+        padding: chart_options.padding,
+        className: chart_options.className,
+        marginLeft: chart_options.marginLeft,
         x:{label: "School Board", nice: true, tickFormat: d => null},
         y:{domain: [0, 600], label: "Per Student Funding ($)", nice: true},
         marks:[
@@ -537,10 +538,10 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
     }
 
     const fig5_3 = Plot.plot({
-    width: 800,
-    padding: 0.3,
-    marginLeft: 75,
-    className: "sb-chart",
+    width: chart_options.width,
+    padding: chart_options.padding,
+    marginLeft: chart_options.marginLeft,
+    className: chart_options.className,
     x:{label: "School Board",nice: true, tickFormat: d => null},
     y:{domain: [0, 45000], label: "Per Student Revenue ($)", nice: true},
     marks: [
@@ -586,10 +587,10 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
 // bar chart
 
 const fig6_4 = Plot.plot({
-    width: 800,
+    width: chart_options.width,
     padding:0.3,
-    marginLeft: 75,
-    className: "sb-chart",
+    marginLeft: chart_options.marginLeft,
+    className: chart_options.className,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{label: "Per Student Spending ($)", nice: true, domain: [0, 45000]},
     marks:[
@@ -627,10 +628,10 @@ replaceFig("fig6_4",fig6_4);
 let fig_7_1_data = d.map(d => ({Board: d.Board, "Surplus as Share of Revenue": +d["Surplus as Share of Revenue"], System: d.System}));
 
 const fig_7_1 = Plot.plot({
-    width: 800,
-    padding: 0.3,
-    className: "sb-chart",
-    marginLeft: 75,
+    width: chart_options.width,
+    padding: chart_options.padding,
+    className: chart_options.className,
+    marginLeft: chart_options.marginLeft,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     //add percent to the Y axis
     y:{percent: true, domain:[-4, 6], label: "Surplus as Share of Revenue (%)", tickFormat: d => d + "%"},
@@ -669,10 +670,10 @@ replaceFig("fig7_1",fig_7_1);
 // bar chart
 let fig7_3_data = d.map(d => ({Board: d.Board, "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)": d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100, System: d.System}));
 const fig7_3 = Plot.plot({
-    width: 800,
+    width: chart_options.width,
     padding: 0,
-    marginLeft: 75,
-    className: "sb-chart",
+    marginLeft: chart_options.marginLeft,
+    className: chart_options.className,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [-10, 90], label: "Year-End Accumulated Surplus as Share of Expenses", tickFormat: d => d + "%"},
     marks:[
@@ -710,10 +711,10 @@ replaceFig("fig7_3",fig7_3);
 //let fig_33_d have the eqao pass rate as a percentage (so multiply the value by 100)
 let fig8_2_d = d.map(d => ({Board: d.Board, "EQAO Pass Rate": d["EQAO Pass Rate"]*100, System: d.System}));
 const fig8_2 = Plot.plot({
-    width: 800,
+    width: chart_options.width,
     padding: 0,
-    marginLeft: 75,
-    className: "sb-chart",
+    marginLeft: chart_options.marginLeft,
+    className: chart_options.className,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{label: "EQAO Pass Rate (%)", nice: true, domain: [0, 100], tickFormat: d => d + "%"},
     marks: [
@@ -750,10 +751,10 @@ replaceFig("fig8_2",fig8_2);
 // bar chart
 
 const fig8_4 = Plot.plot({
-    width: 800,
+    width: chart_options.width,
     padding: 0,
-    className: "sb-chart",
-    marginLeft: 75,
+    className: chart_options.className,
+    marginLeft: chart_options.marginLeft,
     y:{percent: true, label: "EQAO Pass Rate (%)",domain:[0, 100]},
     x:{label: "School Board", nice: true, tickFormat: d => null},
     marks:[
@@ -790,10 +791,10 @@ replaceFig("fig8_4",fig8_4);
 // scatter plot
 let fig8_5_data = d.map(d => ({Board: d.Board, "EQAO Pass Rate": +d["EQAO Pass Rate"]*100, "Per Student Funding": +d["Per-student Funding ($)"]}));
 const fig8_5 = Plot.plot({
-    width: 800,
+    width: chart_options.width,
     padding: 0,
-    className: "sb-chart",
-    marginLeft: 75,
+    className: chart_options.className,
+    marginLeft: chart_options.marginLeft,
     y:{domain:[40, 85], fy: 5, label: "EQAO Pass Rate (%)"},
     x:{domain:[10000,40000]},
     marks:[
@@ -839,10 +840,10 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
     }
     console.log(fig4_3_tidy);
     const fig4_3 = Plot.plot({
-    width: 800,
-    padding: 0.3,
-    className: "sb-chart",
-    marginLeft: 75,
+    width: chart_options.width,
+    padding: chart_options.padding,
+    className: chart_options.className,
+    marginLeft: chart_options.marginLeft,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
     marks: [
@@ -907,10 +908,10 @@ d3.csv("fa2207_chart_csv/fig4.8_data.csv").then(d =>{
     }
     console.log(fig4_8_tidy);
     const fig4_8 = Plot.plot({
-    width: 800,
+    width: chart_options.width,
     padding: 0,
-    marginLeft: 75,
-    className: "sb-chart",
+    marginLeft: chart_options.marginLeft,
+    className: chart_options.className,
     x:{label: "School Board", nice: true, tickFormat: d => null},
     y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
     marks: [
