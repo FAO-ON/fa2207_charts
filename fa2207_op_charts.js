@@ -15,6 +15,7 @@ const fao_light_blue_4 = '#f1f6fd';
 const fao_green = '#b2d235';
 const fao_pink = '#e23e94';
 const fao_light_pink = "#E6C7D8";
+const stroke_options = {stroke: white, strokeWidth: 3, strokeOpacity: 0};
 
 
 function replaceFig(figId,graphElement){
@@ -83,6 +84,7 @@ function parseGrantString(board, grant){
             }
         }
     }
+    console.log(grantString)
     return grantString;
 }
 
@@ -105,19 +107,14 @@ const fig4_1 = Plot.plot({
                     Plot.barY(d, 
                         {x: "Board", y: "Per-student Funding ($)", 
                         fill: "System", 
-                        /*
-                        tip: true,
-                        */
                         channels:{'Per-student Funding ($)': "Per-student Funding ($)"},
                         sort: {x: "Per-student Funding ($)"},
-                        stroke: white,
-                        strokeWidth: 3,
-                        strokeOpacity: 0,
-                        }),
-                    
-                    //Plot a line that indicates the Average:
+                        //use stroke_options object to set stroke, stroke width, and stroke opacity
+                        stroke: stroke_options.stroke,
+                        strokeWidth: stroke_options.strokeWidth,
+                        strokeOpacity: stroke_options.strokeOpacity,
+                        }),   
                     Plot.ruleY([13364], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-                    //sit above the line
                     Plot.text(["Average: 13,364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
                     Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
                     
@@ -126,8 +123,6 @@ const fig4_1 = Plot.plot({
                         y: "Per-student Funding ($)",
                         title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSystem: " + `${d.System}`,
                         lineWidth: 1000,
-                        //anchor: "bottom"
-                        //make
                     })),
                     
                     
@@ -135,7 +130,6 @@ const fig4_1 = Plot.plot({
                 
                 color:{
                     legend:true,
-                    //center the legend
                     domain:['English Public','English Catholic','French Public','French Catholic'],
                     range:['#1060D5','#90B7F2','#E43D96','#E6C7D8'],
                 }
@@ -167,13 +161,12 @@ d3.csv("fa2207_chart_csv/fig4.4_data.csv").then(d => {
         Plot.barY(fig4_4_tidy,{
             x: "Board",
             y: "Per-student Funding ($)",
-            //tip: true,
             fill: "Size",
             channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
             sort: {x: "Per-student Funding ($)"},
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            stroke: stroke_options.stroke,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
         Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
@@ -183,8 +176,6 @@ d3.csv("fa2207_chart_csv/fig4.4_data.csv").then(d => {
             y: "Per-student Funding ($)",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSize: " + `${d.Size}`,
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         })),
         ],
         color:{legend: true, domain: ["Small", "Medium", "Large"], range: ["#93BBF7", "#1060D5", "#E23C94"]},
@@ -222,9 +213,9 @@ d3.csv("fa2207_chart_csv/fig4.5_data.csv").then(d => {
             fill: "Dispersion",
             channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
             sort: {x: "Per-student Funding ($)"},
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            stroke: stroke_options.stroke,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
         Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
@@ -234,8 +225,6 @@ d3.csv("fa2207_chart_csv/fig4.5_data.csv").then(d => {
             y: "Per-student Funding ($)",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nDispersion: " + `${d.Dispersion}`,
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         })),
         ],
         color: {legend: true, domain: ["Low Dispersion", "Medium Dispersion", "High Dispersion"], range: [fao_light_blue_1, fao_blue, fao_pink]}
@@ -267,14 +256,12 @@ d3.csv("fa2207_chart_csv/fig4.6_data.csv").then(d => {
             Plot.barY(fig4_6_tidy, {
                 x: "Board",
                 y: "Per-student Funding ($)",
-                //tip: true,
-                //title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nRemoteness: " + `${d.Remote}`,
                 fill: "Remote",
                 channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
                 sort: {x: "Per-student Funding ($)"},
-                stroke: white,
-                strokeWidth: 3,
-                strokeOpacity: 0,
+                stroke: stroke_options.stroke,
+                strokeWidth: stroke_options.strokeWidth,
+                strokeOpacity: stroke_options.strokeOpacity,
             }),
             Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
             Plot.text(["Average: 12,701"], {y: 13950, dx: -150, fontWeight: "bold"}),
@@ -284,7 +271,6 @@ d3.csv("fa2207_chart_csv/fig4.6_data.csv").then(d => {
                 y: "Per-student Funding ($)",
                 title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nRemoteness: " + `${d.Remote}`,
                 lineWidth: 1000,
-                //make
             })),
         ],
         color: {legend: true, domain: ["Least Remote", "Medium Remote", "Most Remote"], range: ["#93BBF7", "#1060D5", "#E23C94"]}
@@ -317,14 +303,12 @@ d3.csv("fa2207_chart_csv/fig4.7_data.csv").then(d => {
         Plot.barY(fig4_7_tidy, {
             x: "Board", 
             y: "Per-student Funding ($)",
-            //tip: true,
-            //title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + `${d["Per-student Funding ($)"]}`,
             fill: "Urban",
             channels: {"Per-student Funding ($)": "Per-student Funding ($)"},
             sort: {x: "Per-student Funding ($)"},
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            stroke: stroke_options.stroke,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
@@ -334,8 +318,6 @@ d3.csv("fa2207_chart_csv/fig4.7_data.csv").then(d => {
             y: "Per-student Funding ($)",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nUrban Factor: " + `${d.Urban}`,
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         })),
         ],
         color: {legend: true, domain: ["Rural", "Leans Rural", "Leans Urban", "Urban"], range: ["#E43D96", "#FAD8EA", "#93BBF7", "#1060D5"]}
@@ -370,12 +352,11 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
         x: "Board", 
         y: "Per Student Funding", 
         fill: 'System', 
-       //tip: true,
         channels: {'Per Student Funding': 'Per Student Funding'},
         sort: {x: "Per Student Funding"},
-        stroke: white,
-        strokeWidth: 3,
-        strokeOpacity: 0,
+        stroke: stroke_options.stroke,
+        strokeWidth: stroke_options.strokeWidth,
+        strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
         Plot.text(["Average: 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, fontWeight:"bold",text: d => d}),
@@ -385,8 +366,6 @@ d3.csv("fa2207_chart_csv/fig4.9_data.csv").then(d => {
             y: "Per Student Funding",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding"]))}` + "\nSystem: " + `${d.System}`,
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         }))
     ],
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: ["#1060D5", "#90B7F2", "#E43D96", "#E6C7D8"]}
@@ -438,14 +417,11 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         x: "Board", 
         y: "Per Student Funding", 
         fill: 'Allocation', 
-        //tip: true,
-        //list all the allocation and their values in the title
-        //title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}`  + "\nTotal: " + "$" + `${Math.round(d.Total)}` ,
         channels: {'Total': 'Total'},
         sort: {x: "Total"},
-        stroke: white,
-        strokeWidth: 3,
-        strokeOpacity: 0,
+        stroke: stroke_options.stroke,
+        strokeWidth: stroke_options.strokeWidth,
+        strokeOpacity: stroke_options.strokeOpacity,
         }),
 
         Plot.barY(fig4_10_invisible, {
@@ -455,9 +431,9 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
             //tip: true,
             channels: {"Total": "Total"},
             sort: {x: "Total"},
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            stroke: stroke_options.stroke,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
         Plot.text(["Average: 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
@@ -465,10 +441,9 @@ d3.csv("fa2207_chart_csv/fig4.10_data.csv").then(d => {
         Plot.tip(fig4_10_invisible, Plot.pointerX({
             x: "Board",
             y: "Total",
+             //list all the allocation and their values in the title
             title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}` + "\n" + parseAllocationString(d.Board, allocations),
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         }))
         
     ],
@@ -508,25 +483,20 @@ d3.csv("fa2207_chart_csv/fig4.11_data.csv").then(d=>{
             fill: "Language",
             channels: {"Per Student Funding": "Per Student Funding"},
             sort: {x: "Per Student Funding"},
-            //tip: true,
-            //title: (d) => "School Board: " + `${d.Board},  "\nSchool Board Language:" ${d.Language}` + "\nPer Student Funding: " + `${d["Per Student Funding"]}`,
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            stroke: stroke_options.stroke,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.tip(fig4_11_tidy, Plot.pointerX({
             x: "Board",
             y: "Per Student Funding",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}` + "\nSchool Board Type: " + `${d.Language}`,
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         })),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         ],
         color: {legend: true, domain: ["English-language School Board", "French-language School Board"], range: [fao_blue, fao_pink]}
     })
-    const fig4_11_div = document.querySelector("#fig4_11-image img");
     replaceFig("fig4_11",fig4_11);
 })
 
@@ -578,20 +548,19 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
         fill: 'System', 
         channels: {'Per Student Revenue': 'Per Student Revenue'},
         sort: {x: "Per Student Revenue"},
-        stroke: white,
-        strokeWidth: 3,
-        strokeOpacity: 0,
+        stroke: stroke_options.stroke,
+        strokeWidth: stroke_options.strokeWidth,
+        strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.barY(fig5_3_invisible, {
             x: "Board",
             y: "Per Student Revenue",
-            //tip: true,
             fill: "transparent",
             channels: {"Per Student Revenue": "Per Student Revenue"},
             sort: {x: "Per Student Revenue"},
-            stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            stroke: stroke_options.stroke,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([14501], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
         Plot.text(["Average: 14,501"], {y: 15500, dx: -200, fontWeight: "bold"}),
@@ -601,8 +570,6 @@ d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
             y: "Per Student Revenue",
             title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Revenue: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Revenue"]))}` + "\nSystem: " + parseAllocationString(d.Board, allocations) + "Total: $" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}`,
             lineWidth: 1000,
-            //anchor: "bottom"
-            //make
         }))
 
     ],
@@ -632,8 +599,8 @@ const fig6_4 = Plot.plot({
             channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
             sort: {x: "Per-student Spending ($)"},
             stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([14426], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
         Plot.text(["Average: 14,426"], {y: 15500, dx: -200, fontWeight: "bold"}),
@@ -674,8 +641,8 @@ const fig_7_1 = Plot.plot({
             channels: {"Surplus as Share of Revenue": "Surplus as Share of Revenue"},
             sort: {x: "Surplus as Share of Revenue"},
             stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.ruleY([0.005], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
         Plot.text(["Average: 0.5%"], {y: 0.008, dx: -230, fontWeight: "bold"}),
@@ -887,8 +854,8 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
             channels: {'Total': 'Total'},
             sort: {x: "Total"},
             stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.barY(fig4_3_tidy_invisible, {
             x: "Board",
@@ -896,13 +863,12 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
             //tip: true,
             fill: "transparent",
             //title should display the board, all the grants and their values, and the total
-            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}` + "\n" + parseGrantString(d.Board, grants),
             //make the bar transparent
             channels: {"Total": "Total"},
             sort: {x: "Total"},
             stroke: white,
-            strokeWidth: 3,
-            strokeOpacity: 0,
+            strokeWidth: stroke_options.strokeWidth,
+            strokeOpacity: stroke_options.strokeOpacity,
         }),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
@@ -911,7 +877,7 @@ d3.csv("fa2207_chart_csv/fig4.3_data.csv").then(d =>{
         Plot.tip(fig4_3_tidy_invisible, Plot.pointerX({
             x: "Board",
             y: "Total",
-            title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Value))}` + "\nGrant: " + `${d.Grant}`,
+            title: (d) => "School Board: " + `${d.Board}` + "\nTotal: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}` + "\n" + parseGrantString(d.Board, grants),
             lineWidth: 1000,
             //anchor: "bottom"
             //make
