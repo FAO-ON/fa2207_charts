@@ -68,6 +68,7 @@ table.visible{
   display: block;
   margin-inline: auto;
   position:relative;
+  width: 100%;
 }
 
 
