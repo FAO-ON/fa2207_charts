@@ -11,65 +11,65 @@
       max-width: 800px;
       margin-inline: auto;
     }
-    figure {
-      margin:0;
-    }
 
-    figure title{
-      font-weight: bold;
-    }
-    
-    .sb-chart{
-      font-family: Helvetica, Arial;
-      font-size: 14px;
-      overflow: visible;
-      margin: 0;
-      margin-bottom: 15px;
-    }
-    .fig-legend-swatch{
-      font-size: 13px;
-      font-family: Helvetica, Arial;
-      /*equal spacing between the swatch and the text*/
-      margin-right: 10px;
-    }
-    g[aria-label="bar"]:has(rect:hover) rect:not(:hover){
-      fill:#eee;
-    }
-    g[aria-label="y-axis label"] text{
-      font-size: 14px;
-    }
-    g[aria-label="x-axis label"]{
-      font-size: 14px;
-    }
-    g[aria-label="text"] text{
-      font-size: 13px;
-    }
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+	/* OP charts */
 
-    .sb-chart-swatches,
-    .sb-chart-swatch{
-      font-size: 13px;
-      font-family: Helvetica, Arial;
-      justify-content: center;
-    }
+	/* figure container */
+	.sb-chart-figure {
+		font-family: Helvetica, Arial;
+		font-size: 14px;
+		overflow: visible;
+		margin: 0;
+		margin-bottom: 15px;
+	}
 
+	/* legend container */
+	.sb-chart-swatches,
+	.sb-chart-swatch{
+		font-size: 13px;
+		font-family: Helvetica, Arial;
+		justify-content: center;
+	}
 
-    g[aria-label="dot"]:has(circle:hover) circle:not(:hover){
-      fill:#ccc;
-    }
+	/* legend entries */
+	.fig-legend-swatch{
+		font-size: 13px;
+		font-family: Helvetica, Arial;
+		/*equal spacing between the swatch and the text*/
+		margin-right: 10px;
+	}
 
-    g[aria-label="text"] text{
-      font-size: 14px;
-      font-family: Helvetica, Arial;
-    }
+	/* y axis */
+	.sb-chart g[aria-label="y-axis label"] text{
+		font-size: 14px;
+	}
+
+	/* x axis */
+	.sb-chart g[aria-label="x-axis label"]{
+		font-size: 14px;
+		/* override x axis position */
+		transform: translateY(24px);
+	}
+
+	.sb-chart g[aria-label="tip"] text{
+		font-size: 14px;
+		font-family: Helvetica, Arial;
+	}
+
+	/* grey-out columns that aren't being hovered */
+	.sb-chart g[aria-label="bar"]:has(rect:hover) rect:not(:hover),
+	.sb-chart g[aria-label="dot"]:has(circle:hover) circle:not(:hover){
+		fill:#eee;
+	}
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
   <script module src="fa2207_op_charts.js"></script>
-  <script module src="styling.js"></script>
 </head>
 <body>
-  <div class="report-chart" id="fig4_1-image">
+  <div class="report-chart" id="fig4-1-image">
     <p class="title"><span>Figure 4.1</span> Provincial funding to school boards per-student, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig9.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -78,7 +78,7 @@
 
   <p>Ullamco adipisicing fugiat adipisicing aliqua Lorem laboris dolore anim culpa exercitation voluptate dolore deserunt. Laboris dolore et nulla magna laborum officia aliqua. Amet deserunt excepteur nulla pariatur. Non enim irure consectetur laborum aute elit et voluptate duis non cupidatat. Officia sint dolor do anim voluptate tempor irure laborum labore quis laborum labore et commodo. Anim nulla irure cupidatat ullamco. Qui ut consectetur consectetur ullamco amet consectetur veniam incididunt dolor non adipisicing adipisicing incididunt.</p>
 
-  <div class="report-chart" id="fig4_3-image">
+  <div class="report-chart" id="fig4-3-image">
     <p class="title"><span>Figure 4.3</span> GSN funding per-student, by school board, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig4_3.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -92,7 +92,7 @@
 
   <p>Ad laboris consectetur mollit eiusmod aliqua tempor quis ex velit et cillum est amet eiusmod. Ipsum eu commodo velit officia dolore deserunt aliqua ad nisi. Ea officia consectetur voluptate tempor proident in incididunt sint. Voluptate irure ea ipsum eu occaecat aute eiusmod et. Excepteur deserunt duis mollit non cupidatat exercitation commodo voluptate consectetur laboris aute incididunt culpa. Ipsum aliqua incididunt veniam dolore magna ut aute.</p>
 
-  <div class="report-chart" id="fig4_4-image">
+  <div class="report-chart" id="fig4-4-image">
     <p class="title"><span>Figure 4.4:</span> School board size and per-student GSN funding, 2021-22 school year</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig12.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -101,7 +101,7 @@
 
   <p>Nostrud sunt incididunt eiusmod pariatur aliqua eiusmod nulla excepteur duis labore magna mollit nulla dolor. Fugiat laborum consequat consequat in incididunt. Ea in qui aliqua ipsum duis nulla culpa aute ut minim nulla fugiat id. Eiusmod aliquip cupidatat magna irure in deserunt tempor aute ex in aliquip. Est non amet cillum veniam. Eu duis eu et Lorem duis exercitation irure tempor ullamco reprehenderit consectetur ea.</p>
 
-  <div class="report-chart" id="fig4_5-image">
+  <div class="report-chart" id="fig4-5-image">
     <p class="title"><span>Figure 4.5:</span> School board dispersion and per-student GSN funding, 2021-22 school year</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig12.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -110,7 +110,7 @@
 
   <p>Nulla reprehenderit laboris irure ad velit ex incididunt anim cupidatat. Nisi cupidatat Lorem esse incididunt id sunt do nisi enim proident Lorem irure. Enim cupidatat proident labore officia sint pariatur exercitation veniam nulla labore cupidatat. Adipisicing qui nulla cillum quis esse consectetur ad eiusmod commodo ipsum dolore.</p>
 
-  <div class="report-chart" id="fig4_6-image">
+  <div class="report-chart" id="fig4-6-image">
     <p class="title"><span>Figure 4.6:</span> School board remoteness and per-student GSN funding, 2021-22 school year</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig14.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -120,7 +120,7 @@
   <p>Ut amet ut quis occaecat mollit ipsum esse quis aliquip incididunt. Non excepteur est fugiat irure eu reprehenderit Lorem sint eu sit sint culpa. Do tempor amet deserunt qui. Ullamco amet Lorem eiusmod sunt labore et. Incididunt ad laborum ipsum aliquip. Ex consequat laborum occaecat incididunt velit in id.</p>
 
 
-  <div class="report-chart" id="fig4_7-image">
+  <div class="report-chart" id="fig4-7-image">
     <p class="title"><span>Figure 4.7:</span> School board urban factor and per-student GSN funding, 2021-22 school year</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig15.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -131,7 +131,7 @@
 
 
   <!--Fig 16-->
-  <div class="report-chart" id="fig4_8-image">
+  <div class="report-chart" id="fig4-8-image">
     <p class="title"><span>Figure 4.8:</span> Per-student GSN Language Grant funding by school board, 2021-22 school year</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig4_8.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -142,7 +142,7 @@
 
   <p>Officia aute labore laboris ut tempor commodo ipsum elit. Do ullamco non aliqua occaecat dolor minim aliqua laboris laborum eu nulla. Nostrud tempor tempor ex incididunt sit. Mollit magna reprehenderit ullamco Lorem deserunt nulla ea nulla sunt eu. Elit magna reprehenderit amet fugiat consectetur ad magna adipisicing sint. Ex elit anim nisi duis ullamco sint reprehenderit occaecat.</p>
 
-  <div class="report-chart" id="fig4_9-image">
+  <div class="report-chart" id="fig4-9-image">
     <p class="title"><span>Figure 4.9:</span> Priorities and Partnership Fund per-student funding, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig4_9.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -151,7 +151,7 @@
 
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, molestiae saepe, voluptate culpa non sit odio ducimus fugit corporis consequatur, harum unde perferendis. Odit ipsa et modi. Saepe quibusdam voluptate id eveniet accusamus quos enim delectus eius, officiis totam modi placeat corporis possimus odio!</p>
 
-  <div class="report-chart" id="fig4_10-image">
+  <div class="report-chart" id="fig4-10-image">
     <p class="title"><span>Figure 4.10:</span> Priorities and Partnership Fund per-student allocations, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig4_10.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -160,7 +160,7 @@
 
   <p>Occaecat proident occaecat laborum et ut eiusmod adipisicing. Cupidatat culpa et proident officia exercitation. In eu ad dolor voluptate qui mollit ad ea ex irure pariatur. Dolor aliqua adipisicing mollit elit laborum tempor ad Lorem irure nulla aliqua cupidatat. Lorem sunt aute deserunt ut sit. Sit ea mollit dolor velit sunt ea reprehenderit exercitation consectetur laborum. Amet laborum minim ullamco dolore culpa.</p>
 
-  <div class="report-chart" id="fig4_11-image">
+  <div class="report-chart" id="fig4-11-image">
     <p class="title"><span>Figure 4.11:</span> Official Languages Projects program per-student funding, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig4_11.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -169,7 +169,7 @@
 
   <p>Ullamco Lorem in nisi cillum. Est ea est mollit esse amet pariatur tempor pariatur tempor consequat. Reprehenderit et commodo proident elit tempor ad cillum Lorem occaecat culpa nulla in. Lorem quis occaecat reprehenderit cupidatat. Enim veniam dolore ipsum sit et eiusmod adipisicing cupidatat voluptate ullamco in sunt est aliquip.</p>
 
-  <div class="report-chart" id="fig5_3-image">
+  <div class="report-chart" id="fig5-3-image">
     <p class="title"><span>Figure 5.3:</span> Revenue per-student, by school board and source, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig5_3.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -178,7 +178,7 @@
 
   <p>Nisi eu et aute proident est. Est deserunt aliquip magna esse laboris duis nisi. Consectetur elit duis eiusmod fugiat aliquip laborum eiusmod. In laboris duis nisi dolore ipsum in magna. Sit id aliquip laborum adipisicing aliqua. Eu ut reprehenderit amet fugiat ullamco ex dolor cupidatat nostrud. Sit irure sunt ea consequat occaecat magna aute non officia magna est eiusmod.</p>
 
-  <div class="report-chart" id="fig6_4-image">
+  <div class="report-chart" id="fig6-4-image">
     <p class="title"><span>Figure 6.4:</span>  Spending per-student, by school board, 2021-22 school year, dollars</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig26.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -187,7 +187,7 @@
 
   <p>Proident irure mollit aute eiusmod aliqua quis tempor. Esse id aliqua laboris incididunt consectetur sit veniam. Non veniam officia do veniam fugiat officia tempor sit Lorem.</p>
 
-  <div class="report-chart" id="fig7_1-image">
+  <div class="report-chart" id="fig7-1-image">
     <p class="title"><span>Figure 7.1:</span>   School boards' budget balance as a share of revenue, 2021-22 school year, per cent</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig29.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -196,7 +196,7 @@
 
   <p>Mollit est elit quis labore ut. Sunt nulla sunt consectetur dolor eiusmod anim est veniam. Minim dolor eu anim consequat sunt laborum eu sunt sunt labore. Est tempor in Lorem cupidatat do ipsum ut sunt et sunt velit ipsum.</p>
 
-  <div class="report-chart" id="fig7_3-image">
+  <div class="report-chart" id="fig7-3-image">
     <p class="title"><span>Figure 7.3:</span> School boards’ accumulated surplus / (deficit) as a share of 2021-22 revenue, as of August 31, 2022, per cent</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig31.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -206,7 +206,7 @@
 
   <p>Eu commodo ad exercitation dolor nostrud. Sunt laboris incididunt occaecat ad eiusmod. Nisi nostrud ut cupidatat cillum Lorem. Amet duis et officia non consectetur enim anim amet incididunt voluptate laboris qui velit magna. Tempor id aliquip irure anim id eu pariatur. Officia nostrud deserunt Lorem pariatur cupidatat aute.</p>
 
-  <div class="report-chart" id="fig8_2-image">
+  <div class="report-chart" id="fig8-2-image">
     <p class="title"><span>Figure 8.2:</span> EQAO average pass rate by school board, 2021-2022 school year, per cent</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig32.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -215,7 +215,7 @@
 
   <p>Ullamco Lorem in nisi cillum. Est ea est mollit esse amet pariatur tempor pariatur tempor consequat. Reprehenderit et commodo proident elit tempor ad cillum Lorem occaecat culpa nulla in. Lorem quis occaecat reprehenderit cupidatat. Enim veniam dolore ipsum sit et eiusmod adipisicing cupidatat voluptate ullamco in sunt est aliquip.</p>
 
-  <div class="report-chart" id="fig8_4-image">
+  <div class="report-chart" id="fig8-4-image">
     <p class="title"><span>Figure 8.4:</span> Average EQAO pass rate by school board and urban factor, 2021-2022 school year, per cent</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig36.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
@@ -224,7 +224,7 @@
 
   <p>Commodo tempor aliqua ipsum officia fugiat eiusmod est. Lorem esse reprehenderit elit reprehenderit amet occaecat dolore cillum. Aute ut veniam occaecat cillum enim sunt anim excepteur in quis ullamco commodo incididunt nulla. Ullamco voluptate irure excepteur ex esse sunt mollit ex aliqua mollit sunt aliquip aute. Ullamco duis velit anim cillum nisi non cupidatat est veniam laboris. Do voluptate id Lorem anim aute occaecat qui reprehenderit laborum est officia.</p>
 
-  <div class="report-chart" id="fig8_5-image">
+  <div class="report-chart" id="fig8-5-image">
     <p class="title"><span>Figure 8.5:</span> EQAO pass rate vs. per-student funding, by school board, 2021-2022 school year</p>
     <img src="/web/default/files/publications/FA2207%20School%20Board%20Funding/fig4_11.png" style="width: 100%; max-width: 100%;" />
     <p class="source">Source: FAO analysis of information provided by the Province.</p>
