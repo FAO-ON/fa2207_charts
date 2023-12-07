@@ -74,8 +74,23 @@
     display: none;
   }
 
-  .sb-chart g[aria-label="x-axis label"]{
-    transform: translateY(40px);
+  /* override x axis position */
+  .report-chart:not(#fig8-5-image) .sb-chart g[aria-label="x-axis label"]{
+    transform: translateY(24px);
+  }
+
+  /*select only the #fig8-5-image chart*/
+  #fig8-5-image .sb-chart g[aria-label="x-axis label"]{
+    transform: translateY(45px);
+  }
+
+  #fig8-5-image .sb-chart g[aria-label="x-axis tick label"]{
+    transform: translateY(15px);
+  }
+ 
+  /* bold the first line in the tooltip */
+  .sb-chart [aria-label="tip"] tspan:nth-child(1) {
+    font-weight: bold;
   }
 
   </style>
