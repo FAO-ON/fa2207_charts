@@ -360,7 +360,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         x: "Per Student Funding",
         y: "EQAO Pass Rate",
         tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round((+d["EQAO Pass Rate"]*100))/100}` + "%\nPer Student Funding: " +  `${Math.round(d["Per Student Funding"])}` + " $",
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nTaux de réussite OQRE moyen : " + `${Math.round((+d["EQAO Pass Rate"]*100))/100}` + "%\nFinancement par élève : " +  `${Math.round(d["Per Student Funding"])}` + " $",
         fill: "#1060D5",
         channels: {"EQAO Pass Rate": "EQAO Pass Rate", "Per Student Funding": "Per Student Funding"},
         sort: {x: "Per Student Funding"},
