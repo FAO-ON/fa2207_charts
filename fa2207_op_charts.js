@@ -19,8 +19,9 @@ const fao_pink = '#e23e94';
 const fao_light_pink = "#E6C7D8";
 
 const stroke_options = {stroke: white, strokeWidth: 3, strokeOpacity: 0};
-const chart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLeft: 75, marginBottom: 50, marginRight: 0};
-const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/';
+const chart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLeft: 80, marginBottom: 50, marginRight: 0};
+// const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/';
+const csv_dir_url = 'fa2207_chart_csv/';
 
 
 
@@ -107,7 +108,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     //center the plot
-    x:{label: "School Board", nice: true,
+    x:{label: "School Boards", nice: true,
       tickFormat: d => null,
     },
     y:{label: "Per Student Funding ($)", nice: true, domain:[0,40000]},
@@ -151,7 +152,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{label: "Per Student Spending ($)", nice: true, domain: [0, 45000]},
     marks:[
       Plot.barY(d,{
@@ -189,7 +190,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     //add percent to the Y axis
     y:{percent: true, domain:[-4, 6], label: "Surplus as Share of Revenue (%)", tickFormat: d => d + "%"},
     marks:[
@@ -208,7 +209,9 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.text(["Average: 0.5%"], {y: 0.008, dx: -230, fontWeight: "bold"}),
       //make the X axis start as 0 and be dashed
       //Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d => d.toFixed(1) + "%",  }),
+      //remove X axis ticks
+      Plot.axisX({labelAnchor: "center", labelArrow: "none", tickFormat: d => null, }),
       Plot.tip(fig_7_1_data, Plot.pointerX({
         x: "Board",
         y: "Surplus as Share of Revenue",
@@ -231,7 +234,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{domain: [-10, 90], label: "Year-End Accumulated Surplus as Share of Expenses", tickFormat: d => d + "%"},
     marks:[
       Plot.barY(fig7_3_data,{
@@ -247,7 +250,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       }),
       Plot.ruleY([22.6], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Average: 22.6%"], {y: 26.5, dx: -180, fontWeight: "bold"}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d => d.toFixed(1) + "%", }),
       Plot.tip(fig7_3_data, Plot.pointerX({
         x: "Board",
         y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
@@ -271,7 +274,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{label: "EQAO Pass Rate (%)", nice: true, domain: [0, 100], tickFormat: d => d + "%"},
     marks: [
       Plot.barY(fig8_2_d, {
@@ -285,7 +288,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
         strokeWidth: 2,
         strokeOpacity: 1,
       }),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d => d + "%", }),
       Plot.ruleY([67.7], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Average: 67.7%"], {y: 70, dx: -50, fontWeight: "bold"}),  
       Plot.tip(fig8_2_d, Plot.pointerX({
@@ -312,7 +315,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     y:{percent: true, label: "EQAO Pass Rate (%)",domain:[0, 100]},
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     marks:[
       Plot.barY(d,{
         x: "Board",
@@ -327,7 +330,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       }),
       Plot.ruleY([.677], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Average: 67.7%"], {y: .70, dx: -30, fontWeight: "bold"}),  
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d => d + "%", }),
       Plot.tip(d, Plot.pointerX({
         x: "Board",
         y: "EQAO Pass Rate",
@@ -351,7 +354,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     y:{domain:[40, 85], fy: 5, label: "EQAO Pass Rate (%)"},
-    x:{domain:[10000,40000]},
+    x:{domain:[10000,40000], label: "Per Student Funding ($)", nice: true},
     marks:[
       Plot.dot(fig8_5_data, {
         x: "Per Student Funding",
@@ -370,7 +373,11 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.ruleY([67.7], {stroke: "blue", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Average pass \nrate 67.7%"], {y: 70, dx: 250}),
       Plot.text(["Average per \nstudent funding \n$13,364"], {y: 82, dx: -220}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+      //Create a solid x-axis line
+      Plot.ruleY([40], {stroke: "#BFBFBF",  weight: 1}),
+      Plot.ruleX([10000], {stroke: "#BFBFBF", weight: 1}),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none",  tickFormat: d => d + "%", }),
+      Plot.axisX({ labelAnchor: "center", labelArrow: "none", tickFormat: d => "$" + d, margin : 0, }),
     ],
   })
   replaceFig("fig8-5",fig8_5);
@@ -403,7 +410,7 @@ d3.csv(csv_dir_url + "fig4.3_data.csv").then(d =>{
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
     marks: [
       Plot.barY(fig4_3_tidy, {
@@ -468,7 +475,7 @@ d3.csv(csv_dir_url + "fig4.4_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x: {label: "School Board", nice: true, tickFormat: d => null},
+    x: {label: "School Boards", nice: true, tickFormat: d => null},
     y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
     marks:[
     Plot.barY(fig4_4_tidy,{
@@ -518,7 +525,7 @@ d3.csv(csv_dir_url + "fig4.5_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
     marks:[
     Plot.barY(fig4_5_tidy,{
@@ -568,7 +575,7 @@ d3.csv(csv_dir_url + "fig4.6_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     marks:[
       Plot.barY(fig4_6_tidy, {
         x: "Board",
@@ -617,7 +624,7 @@ d3.csv(csv_dir_url + "fig4.7_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
     marks: [
     Plot.barY(fig4_7_tidy, {
@@ -667,7 +674,7 @@ d3.csv(csv_dir_url + "fig4.8_data.csv").then(d =>{
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
     marks: [
       Plot.barY(fig4_8_tidy, {
@@ -720,7 +727,7 @@ d3.csv(csv_dir_url + "fig4.9_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-  x:{label: "School Board", nice: true, tickFormat: d => null},
+  x:{label: "School Boards", nice: true, tickFormat: d => null},
   y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
   marks: [
     Plot.barY(fig4_9_tidy, {
@@ -783,7 +790,7 @@ d3.csv(csv_dir_url + "fig4.10_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
     marks: [
       Plot.barY(fig4_10_tidy, {
@@ -846,7 +853,7 @@ d3.csv(csv_dir_url + "fig4.11_data.csv").then(d=>{
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board", nice: true, tickFormat: d => null},
+    x:{label: "School Boards", nice: true, tickFormat: d => null},
     y:{domain: [0, 600], label: "Per Student Funding ($)", nice: true},
     marks:[
     Plot.barY(fig4_11_tidy, {
@@ -908,7 +915,7 @@ d3.csv(csv_dir_url + "fig5.3_data.csv").then(d => {
     marginLeft: chart_options.marginLeft,
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
-    x:{label: "School Board",nice: true, tickFormat: d => null},
+    x:{label: "School Boards",nice: true, tickFormat: d => null},
     y:{domain: [0, 45000], label: "Per Student Revenue ($)", nice: true},
     marks: [
       Plot.barY(fig5_3_tidy, {
