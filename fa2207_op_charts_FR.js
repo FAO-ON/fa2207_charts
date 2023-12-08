@@ -214,7 +214,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       Plot.tip(fig_7_1_data, Plot.pointerX({
         x: "Board",
         y: "Surplus as Share of Revenue",
-        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nExcédent/(déficit) en proportion des revenus : " + `${Math.round((+d["Surplus as Share of Revenue"]*100) * 100) / 100}` + "%\nType de conseil scolaire : " + `${d.System}`,
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nExcédent/(déficit) en proportion des revenus : " + `${(Math.round((+d["Surplus as Share of Revenue"]*100) * 10) / 10).toFixed(1)}` + " %\nType de conseil scolaire : " + `${d.System}`,
         lineWidth: 1000,
       }))
     ],
@@ -254,7 +254,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       Plot.tip(fig7_3_data, Plot.pointerX({
         x: "Board",
         y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
-        title: (d) => "Conseil scolaire : " + `${d.Board},` + "\nSystème scolaire : " + `${d.System},` + "\nExcédent/(déficit) cumulé en proportion des dépenses : " + `${Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100)/100}`,
+        title: (d) => "Conseil scolaire : " + `${d.Board},` + "\nSystème scolaire : " + `${d.System},` + "\nExcédent/(déficit) cumulé en proportion des dépenses : " + `${(Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*10)/10).toFixed(1)}` + " %",
         lineWidth: 1000,
       }))
     ],
@@ -300,7 +300,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       Plot.tip(fig8_2_d, Plot.pointerX({
         x: "Board",
         y: "EQAO Pass Rate",
-        title: (d) => "Conseil scolaire : " + `${d.Board},` + "\nSystème scolaire: " + `${d.System},` + "\nTaux de réussite OQRE moyen : " + `${Math.round(+d["EQAO Pass Rate"]*100)/100}` + "%",
+        title: (d) => "Conseil scolaire : " + `${d.Board},` + "\nSystème scolaire: " + `${d.System},` + "\nTaux de réussite OQRE moyen : " + `${(Math.round(+d["EQAO Pass Rate"]*10)/10).toFixed(1)}` + "%",
         lineWidth: 1000,
         //anchor: "bottom"
         //make
@@ -340,7 +340,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       Plot.tip(d, Plot.pointerX({
         x: "Conseil scolaire",
         y: "Taux de réussite OQRE moyen",
-        title: (d) => "Conseil scolaire : " + `${d["Conseil scolaire"]}` + "\nTaux de réussite OQRE moyen : " + `${Math.round(((+d["Taux de réussite OQRE moyen"]*100)*100))/100}` + "%\nFacteur urbain : " + `${d["Urbain"]}`,
+        title: (d) => "Conseil scolaire : " + `${d["Conseil scolaire"]}` + "\nTaux de réussite OQRE moyen : " + `${(Math.round(((+d["Taux de réussite OQRE moyen"]*100)*10))/10).toFixed(1)}` + "%\nFacteur urbain : " + `${d["Urbain"]}`,
         lineWidth: 1000,
       }))
     ],
@@ -366,7 +366,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         x: "Per Student Funding",
         y: "EQAO Pass Rate",
         tip: true,
-        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nTaux de réussite OQRE moyen : " + `${Math.round((+d["EQAO Pass Rate"]*100))/100}` + "%\nFinancement par élève : " +  `${Math.round(d["Per Student Funding"])}` + " $",
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nTaux de réussite OQRE moyen : " + `${(Math.round((+d["EQAO Pass Rate"]*10))/10).toFixed(1)}` + " %\nFinancement par élève : " +  `${Intl.NumberFormat('fr-CA').format(Math.round(d["Per Student Funding"]))}` + " $",
         fill: "#1060D5",
         channels: {"EQAO Pass Rate": "EQAO Pass Rate", "Per Student Funding": "Per Student Funding"},
         sort: {x: "Per Student Funding"},
