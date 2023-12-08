@@ -3,7 +3,7 @@
 // Created By: Rishabh Kumar Chowdhary /////////////////////////////////
 // Last Updated: 2023-12-04 ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-const scriptVersion = 1.1
+const scriptVersion = 1.4
 console.log('loaded fa2207_op_charts.js v',scriptVersion);
 
 //Constant Definitions
@@ -261,7 +261,6 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
   })
   replaceFig("fig7-3",fig7_3);
   const fig7_4_bars = document.querySelectorAll('#fig7-3-image g[aria-label="bar"] rect');
-  console.log(fig7_4_bars);
   fig7_4_bars.forEach(bar => {
     if(bar.getAttribute('height') < 10) {
       bar.setAttribute('height', 10);
