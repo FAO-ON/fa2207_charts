@@ -234,7 +234,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{domain: [-10, 90], label: "Acumulated Surplus / (Deficit) as a Share of Revenue", tickFormat: d => d + "%"},
+    y:{domain: [-10, 90], label: "Accumulated Surplus / (Deficit) as a Share of Revenue", tickFormat: d => d + "%"},
     marks:[
       Plot.barY(fig7_3_data,{
         x: "Board",
@@ -253,7 +253,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(fig7_3_data, Plot.pointerX({
         x: "Board",
         y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
-        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nAcumulated Surplus / (Deficit) as a Share of Revenue: " + `${(Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*10)/10).toFixed(1)}` + "%",
+        title: (d) => "School Board: " + `${d.Board}` + "\nSchool System: " + `${d.System},` + "\nAccumulated Surplus / (Deficit) as a Share of Revenue: " + `${(Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*10)/10).toFixed(1)}` + "%",
         lineWidth: 1000,
       }))
     ],
