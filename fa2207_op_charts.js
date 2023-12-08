@@ -20,8 +20,8 @@ const fao_light_pink = "#E6C7D8";
 
 const stroke_options = {stroke: white, strokeWidth: 3, strokeOpacity: 0};
 const chart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLeft: 80, marginBottom: 50, marginRight: 0};
-const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/';
-// const csv_dir_url = 'fa2207_chart_csv/';
+// const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/';
+const csv_dir_url = 'fa2207_chart_csv/';
 
 function replaceFig(figId,graphElement){
   //DOCSTRING: Replaces the image with the graph element
@@ -382,7 +382,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.ruleY([40], {stroke: "#BFBFBF",  weight: 1}),
       Plot.ruleX([10000], {stroke: "#BFBFBF", weight: 1}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none",  tickFormat: d => d + "%", }),
-      Plot.axisX({ labelAnchor: "center", labelArrow: "none", tickFormat: d => "$" + d, margin : 0, }),
+      Plot.axisX({ labelAnchor: "center", labelArrow: "none", tickFormat: d => "$" + Intl.NumberFormat('en-US').format(d), margin : 0, }),
     ],
   })
   replaceFig("fig8-5",fig8_5);

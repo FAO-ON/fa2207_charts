@@ -3,7 +3,7 @@
 // Created By: Rishabh Kumar Chowdhary /////////////////////////////////
 // Last Updated: 2023-12-04 ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-const scriptVersion = 1.1
+const scriptVersion = 1.3
 console.log('loaded fa2207_op_charts_FR.js v',scriptVersion);
 
 //Constant Definitions
@@ -20,8 +20,8 @@ const fao_light_pink = "#E6C7D8";
 
 const stroke_options = {stroke: white, strokeWidth: 3, strokeOpacity: 0};
 const chart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLeft: 80, marginBottom: 50, marginRight: 0};
+// const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv_FR/';
 const csv_dir_url = 'fa2207_chart_csv_FR/';
-// const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/';
 
 
 
@@ -125,7 +125,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         strokeOpacity: stroke_options.strokeOpacity,
         }),   
       Plot.ruleY([13364], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-      Plot.text(["Moyenne , 13 364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start", fontSize: 12, text: d => d}),
+      Plot.text(["Moyenne : 13 364"], {y: 14000, dy: -10, dx: -300, textAnchor: "start", fontSize: 12, text: d => d}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       
       Plot.tip(d, Plot.pointerX({
@@ -167,7 +167,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         strokeOpacity: stroke_options.strokeOpacity,
       }),
       Plot.ruleY([14426], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 14 426"], {y: 15500, dx: -200, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 14 426"], {y: 15500, dx: -200, fontWeight: "bold"}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       Plot.tip(d, Plot.pointerX({
         x: "Conseil scolaire",
@@ -208,14 +208,14 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         strokeOpacity: stroke_options.strokeOpacity,
       }),
       Plot.ruleY([0.005], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 0.5%"], {y: 0.008, dx: -230, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 0,5 %"], {y: 0.008, dx: -230, fontWeight: "bold"}),
       //make the X axis start as 0 and be dashed
       //Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toFixed(1) + " %" }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> Intl.NumberFormat('fr-CA', {minimumFractionDigits: 1 }).format(d) + " %" }),
       Plot.tip(fig_7_1_data, Plot.pointerX({
         x: "Board",
         y: "Surplus as Share of Revenue",
-        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nExcédent/(déficit) en proportion des revenus : " + `${(Math.round((+d["Surplus as Share of Revenue"]*100) * 10) / 10).toFixed(1)}` + " %\nType de conseil scolaire : " + `${d.System}`,
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nExcédent/(déficit) en proportion des revenus : " + Intl.NumberFormat('fr-CA', {minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(d["Surplus as Share of Revenue"]*100) + " %\nType de conseil scolaire : " + `${d.System}`,
         lineWidth: 1000,
       }))
     ],
@@ -250,12 +250,12 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         strokeOpacity: 1,
       }),
       Plot.ruleY([22.6], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 22.6%"], {y: 26.5, dx: -180, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 22,6 %"], {y: 26.5, dx: -180, fontWeight: "bold"}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %" }),
       Plot.tip(fig7_3_data, Plot.pointerX({
         x: "Board",
         y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
-        title: (d) => "Conseil scolaire : " + `${d.Board},` + "\nSystème scolaire : " + `${d.System},` + "\nExcédent/(déficit) cumulé en proportion des dépenses : " + `${(Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*10)/10).toFixed(1)}` + " %",
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nSystème scolaire : " + `${d.System}` + "\nExcédent/(déficit) cumulé en proportion des dépenses : " + Intl.NumberFormat('fr-CA', {minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]) + " %",
         lineWidth: 1000,
       }))
     ],
@@ -297,11 +297,11 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       }),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %"  }),
       Plot.ruleY([67.7], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 67.7%"], {y: 70, dx: -50, fontWeight: "bold"}),  
+      Plot.text(["Moyenne : 67,7 %"], {y: 70, dx: -50, fontWeight: "bold"}),  
       Plot.tip(fig8_2_d, Plot.pointerX({
         x: "Board",
         y: "EQAO Pass Rate",
-        title: (d) => "Conseil scolaire : " + `${d.Board},` + "\nSystème scolaire: " + `${d.System},` + "\nTaux de réussite OQRE moyen : " + `${(Math.round(+d["EQAO Pass Rate"]*10)/10).toFixed(1)}` + "%",
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nSystème scolaire: " + `${d.System}` + "\nTaux de réussite OQRE moyen : " + Intl.NumberFormat('fr-CA', {minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(d["EQAO Pass Rate"]) + "%",
         lineWidth: 1000,
         //anchor: "bottom"
         //make
@@ -336,12 +336,12 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         strokeOpacity: 1,
       }),
       Plot.ruleY([.677], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 67.7%"], {y: .70, dx: -30, fontWeight: "bold"}),  
+      Plot.text(["Moyenne : 67,7 %"], {y: .70, dx: -30, fontWeight: "bold"}),  
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %"  }),
       Plot.tip(d, Plot.pointerX({
         x: "Conseil scolaire",
         y: "Taux de réussite OQRE moyen",
-        title: (d) => "Conseil scolaire : " + `${d["Conseil scolaire"]}` + "\nTaux de réussite OQRE moyen : " + `${(Math.round(((+d["Taux de réussite OQRE moyen"]*100)*10))/10).toFixed(1)}` + "%\nFacteur urbain : " + `${d["Urbain"]}`,
+        title: (d) => "Conseil scolaire : " + `${d["Conseil scolaire"]}` + "\nTaux de réussite OQRE moyen : " + Intl.NumberFormat('fr-CA', {minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(d["Taux de réussite OQRE moyen"]*100) + "%\nFacteur urbain : " + `${d["Urbain"]}`,
         lineWidth: 1000,
       }))
     ],
@@ -367,7 +367,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         x: "Per Student Funding",
         y: "EQAO Pass Rate",
         tip: true,
-        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nTaux de réussite OQRE moyen : " + `${(Math.round((+d["EQAO Pass Rate"]*10))/10).toFixed(1)}` + " %\nFinancement par élève : " +  `${Intl.NumberFormat('fr-CA').format(Math.round(d["Per Student Funding"]))}` + " $",
+        title: (d) => "Conseil scolaire : " + `${d.Board}` + "\nTaux de réussite OQRE moyen : " + Intl.NumberFormat('fr-CA', {minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(d["EQAO Pass Rate"]) + " %\nFinancement par élève : " +  `${Intl.NumberFormat('fr-CA').format(Math.round(d["Per Student Funding"]))}` + " $",
         fill: "#1060D5",
         channels: {"EQAO Pass Rate": "EQAO Pass Rate", "Per Student Funding": "Per Student Funding"},
         sort: {x: "Per Student Funding"},
@@ -446,7 +446,7 @@ d3.csv(csv_dir_url + "fig4.3_data_FR.csv").then(d =>{
       }),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
       Plot.tip(fig4_3_tidy_invisible, Plot.pointerX({
         x: "Board",
         y: "Total",
@@ -497,7 +497,7 @@ d3.csv(csv_dir_url + "fig4.4_data_FR.csv").then(d => {
       strokeOpacity: stroke_options.strokeOpacity,
     }),
     Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Moyenne , 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+    Plot.text(["Moyenne : 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
     Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
     Plot.tip(fig4_4_tidy, Plot.pointerX({
       x: "Board",
@@ -547,7 +547,7 @@ d3.csv(csv_dir_url + "fig4.5_data_FR.csv").then(d => {
       strokeOpacity: stroke_options.strokeOpacity,
     }),
     Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Moyenne , 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+    Plot.text(["Moyenne : 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
     Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
     Plot.tip(fig4_5_tidy, Plot.pointerX({
       x: "Board",
@@ -597,7 +597,7 @@ d3.csv(csv_dir_url + "fig4.6_data_FR.csv").then(d => {
         strokeOpacity: stroke_options.strokeOpacity,
       }),
       Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       Plot.tip(fig4_6_tidy, Plot.pointerX({
         x: "Board",
@@ -648,7 +648,7 @@ d3.csv(csv_dir_url + "fig4.7_data_FR.csv").then(d => {
     }),
     Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') }),
     Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-    Plot.text(["Moyenne , 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+    Plot.text(["Moyenne : 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
     Plot.tip(fig4_7_tidy, Plot.pointerX({
       x: "Board",
       y: "Per-student Funding ($)",
@@ -699,7 +699,7 @@ d3.csv(csv_dir_url + "fig4.8_data_FR.csv").then(d =>{
         r: 5.5,
       }),
       Plot.ruleY([12701], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.text(["Moyenne , 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 12 701"], {y: 13950, dx: -150, fontWeight: "bold"}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       Plot.tip(fig4_8_tidy, Plot.pointerX({
         x: "Board",
@@ -750,7 +750,7 @@ d3.csv(csv_dir_url + "fig4.9_data_FR.csv").then(d => {
     strokeOpacity: stroke_options.strokeOpacity,
     }),
     Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-    Plot.text(["Moyenne , 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, fontWeight:"bold",text: d => d}),
+    Plot.text(["Moyenne : 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontSize: 12, fontWeight:"bold",text: d => d}),
     Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
     Plot.tip(fig4_9_tidy, Plot.pointerX({
       x: "Board",
@@ -824,7 +824,7 @@ d3.csv(csv_dir_url + "fig4.10_data_FR.csv").then(d => {
         strokeOpacity: stroke_options.strokeOpacity,
       }),
       Plot.ruleY([652], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-      Plot.text(["Moyenne , 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
+      Plot.text(["Moyenne : 652"], {y: 700, dx: -200, dy: -10, textAnchor: "start",  fontWeight: "bold", fontSize: 12, text: d => d}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       Plot.tip(fig4_10_invisible, Plot.pointerX({
         x: "Board",
@@ -950,7 +950,7 @@ d3.csv(csv_dir_url + "fig5.3_data_FR.csv").then(d => {
         strokeOpacity: stroke_options.strokeOpacity,
       }),
       Plot.ruleY([14501], {stroke: "black", strokeDasharray: "4,4", weight: 4}),
-      Plot.text(["Moyenne , 14 501"], {y: 15500, dx: -200, fontWeight: "bold"}),
+      Plot.text(["Moyenne : 14 501"], {y: 15500, dx: -200, fontWeight: "bold"}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
       Plot.tip(fig5_3_invisible, Plot.pointerX({
         x: "Board",
