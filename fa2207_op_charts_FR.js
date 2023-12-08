@@ -236,7 +236,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "Conseil scolaires", nice: true, tickFormat: d => null},
-    y:{domain: [-10, 90], label: "Excédent/(déficit) cumulé en proportion des dépenses", tickFormat: d => d + "%"},
+    y:{domain: [-10, 90], label: "Excédent/(déficit) cumulé en proportion des revenus", tickFormat: d => d + "%"},
     marks:[
       Plot.barY(fig7_3_data,{
         x: "Board",
