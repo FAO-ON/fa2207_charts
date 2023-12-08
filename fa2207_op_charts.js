@@ -23,8 +23,6 @@ const chart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLe
 // const csv_dir_url = '/web/default/files/publications/FA2207%20School%20Board%20Funding/fa2207_chart_csv/';
 const csv_dir_url = 'fa2207_chart_csv/';
 
-
-
 function replaceFig(figId,graphElement){
   //DOCSTRING: Replaces the image with the graph element
   //figId: the id of the figure
@@ -226,8 +224,8 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
 
   // FIG 7.3 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
   // bar chart
+
   let fig7_3_data = d.map(d => ({Board: d.Board, "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)": +d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100, System: d.System}));
-  console.log(fig7_3_data);
   const fig7_3 = Plot.plot({
     width: chart_options.width,
     padding: 0,
@@ -262,6 +260,13 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     color: {legend: true, domain: ["English Public", "English Catholic", "French Public", "French Catholic"], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]}
   })
   replaceFig("fig7-3",fig7_3);
+  const fig7_4_bars = document.querySelectorAll('#fig7-3-image g[aria-label="bar"] rect');
+  console.log(fig7_4_bars);
+  fig7_4_bars.forEach(bar => {
+    if(bar.getAttribute('height') < 10) {
+      bar.setAttribute('height', 10);
+    }
+  });
 
 
   // FIG 8.2 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
@@ -954,6 +959,10 @@ d3.csv(csv_dir_url + "fig5.3_data.csv").then(d => {
   });
   replaceFig("fig5-3",fig5_3);
 })
+
+
+/* create a function that targets figure 7.3's rect that has an x value of 80 and a y value of 335 */
+
 
 
 
