@@ -210,7 +210,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       Plot.text(["Moyenne , 0.5%"], {y: 0.008, dx: -230, fontWeight: "bold"}),
       //make the X axis start as 0 and be dashed
       //Plot.ruleY([0], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toFixed(1) + " %" }),
       Plot.tip(fig_7_1_data, Plot.pointerX({
         x: "Board",
         y: "Surplus as Share of Revenue",
@@ -250,7 +250,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       }),
       Plot.ruleY([22.6], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Moyenne , 22.6%"], {y: 26.5, dx: -180, fontWeight: "bold"}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %" }),
       Plot.tip(fig7_3_data, Plot.pointerX({
         x: "Board",
         y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
@@ -288,7 +288,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
         strokeWidth: 2,
         strokeOpacity: 1,
       }),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %"  }),
       Plot.ruleY([67.7], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Moyenne , 67.7%"], {y: 70, dx: -50, fontWeight: "bold"}),  
       Plot.tip(fig8_2_d, Plot.pointerX({
@@ -330,7 +330,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       }),
       Plot.ruleY([.677], {stroke: "black", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Moyenne , 67.7%"], {y: .70, dx: -30, fontWeight: "bold"}),  
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %"  }),
       Plot.tip(d, Plot.pointerX({
         x: "Conseil scolaire",
         y: "Taux de réussite OQRE moyen",
@@ -375,7 +375,7 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
       Plot.ruleX([10000], {stroke: "#BFBFBF", weight: 1}),
       Plot.text(["Taux de réussite\n moyen : 67,7 %"], {y: 70, dx: 260,}),
       Plot.text(["Financement par élève\n moyen : 13 364 $"], {y: 82, dx: -190}),
-      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
+      Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA') + " %" }),
       Plot.axisX({ labelAnchor: "center", labelArrow: "none", tickFormat: d=> d.toLocaleString('fr-CA')  }),
     ],
   })
