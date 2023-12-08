@@ -372,7 +372,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.ruleX([13364], {stroke: "blue", strokeDasharray: "6,6", weight: 1}),
       Plot.ruleY([67.7], {stroke: "blue", strokeDasharray: "6,6", weight: 1}),
       Plot.text(["Average pass \nrate 67.7%"], {y: 70, dx: 250}),
-      Plot.text(["Average per \nstudent funding \n$13,364"], {y: 82, dx: -210}),
+      Plot.text(["Average per- \nstudent funding \n$13,364"], {y: 82, dx: -210}),
       //Create a solid x-axis line
       Plot.ruleY([40], {stroke: "#BFBFBF",  weight: 1}),
       Plot.ruleX([10000], {stroke: "#BFBFBF", weight: 1}),
