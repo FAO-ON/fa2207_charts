@@ -111,7 +111,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     x:{label: "School Boards", nice: true,
       tickFormat: d => null,
     },
-    y:{label: "Per Student Funding ($)", nice: true, domain:[0,40000]},
+    y:{label:"Per-student Funding ($)", nice: true, domain:[0,40000]},
     marks: [
       Plot.barY(d, 
         {x: "Board", y: "Per-student Funding ($)", 
@@ -130,7 +130,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(d, Plot.pointerX({
         x: "Board",
         y: "Per-student Funding ($)",
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSystem: " + `${d.System}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSystem: " + `${d.System}`,
         lineWidth: 1000,
       })),
     ],
@@ -153,7 +153,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{label: "Per Student Spending ($)", nice: true, domain: [0, 45000]},
+    y:{label: "Per-student Spending ($)", nice: true, domain: [0, 45000]},
     marks:[
       Plot.barY(d,{
         x: "Board",
@@ -171,7 +171,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(d, Plot.pointerX({
         x: "Board",
         y: "Per-student Spending ($)",
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Spending: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Spending ($)"]))}` + "\nSchool Board Type: " + `${d.System}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Spending: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Spending ($)"]))}` + "\nSchool Board Type: " + `${d.System}`,
         lineWidth: 1000,
       })),
     ],
@@ -354,13 +354,13 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginBottom: chart_options.marginBottom,
     marginRight: 26,
     y:{domain:[40, 85], fy: 5, label: "EQAO Pass Rate (%)"},
-    x:{domain:[10000,40000], label: "Per Student Funding ($)", nice: true},
+    x:{domain:[10000,40000], label: "Per-student Funding ($)", nice: true},
     marks:[
       Plot.dot(fig8_5_data, {
         x: "Per Student Funding",
         y: "EQAO Pass Rate",
         tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round((+d["EQAO Pass Rate"]*100))/100}` + "%\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round((+d["EQAO Pass Rate"]*100))/100}` + "%\nPer-student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}`,
         fill: "#1060D5",
         channels: {"EQAO Pass Rate": "EQAO Pass Rate", "Per Student Funding": "Per Student Funding"},
         sort: {x: "Per Student Funding"},
@@ -411,7 +411,7 @@ d3.csv(csv_dir_url + "fig4.3_data.csv").then(d =>{
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
+    y:{domain: [0, 35000], label:"Per-student Funding ($)", nice: true},
     marks: [
       Plot.barY(fig4_3_tidy, {
         x: "Board", 
@@ -476,7 +476,7 @@ d3.csv(csv_dir_url + "fig4.4_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x: {label: "School Boards", nice: true, tickFormat: d => null},
-    y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
+    y: {label:"Per-student Funding ($)", nice: true, domain: [0, 35000]},
     marks:[
     Plot.barY(fig4_4_tidy,{
       x: "Board",
@@ -494,7 +494,7 @@ d3.csv(csv_dir_url + "fig4.4_data.csv").then(d => {
     Plot.tip(fig4_4_tidy, Plot.pointerX({
       x: "Board",
       y: "Per-student Funding ($)",
-      title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSize: " + `${d.Size}`,
+      title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nSize: " + `${d.Size}`,
       lineWidth: 1000,
     })),
     ],
@@ -526,7 +526,7 @@ d3.csv(csv_dir_url + "fig4.5_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y: {label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
+    y: {label:"Per-student Funding ($)", nice: true, domain: [0, 35000]},
     marks:[
     Plot.barY(fig4_5_tidy,{
       x: "Board",
@@ -544,7 +544,7 @@ d3.csv(csv_dir_url + "fig4.5_data.csv").then(d => {
     Plot.tip(fig4_5_tidy, Plot.pointerX({
       x: "Board",
       y: "Per-student Funding ($)",
-      title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nDispersion: " + `${d.Dispersion}`,
+      title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nDispersion: " + `${d.Dispersion}`,
       lineWidth: 1000,
     })),
     ],
@@ -576,7 +576,7 @@ d3.csv(csv_dir_url + "fig4.6_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
+    y:{label:"Per-student Funding ($)", nice: true, domain: [0, 35000]},
     marks:[
       Plot.barY(fig4_6_tidy, {
         x: "Board",
@@ -594,7 +594,7 @@ d3.csv(csv_dir_url + "fig4.6_data.csv").then(d => {
       Plot.tip(fig4_6_tidy, Plot.pointerX({
         x: "Board",
         y: "Per-student Funding ($)",
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nRemoteness: " + `${d.Remote}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nRemoteness: " + `${d.Remote}`,
         lineWidth: 1000,
       })),
     ],
@@ -626,7 +626,7 @@ d3.csv(csv_dir_url + "fig4.7_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{label: "Per Student Funding ($)", nice: true, domain: [0, 35000]},
+    y:{label:"Per-student Funding ($)", nice: true, domain: [0, 35000]},
     marks: [
     Plot.barY(fig4_7_tidy, {
       x: "Board", 
@@ -644,7 +644,7 @@ d3.csv(csv_dir_url + "fig4.7_data.csv").then(d => {
     Plot.tip(fig4_7_tidy, Plot.pointerX({
       x: "Board",
       y: "Per-student Funding ($)",
-      title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nUrban Factor: " + `${d.Urban}`,
+      title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Funding ($)"]))}` + "\nUrban Factor: " + `${d.Urban}`,
       lineWidth: 1000,
     })),
     ],
@@ -676,7 +676,7 @@ d3.csv(csv_dir_url + "fig4.8_data.csv").then(d =>{
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{domain: [0, 35000], label: "Per Student Funding ($)", nice: true},
+    y:{domain: [0, 35000], label:"Per-student Funding ($)", nice: true},
     marks: [
       Plot.barY(fig4_8_tidy, {
         x: "Board", 
@@ -696,7 +696,7 @@ d3.csv(csv_dir_url + "fig4.8_data.csv").then(d =>{
       Plot.tip(fig4_8_tidy, Plot.pointerX({
         x: "Board",
         y: "Per Student Funding ($)",
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding ($)"]))}` + "\nSchool Board Type: " + `${d.Language}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding ($)"]))}` + "\nSchool Board Type: " + `${d.Language}`,
         lineWidth: 1000,
         //anchor: "bottom"
         //make
@@ -729,7 +729,7 @@ d3.csv(csv_dir_url + "fig4.9_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
   x:{label: "School Boards", nice: true, tickFormat: d => null},
-  y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
+  y:{domain: [0, 4500], label:"Per-student Funding ($)", nice: true},
   marks: [
     Plot.barY(fig4_9_tidy, {
     x: "Board", 
@@ -747,7 +747,7 @@ d3.csv(csv_dir_url + "fig4.9_data.csv").then(d => {
     Plot.tip(fig4_9_tidy, Plot.pointerX({
       x: "Board",
       y: "Per Student Funding",
-      title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding"]))}` + "\nSystem: " + `${d.System}`,
+      title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding"]))}` + "\nSystem: " + `${d.System}`,
       lineWidth: 1000,
     }))
 ],
@@ -792,7 +792,7 @@ d3.csv(csv_dir_url + "fig4.10_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{domain: [0, 4500], label: "Per Student Funding ($)", nice: true},
+    y:{domain: [0, 4500], label:"Per-student Funding ($)", nice: true},
     marks: [
       Plot.barY(fig4_10_tidy, {
       x: "Board", 
@@ -855,7 +855,7 @@ d3.csv(csv_dir_url + "fig4.11_data.csv").then(d=>{
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
-    y:{domain: [0, 600], label: "Per Student Funding ($)", nice: true},
+    y:{domain: [0, 600], label:"Per-student Funding ($)", nice: true},
     marks:[
     Plot.barY(fig4_11_tidy, {
       x: "Board",
@@ -871,7 +871,7 @@ d3.csv(csv_dir_url + "fig4.11_data.csv").then(d=>{
     Plot.tip(fig4_11_tidy, Plot.pointerX({
       x: "Board",
       y: "Per Student Funding",
-      title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}` + "\nSchool Board Type: " + `${d.Language}`,
+      title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}` + "\nSchool Board Type: " + `${d.Language}`,
       lineWidth: 1000,
     })),
     ],
@@ -917,7 +917,7 @@ d3.csv(csv_dir_url + "fig5.3_data.csv").then(d => {
     marginBottom: chart_options.marginBottom,
     marginRight: chart_options.marginRight,
     x:{label: "School Boards",nice: true, tickFormat: d => null},
-    y:{domain: [0, 45000], label: "Per Student Revenue ($)", nice: true},
+    y:{domain: [0, 45000], label:"Per-student Revenue ($)", nice: true},
     marks: [
       Plot.barY(fig5_3_tidy, {
         x: "Board", 
@@ -945,7 +945,7 @@ d3.csv(csv_dir_url + "fig5.3_data.csv").then(d => {
       Plot.tip(fig5_3_invisible, Plot.pointerX({
         x: "Board",
         y: "Per Student Revenue",
-        title: (d) => "School Board: " + `${d.Board}` + "\nPer Student Revenue: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Revenue"]))}` + "\nSystem: " + parseAllocationString(d.Board, allocations) + "Total: $" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nPer-student Revenue: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Revenue"]))}` + "\nSystem: " + parseAllocationString(d.Board, allocations) + "Total: $" + `${Intl.NumberFormat('en-US').format(Math.round(d.Total))}`,
         lineWidth: 1000,
       }))
     ],
