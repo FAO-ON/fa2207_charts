@@ -261,6 +261,12 @@ d3.csv(csv_dir_url + "master_board_FR.csv").then( d => {
     color: {legend: true, domain:['Public anglais','Catholique anglais','Public français','Catholique français'], range: [fao_blue, fao_light_blue_1, fao_pink, fao_light_pink]},
   })
   replaceFig("fig7-3",fig7_3);
+  const fig7_4_bars = document.querySelectorAll('#fig7-3-image g[aria-label="bar"] rect');
+  fig7_4_bars.forEach(bar => {
+    if(bar.getAttribute('height') < 10) {
+      bar.setAttribute('height', 10);
+    }
+  });
 
 
   // FIG 8.2 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
