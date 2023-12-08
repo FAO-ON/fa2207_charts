@@ -192,7 +192,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
     marginRight: chart_options.marginRight,
     x:{label: "School Boards", nice: true, tickFormat: d => null},
     //add percent to the Y axis
-    y:{percent: true, domain:[-4, 6], label: "Surplus as Share of Revenue (%)", tickFormat: d => d + "%"},
+    y:{percent: true, domain:[-4, 6], label: "Surplus / (Deficit) as Share of Revenue", tickFormat: d => d + "%"},
     marks:[
       Plot.barY(fig_7_1_data,{
         x: "Board",
@@ -215,7 +215,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(fig_7_1_data, Plot.pointerX({
         x: "Board",
         y: "Surplus as Share of Revenue",
-        title: (d) => "School Board: " + `${d.Board}` + "\nSurplus as Share of Revenue: " + `${Math.round((+d["Surplus as Share of Revenue"]*100) * 100) / 100}` + "%\nSchool Board Type: " + `${d.System}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nSurplus as Share of Revenue: " + `${(Math.round((+d["Surplus as Share of Revenue"]*100) * 10) / 10).toFixed(1)}` + "%\nSchool Board Type: " + `${d.System}`,
         lineWidth: 1000,
       }))
     ],
@@ -226,7 +226,8 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
 
   // FIG 7.3 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
   // bar chart
-  let fig7_3_data = d.map(d => ({Board: d.Board, "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)": d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100, System: d.System}));
+  let fig7_3_data = d.map(d => ({Board: d.Board, "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)": +d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100, System: d.System}));
+  console.log(fig7_3_data);
   const fig7_3 = Plot.plot({
     width: chart_options.width,
     padding: 0,
@@ -254,7 +255,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(fig7_3_data, Plot.pointerX({
         x: "Board",
         y: "Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)",
-        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nYear-End Accumulated Surplus as Share of Revenue: " + `${Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*100)/100}`,
+        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nYear-End Accumulated Surplus as Share of Revenue: " + `${(Math.round(+d["Year-End Accumulated Surplus as Share of Revenue (August 31, 2022)"]*10)/10).toFixed(1)}` + "%",
         lineWidth: 1000,
       }))
     ],
@@ -294,7 +295,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(fig8_2_d, Plot.pointerX({
         x: "Board",
         y: "EQAO Pass Rate",
-        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nEQAO Pass Rate: " + `${Math.round(+d["EQAO Pass Rate"]*100)/100}` + "%",
+        title: (d) => "School Board: " + `${d.Board},` + "\nSchool System: " + `${d.System},` + "\nEQAO Pass Rate: " + `${(Math.round(+d["EQAO Pass Rate"]*10)/10).toFixed(1)}` + "%",
         lineWidth: 1000,
         //anchor: "bottom"
         //make
@@ -334,7 +335,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.tip(d, Plot.pointerX({
         x: "Board",
         y: "EQAO Pass Rate",
-        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round(((+d["EQAO Pass Rate"]*100)*100))/100}` + "%\nUrban Factor: " + `${d.Urban}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${(Math.round(((+d["EQAO Pass Rate"]*100)*10))/100).toFixed(1)}` + "%\nUrban Factor: " + `${d.Urban}`,
         lineWidth: 1000,
       }))
     ],
@@ -360,7 +361,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
         x: "Per Student Funding",
         y: "EQAO Pass Rate",
         tip: true,
-        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${Math.round((+d["EQAO Pass Rate"]*100))/100}` + "%\nPer-student Funding: " + "$" + `${Math.round(d["Per Student Funding"])}`,
+        title: (d) => "School Board: " + `${d.Board}` + "\nEQAO Pass Rate: " + `${(Math.round((+d["EQAO Pass Rate"]*10))/10).toFixed(1)}` + "%\nPer-student Funding: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per Student Funding"]))}`,
         fill: "#1060D5",
         channels: {"EQAO Pass Rate": "EQAO Pass Rate", "Per Student Funding": "Per Student Funding"},
         sort: {x: "Per Student Funding"},
