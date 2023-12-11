@@ -177,6 +177,8 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
   })
   replaceFig("fig6-4",fig6_4);
 
+  
+
 
   // FIG 7.1 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
   // bar chart
@@ -958,6 +960,45 @@ d3.csv(csv_dir_url + "fig5.3_data.csv").then(d => {
   });
   replaceFig("fig5-3",fig5_3);
 })
+//Fig 6.5 (regular behavior)
+
+d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
+  //tidy the data into sizes, per spending funding, and funding type
+  let fig_6_5_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Size: d.Size, "Per-student Spending ($)": +d[k], "Funding Type": k})));
+  //remove the total expenses
+  fig_6_5_tidy = fig_6_5_tidy.filter(d => d["Funding Type"] != "Total Expenses");
+  console.log(fig_6_5_tidy);
+  const fig6_5 =
+    Plot.plot({
+      width: chart_options.width,
+      padding: .5,
+      className: chart_options.className,
+      marginLeft: chart_options.marginLeft,
+      marginBottom: chart_options.marginBottom,
+      marginRight: chart_options.marginRight,
+      x:{label: "", nice: true, tickFormat: d => null},
+      y:{domain: [0, 20000], label:"Per-student Spending ($)", nice: true},
+      marks:[
+        Plot.barY(fig_6_5_tidy,{
+          x: "Size",
+          y: "Per-student Spending ($)",
+          fill: "Funding Type",
+          channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
+          sort: {x: "Per-student Spending ($)"},
+          stroke: white,
+          strokeWidth: stroke_options.strokeWidth,
+          strokeOpacity: stroke_options.strokeOpacity,
+          tip: true,
+          title: (d) => "Size: " + `${d.Size}` + "\nPer-student Spending: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Spending ($)"]))}` + "\nFunding Type: " + `${d["Funding Type"]}`,
+        }),
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.axisX({ labelAnchor: "center", labelArrow: "none", }),
+      ],
+      color: {legend: true, domain: ["Teacher Compensation", "Non-Teacher Instruction", "Administration", "Transportation", "Pupil Accomodation", "Infrastructure", "Other Spending"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", "#2662DC", fao_green]}
+    })
+  replaceFig("fig6-5",fig6_5);
+})
+
 
 
 /* create a function that targets figure 7.3's rect that has an x value of 80 and a y value of 335 */
