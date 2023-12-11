@@ -3,7 +3,7 @@
 // Created By: Rishabh Kumar Chowdhary /////////////////////////////////
 // Last Updated: 2023-12-04 ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-const scriptVersion = 1.4
+const scriptVersion = 1.5
 console.log('loaded fa2207_op_charts.js v',scriptVersion);
 
 //Constant Definitions
@@ -382,7 +382,7 @@ d3.csv(csv_dir_url + "master_board.csv").then( d => {
       Plot.ruleY([40], {stroke: "#BFBFBF",  weight: 1}),
       Plot.ruleX([10000], {stroke: "#BFBFBF", weight: 1}),
       Plot.axisY({ labelAnchor: "center", labelArrow: "none",  tickFormat: d => d + "%", }),
-      Plot.axisX({ labelAnchor: "center", labelArrow: "none", tickFormat: d => "$" + Intl.NumberFormat('en-US').format(d), margin : 0, }),
+      Plot.axisX({ labelAnchor: "center", labelArrow: "none", tickFormat: d => Intl.NumberFormat('en-US').format(d), margin : 0, }),
     ],
   })
   replaceFig("fig8-5",fig8_5);
