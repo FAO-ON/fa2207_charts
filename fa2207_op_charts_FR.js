@@ -93,6 +93,34 @@ function parseGrantString(board, grant){
   }
   return grantString;
 }
+function parseFundingString(size, funding){
+  //DOCSTRING: parses the string shown to the tooltip with each grant
+  //size: an array of all the school boards
+  //funding: an array of each grant to parse to the string
+  let fundingString = "";
+  for(let i = 0; i < funding.length; i++){
+    if(funding[i].includes(size)){
+      for(let j = 0; j < funding[i].length; j++){
+        if(funding[i][j] != size){
+          if(typeof funding[i][j] == "number"){
+            funding[i][j] = Intl.NumberFormat('fr-CA').format(Math.round(funding[i][j]));
+          }
+          if(j == 1){
+            fundingString += funding[i][j] + " : ";
+          }
+          //add comma after the allocation
+          else if(j == funding[i].length - 1){
+            fundingString += funding[i][j] + " $\n";
+          }
+          else{
+            fundingString += funding[i][j] + ", ";
+          }
+        }
+      }
+    }
+  }
+  return fundingString;
+}
 
 
 
@@ -962,6 +990,72 @@ d3.csv(csv_dir_url + "fig5.3_data_FR.csv").then(d => {
     color: {legend: true, domain: ["Revenus pour projets d’infrastructure", "Revenus de fonctionnement provinciaux et de source propre", "Revenus des transferts de fonctionnement fédéraux"], range: [fao_light_blue_1, fao_pink, fao_blue]}
   });
   replaceFig("fig5-3",fig5_3);
+})
+
+d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
+  console.log(d);
+  //tidy the data into sizes, per spending funding, and funding type
+  let fig_6_5_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Size: d.Size, "Per-student Spending ($)": +d[k], "Funding Type": k})));
+  let funding_type = [];
+  for(let i = 0; i < fig_6_5_tidy.length; i++){
+    //don't add the total to the allocations array
+    if(fig_6_5_tidy[i]["Funding Type"] != "Total Expenses"){
+      funding_type.push([fig_6_5_tidy[i].Size ,fig_6_5_tidy[i]["Funding Type"] , +fig_6_5_tidy[i]["Per-student Spending ($)"]]);
+    }
+  }
+  let fig_6_5_tidy_invisible = fig_6_5_tidy.filter(d => d["Funding Type"] == "Total Expenses");
+  console.log(fig_6_5_tidy_invisible);
+  //remove the total expenses
+  fig_6_5_tidy = fig_6_5_tidy.filter(d => d["Funding Type"] != "Total Expenses");
+  console.log(fig_6_5_tidy_invisible);
+  const fig6_5 =
+    Plot.plot({
+      width: chart_options.width,
+      padding: .5,
+      className: chart_options.className,
+      marginLeft: chart_options.marginLeft,
+      marginBottom: chart_options.marginBottom,
+      marginRight: chart_options.marginRight,
+      x:{label: "", nice: true, tickFormat: d => null},
+      y:{domain: [0, 20000], label:"Dépenses par élève (en dollars)", nice: true},
+      marks:[
+        Plot.barY(fig_6_5_tidy,{
+          x: "Size",
+          y: "Per-student Spending ($)",
+          fill: "Funding Type",
+          channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
+          sort: {x: "Per-student Spending ($)"},
+          stroke: white,
+          strokeWidth: stroke_options.strokeWidth,
+          strokeOpacity: stroke_options.strokeOpacity,
+        }),
+        Plot.barY(fig_6_5_tidy_invisible, {
+          x: "Size",
+          y: "Per-student Spending ($)",
+          fill: "transparent",
+          channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
+          sort: {x: "Per-student Spending ($)"},
+          stroke: stroke_options.stroke,
+          strokeWidth: stroke_options.strokeWidth,
+          strokeOpacity: stroke_options.strokeOpacity,
+        }),
+       
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  tickFormat : d => d.toLocaleString('fr-CA')  }),
+        Plot.axisX({ labelAnchor: "center", labelArrow: "none", }),
+        Plot.text(["13 851"], {y: 14000, dy: -10, dx: -225, textAnchor: "start"}),
+        Plot.text(["15 365"], {y: 16000, dy: -2, dx: -20, textAnchor: "start", }),
+        Plot.text(["19 886"], {y: 20000, dy: -10, dx: 185, textAnchor: "start"}),
+        Plot.tip(fig_6_5_tidy_invisible, Plot.pointerX({
+          x: "Size",
+          y: "Per-student Spending ($)",
+          title: (d) => "Taille: " + `${d.Size}` + "\n" +parseFundingString(d.Size, funding_type),
+          lineWidth: 1000,
+        })),
+
+      ],
+      color: {legend: true, domain: ["Rémunération du personnel enseignant", "Éducation par du personnel non enseignant", "Administration", "Transports", "Logement des élèves", "Infrastructure", "Autres dépenses"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", "#2662DC", fao_green]}
+    })
+  replaceFig("fig6-5",fig6_5);
 })
 
 

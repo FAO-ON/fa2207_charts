@@ -1038,22 +1038,23 @@ d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
           strokeWidth: stroke_options.strokeWidth,
           strokeOpacity: stroke_options.strokeOpacity,
         }),
+
+        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+        Plot.axisX({ labelAnchor: "center", labelArrow: "none", }),
+        Plot.text(["13,851"], {y: 14000, dy: -10, dx: -225, textAnchor: "start"}),
+        Plot.text(["15,365"], {y: 16000, dy: -2, dx: -20, textAnchor: "start", }),
+        Plot.text(["19,886"], {y: 20000, dy: -10, dx: 185, textAnchor: "start"}),
         Plot.tip(fig_6_5_tidy_invisible, Plot.pointerX({
           x: "Size",
           y: "Per-student Spending ($)",
           title: (d) => "Size: " + `${d.Size}` + "\n" +parseFundingString(d.Size, funding_type),
           lineWidth: 1000,
         })),
-        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
-        Plot.axisX({ labelAnchor: "center", labelArrow: "none", }),
-        Plot.text(["13,851"], {y: 14000, dy: -10, dx: -225, textAnchor: "start"}),
-        Plot.text(["15,365"], {y: 16000, dy: -2, dx: -20, textAnchor: "start", }),
-        Plot.text(["19,886"], {y: 20000, dy: -10, dx: 185, textAnchor: "start"}),
 
       ],
       color: {legend: true, domain: ["Teacher Compensation", "Non-Teacher Instruction", "Administration", "Transportation", "Pupil Accomodation", "Infrastructure", "Other Spending"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", "#2662DC", fao_green]}
     })
-  replaceFig("fig6-5-2",fig6_5);
+  replaceFig("fig6-5",fig6_5);
 })
 
 
