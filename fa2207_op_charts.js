@@ -123,7 +123,6 @@ function parseFundingString(size, funding){
 
 
 
-
 // load data from CSV
 d3.csv(csv_dir_url + "master_board.csv").then( d => {
   // FIG 4.1  / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
@@ -989,48 +988,11 @@ d3.csv(csv_dir_url + "fig5.3_data.csv").then(d => {
   });
   replaceFig("fig5-3",fig5_3);
 })
-//Fig 6.5 (regular behavior)
-
-d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
-  //tidy the data into sizes, per spending funding, and funding type
-  let fig_6_5_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Size: d.Size, "Per-student Spending ($)": +d[k], "Funding Type": k})));
-  //remove the total expenses
-  fig_6_5_tidy = fig_6_5_tidy.filter(d => d["Funding Type"] != "Total Expenses");
-  console.log(fig_6_5_tidy);
-  const fig6_5 =
-    Plot.plot({
-      width: chart_options.width,
-      padding: .5,
-      className: chart_options.className,
-      marginLeft: chart_options.marginLeft,
-      marginBottom: chart_options.marginBottom,
-      marginRight: chart_options.marginRight,
-      x:{label: "", nice: true, tickFormat: d => null},
-      y:{domain: [0, 20000], label:"Per-student Spending ($)", nice: true},
-      marks:[
-        Plot.barY(fig_6_5_tidy,{
-          x: "Size",
-          y: "Per-student Spending ($)",
-          fill: "Funding Type",
-          channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
-          sort: {x: "Per-student Spending ($)"},
-          stroke: white,
-          strokeWidth: stroke_options.strokeWidth,
-          strokeOpacity: stroke_options.strokeOpacity,
-          tip: true,
-          title: (d) => "Size: " + `${d.Size}` + "\nPer-student Spending: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Spending ($)"]))}` + "\nFunding Type: " + `${d["Funding Type"]}`,
-        }),
-        Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
-        Plot.axisX({ labelAnchor: "center", labelArrow: "none", }),
-      ],
-      color: {legend: true, domain: ["Teacher Compensation", "Non-Teacher Instruction", "Administration", "Transportation", "Pupil Accomodation", "Infrastructure", "Other Spending"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", "#2662DC", fao_green]}
-    })
-  replaceFig("fig6-5",fig6_5);
-})
 
 //Fig 6.5 (full behavior)
 
 d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
+  console.log(d);
   //tidy the data into sizes, per spending funding, and funding type
   let fig_6_5_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Size: d.Size, "Per-student Spending ($)": +d[k], "Funding Type": k})));
   let funding_type = [];
@@ -1040,9 +1002,11 @@ d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
       funding_type.push([fig_6_5_tidy[i].Size ,fig_6_5_tidy[i]["Funding Type"] , +fig_6_5_tidy[i]["Per-student Spending ($)"]]);
     }
   }
+  let fig_6_5_tidy_invisible = fig_6_5_tidy.filter(d => d["Funding Type"] == "Total Expenses");
+  console.log(fig_6_5_tidy_invisible);
   //remove the total expenses
   fig_6_5_tidy = fig_6_5_tidy.filter(d => d["Funding Type"] != "Total Expenses");
-  console.log(fig_6_5_tidy);
+  console.log(fig_6_5_tidy_invisible);
   const fig6_5 =
     Plot.plot({
       width: chart_options.width,
@@ -1063,11 +1027,29 @@ d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
           stroke: white,
           strokeWidth: stroke_options.strokeWidth,
           strokeOpacity: stroke_options.strokeOpacity,
-          tip: true,
-          title: (d) => "Size: " + `${d.Size}` + "\nPer-student Spending: " + "$" + `${Intl.NumberFormat('en-US').format(Math.round(d["Per-student Spending ($)"]))}` + parseFundingString(d.Size, funding_type),
         }),
+        Plot.barY(fig_6_5_tidy_invisible, {
+          x: "Size",
+          y: "Per-student Spending ($)",
+          fill: "transparent",
+          channels: {"Per-student Spending ($)": "Per-student Spending ($)"},
+          sort: {x: "Per-student Spending ($)"},
+          stroke: stroke_options.stroke,
+          strokeWidth: stroke_options.strokeWidth,
+          strokeOpacity: stroke_options.strokeOpacity,
+        }),
+        Plot.tip(fig_6_5_tidy_invisible, Plot.pointerX({
+          x: "Size",
+          y: "Per-student Spending ($)",
+          title: (d) => "Size: " + `${d.Size}` + "\n" +parseFundingString(d.Size, funding_type),
+          lineWidth: 1000,
+        })),
         Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
         Plot.axisX({ labelAnchor: "center", labelArrow: "none", }),
+        Plot.text(["13,851"], {y: 14000, dy: -10, dx: -225, textAnchor: "start"}),
+        Plot.text(["15,365"], {y: 16000, dy: -2, dx: -20, textAnchor: "start", }),
+        Plot.text(["19,886"], {y: 20000, dy: -10, dx: 185, textAnchor: "start"}),
+
       ],
       color: {legend: true, domain: ["Teacher Compensation", "Non-Teacher Instruction", "Administration", "Transportation", "Pupil Accomodation", "Infrastructure", "Other Spending"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", "#2662DC", fao_green]}
     })
