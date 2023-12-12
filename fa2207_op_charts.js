@@ -1052,7 +1052,7 @@ d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
         })),
 
       ],
-      color: {legend: true, domain: ["Teacher Compensation", "Non-teacher Instruction", "Administration", "Transportation", "Pupil Accommodation", "Infrastructure", "Other Spending"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", fao_dark_blue, fao_green]}
+      color: {legend: true, domain: ["Teacher Compensation", "Non-teacher Instruction", "Administration", "Transportation", "Pupil Accommodation", "Infrastructure", "Other Spending"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", '#3D5892', fao_green]}
     })
   replaceFig("fig6-5",fig6_5);
 })
