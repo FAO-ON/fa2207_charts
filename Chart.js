@@ -13,15 +13,17 @@ export class Chart{
     }
 }
 export class BarChart extends Chart {
-    barchart_options = {width: 800, padding: 0.3, className: "sb-chart", marginLeft: 80, marginBottom: 50, marginRight: 0};
     constructor(options, data) {
         super(options, data);
         this.options = options;
     }
 
+    barchart_options = {width: 800, padding: this.options.padding, className: "sb-chart", marginLeft: 80, marginBottom: 50, marginRight: 0};
+
     draw() {
         let yName = this.options.YAxisName;
         let xName = this.options.XAxisName;
+        console.log(this.options.percent);
         let d = this.data;
         let expandedXName = ((this.options.XAxisName == "Board") ? "School Boards" : this.options.XAxisName);
         if (this.options && this.options.XAxisName && this.options.YAxisName) {
@@ -37,7 +39,7 @@ export class BarChart extends Chart {
                         marginRight: this.barchart_options.marginRight,
                         padding: this.barchart_options.padding,
                         x: {label: ((this.options.XAxisName == "Board") ? "School Boards" : this.options.XAxisName), tickFormat: d => null},
-                        y: {label: this.options.YAxisName, range: this.options.YAxisRange},
+                        y: {label: this.options.YAxisName, domain: [this.options.yAxisRange[0], this.options.yAxisRange[1]]},
                         marks: [
                             Plot.barY(d, { 
                                 x: xName, 
@@ -51,7 +53,7 @@ export class BarChart extends Chart {
                                 tip: true,
                                 title: (d) => expandedXName + " " + `${d[xName]}` + "\n" + yName +  `${Intl.NumberFormat('en-US').format(Math.round(d[yName]))}`  + "\n" + `${d[this.options.fill]}`,
                             }),
-                            Plot.axisY({ labelAnchor: "center", labelArrow: "none",  }),
+                            Plot.axisY({ labelAnchor: "center", labelArrow: "none", tickFormat: ((this.options.percent == true) ? d => d.toFixed(1) + "%" : d  => Intl.NumberFormat('en-US').format(Math.round(d)))}),
                         ],
                         color: {legend: true, domain: [this.options.legend[0][0], this.options.legend[0][1], this.options.legend[0][2], this.options.legend[0][3]], range: [this.options.legend[1][0], this.options.legend[1][1], this.options.legend[1][2], this.options.legend[1][3]]}
                     });
