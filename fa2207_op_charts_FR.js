@@ -1053,7 +1053,7 @@ d3.csv(csv_dir_url + "fig6.5_data.csv").then(d => {
         })),
 
       ],
-      color: {legend: true, domain: ["Rémunération du personnel enseignant", "Éducation par du personnel non enseignant", "Administration", "Transports", "Logement des élèves", "Infrastructure", "Autres dépenses"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", "#2662DC", fao_green]}
+      color: {legend: true, domain: ["Rémunération du personnel enseignant", "Éducation par du personnel non enseignant", "Administration", "Transports", "Logement des élèves", "Infrastructure", "Autres dépenses"], range: ["#255FD5", "#93BBF7", fao_pink,"#D4E3FC", "#1A2B4A", fao_dark_blue, fao_green]}
     })
   replaceFig("fig6-5",fig6_5);
 })
