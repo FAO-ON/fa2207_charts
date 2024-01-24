@@ -47,7 +47,7 @@ Chart.js has three Chart Types so far,
     const fig4_1 = new BarChart(fig4_1_options, data);
     ```
 > [!NOTE]
-> Data must be loaded as a JSON, use '''d3.csv'' to load a CSV into a JSON. Learn more [here](https://d3-wiki.readthedocs.io/zh-cn/master/CSV/)
+> Data must be loaded as a JSON, use `d3.csv()` to load a CSV into a JSON. Learn more about `d3.csv()` [here](https://d3-wiki.readthedocs.io/zh-cn/master/CSV/)
 
 4. Congrats :tada: you have loaded a Chart!
 > [!TIP]
