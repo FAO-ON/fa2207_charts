@@ -43,20 +43,19 @@ Chart.js has three Chart Types so far,
 
 3. Declare the chart defining it with what **Chart Type** you want it to be
     - Example format can be seen below:
-    '''
+    ```
     const fig4_1 = new BarChart(fig4_1_options, data);
-    '''
-    > [!NOTE]
-    > Data must be loaded as a JSON, use '''d3.csv'' to load a CSV into a JSON. Learn more [here] (https://d3-wiki.readthedocs.io/zh-cn/master/CSV/)
+    ```
+> [!NOTE]
+> Data must be loaded as a JSON, use '''d3.csv'' to load a CSV into a JSON. Learn more [here](https://d3-wiki.readthedocs.io/zh-cn/master/CSV/)
 
 4. Congrats :tada: you have loaded a Chart!
 > [!TIP]
-> To see this chart please insert it into the HTML. An example of doing this by replacing an image can be seen with the code snippet below.
-> '''function replaceFig(figId,graphElement){
-    //DOCSTRING: Replaces the image with the graph element
-    //figId: the id of the figure
-    //graphElement: the graph element to replace the image with
+> To see this chart please insert it into the HTML. An example of doing this by replacing each chart image with the interactive one can be seen with the code snippet below. 
+```
+function replaceFig(figId,graphElement){
     const img = document.querySelector('#' + figId + '-image img');
     img.after(graphElement);
     img.style.display = "none";
-    } '''
+    } 
+```
