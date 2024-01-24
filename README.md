@@ -6,7 +6,7 @@ Chart.js has three Chart Types so far,
 - Bar Chart
 - Scatter Plot
 - Stacked Bar Chart
-- [x] #5
+- [ ] https://github.com/FAO-ON/fa2207_charts/issues/5
 
 > How do you use Chart.js?
 
