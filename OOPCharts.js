@@ -1,4 +1,4 @@
-import { BarChart } from "./Chart.js";
+import { BarChart, ScatterPlot, StackedBarChart } from "./Chart.js";
 
 /*FAO COLORS */
 const fao_blue = '#0f60d5';
@@ -27,7 +27,7 @@ function replaceFig(figId,graphElement){
 
 //3.2
 
-d3.csv("fa2207_chart_csv/fig3-2.csv").then(d => {
+
 
 d3.csv("fa2207_chart_csv/master_board.csv").then(d => {
     console.log(d);
@@ -109,7 +109,37 @@ d3.csv("fa2207_chart_csv/master_board.csv").then(d => {
     replaceFig("fig8-4",fig8_4.draw());
 
 
+    let fig8_5_data = d.map(d => ({Board: d.Board, "EQAO Pass Rate": +d["EQAO Pass Rate"]*100, "Per Student Funding": +d["Per-student Funding ($)"]}));
+    const fig8_5_options = {
+        XAxisName: "Per Student Funding",
+        YAxisName: "EQAO Pass Rate",
+        marginRight: 26,
+        fill: "#1060D5",
+        yAxisRange: [40, 85],
+        xAxisDomain: [10000, 40000],
+        percent: true,
+        radius: 5.5,
+        padding: clustered_barchart_padding
+    }
+    const fig8_5 = new ScatterPlot(fig8_5_options, fig8_5_data);
+    replaceFig("fig8-5",fig8_5.draw());
 
+})
 
+//fig 5.3
+d3.csv("fa2207_chart_csv/fig5.3_data.csv").then(d => {
+    let fig5_3_tidy = d.flatMap(d => Object.keys(d).slice(1).map(k => ({Board: d.Board, "Per-student Revenue ($)": +d[k], System: k, Total: +d['Total']})));
+    const fig5_3_options = {
+        XAxisName: "Board",
+        YAxisName: "Per-student Revenue ($)",
+        legend: [["Provincial and Own Source Operating Revenue", "Revenue for Infrastructure Projects", "Federal Transfers Revenue"], [fao_light_blue_1, fao_pink, fao_blue]],
+        fill: "System",
+        yAxisRange: [0, 45000],
+        percent: false,
+        padding: clustered_barchart_padding,
+        fillInvisible: "Total"
+    }
+    const fig5_3 = new StackedBarChart(fig5_3_options, fig5_3_tidy);
+    replaceFig("fig5-3",fig5_3.draw());
 
 })
